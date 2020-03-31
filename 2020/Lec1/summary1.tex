@@ -97,28 +97,26 @@ $\sigma$は部材軸方向の直応力を，$\varepsilon$は直ひずみを表�
 	\caption{軸方向の外力$p(x)$と$\bar F$を受ける左端が固定支持された棒部材.} 
 	\label{fig:fig1_1}
 \end{figure}
-なお，部材の支持条件は，図\ref{fig:fig1_1}に示したもの以外にも，例えば，
-両端が固定された場合等が考えられる．しかしながら，議論を具体的にするために，以下では
-図\ref{fig:fig1_1}の支持条件に対して問題の定式化を行う．ただし，同様な定式化は
-一般の支持条件に対しても行うことができる．
+部材の支持条件は図\ref{fig:fig1_1}に示したもの以外にも，例えば，
+両端が固定された場合等が考えられるが，議論を具体的にするために，
+以下では別途断りの無い限り， 図\ref{fig:fig1_1}の支持条件を対象として
+一連の定式化方法(後述する弱形式、強形式)を示す．なお，一般の支持条件に
+対しても同様な定式化は可能である．
 \subsubsection{強形式と強解(新しい用語)}
-以上に示したような，支配微分方程式(\ref{eqn:gveq})と境界条件(\ref{eqn:BC_u}),(\ref{eqn:BC_N})
-による問題の定式化は強形式(strong form)と呼ばれる．またその解$u(x)$のことを
-強解(strog form solution)と呼ぶ．
+以上で示したような，支配微分方程式(\ref{eqn:gveq})と境界条件(\ref{eqn:BC_u}),(\ref{eqn:BC_N})
+による問題の定式化は{\bf 強形式(strong form)}と呼ばれ，その解$u(x)$のことを{\bf 強解(strong form solution)}と呼ぶ．
 \subsection{弱形式}
-ここでは，微分方程式を直接用いることなく軸力問題を定式化する方法を示す．
-%そのために， 前節の図\ref{fig:fig1_1}で示した支持条件に限定して議論を行う．
-%ただし，以下に示すものと同様な定式化は，一般の支持条件に対しても容易に行うことができる．
 \subsubsection{弱形式の導出}
 $\xi (x)$を区間:$0\leq x \leq l$で定義され，$\xi(0)=0$を満たす任意の関数とする．
-ここで，$\xi (x)$を式(\ref{eqn:equiv_N})の両辺に掛け，$x=0$から$x=l$の範囲で次のように積分する．
+式(\ref{eqn:equiv_N})の両辺に$\xi (x)$を掛け，$x=0$から$x=l$の範囲で次のように
+積分する．
 \begin{equation}
 	\int _0^l 
 	\left(N'+p \right) \xi dx =0
 	\label{eqn:int_gveq_xi}
 \end{equation}
 $N(x)$が軸力問題の解であれば，式(\ref{eqn:int_gveq_xi})は$\xi(x)$に依らず成立する．
-ここで，式(\ref{eqn:int_gveq_xi})の左辺第一項を部分積分を用いて変形すると，
+式(\ref{eqn:int_gveq_xi})の左辺第一項を部分積分を用いて変形すると，
 \begin{eqnarray}
 	\int _0^l N'\xi dx &= & \left[ N\xi \right]_0^l -\int_0^l N \xi'dx  
 	\label{eqn:int_by_part1}
@@ -126,15 +124,9 @@ $N(x)$が軸力問題の解であれば，式(\ref{eqn:int_gveq_xi})は$\xi(x)$�
 	&= & \bar F \xi(l)  -\int_0^l N \xi'dx  
 	\label{eqn:int_by_part2}
 \end{eqnarray}
-となる．
-なお，式(\ref{eqn:int_by_part1})から式(\ref{eqn:int_by_part2})への変形には，
+となる．ここで，式(\ref{eqn:int_by_part1})から式(\ref{eqn:int_by_part2})への変形には，
 $\xi(0)=0$と$N(0)=0$であることを用いた．式(\ref{eqn:int_by_part2})を
-式(\ref{eqn:int_gveq_xi})に代入すれば，次の関係が得られる．
-\begin{equation}
-	a(u,\xi)=b(\xi)
-	\label{eqn:WF_N}
-\end{equation}
-ただし，$a(u,\xi)$と$b(\xi)$は以下のように定義する．
+式(\ref{eqn:int_gveq_xi})に代入して整理し，
 \begin{equation}
 	a(u,\xi) = \int_0^l N \xi'dx  
 	= \int_0^l EA u' \xi'dx  
@@ -145,33 +137,40 @@ $\xi(0)=0$と$N(0)=0$であることを用いた．式(\ref{eqn:int_by_part2})�
 	\int_0^l p\xi dx 
 	\label{eqn:linf_N}
 \end{equation}
-式(\ref{eqn:WF_N})の関係は，$u(x)$が強解である限り$\xi(x)$に依らず成り立つ．
+と表すことにすれば，その結果は簡潔に次のように表すことができる．
+\begin{equation}
+	a(u,\xi)=b(\xi)
+	\label{eqn:WF_N}
+\end{equation}
+式(\ref{eqn:WF_N})の関係は，$u(x)$が強解である限り$\xi(x)$に依らず成り立つことに注意する．
 逆に，任意の$\xi(x)$について式(\ref{eqn:WF_N})を満足するような$u(x)$があったとし，
-これを強解と区別するために$\tilde u(x)$と書く．
-すなわち，
+これを強解と区別して$\tilde u(x)$と書く．すなわち，$\tilde u(x)$は
 \begin{equation}
 	a(\tilde u,\xi)=b(\xi), \ \ (\forall \xi(x) \ {\rm s.t.} \ \xi(0)=0)
 	\label{eqn:WF_N_tilde}
 \end{equation}
-であるとする．なお，式(\ref{eqn:WF_N_tilde})において$\forall$は"for all (全ての，任意の)"を，
-s.t.は"such that$\sim$"($\sim$であるような)と読む．従って，式(\ref{eqn:WF_N_tilde})は
+の関係を満足するような関数であるとする．ここで，$\forall$は"for all (全ての，任意の)"と，
+s.t.は"such that$\sim$($\sim$であるような)"と読む．従って，式(\ref{eqn:WF_N_tilde})は
 $\xi(0)=0$であるような任意の$\xi(x)$について$a(\tilde u, \xi)=b(\xi)$が満たされる，
-ということを表している．
-式(\ref{eqn:WF_N_tilde})の関係を満足するよう$\tilde u$を求める問題を弱形式
-(weak form)と呼び，その解である$\tilde u$は弱解と呼ばれる．
+ということを述べたものである．式(\ref{eqn:WF_N_tilde})の関係を満たし，
+$\tilde u(0)=0$となるような$\tilde u(x)$を求める問題を{\bf 弱形式(weak form)}と呼び，
+その解である$\tilde u(x)$は{\bf 弱解}と呼ばれる．
 \subsubsection{弱形式と強形式の等価性}
-これまでの議論から，強形式の解$u$(強解)は必ず弱形式の解(弱解)になることが分かる．
+これまでの議論から，強形式の解$u$(強解)は必ず弱形式の解(弱解)になることは明らかである．
+このことを図式的に書くと，
 \begin{equation}
 	強形式の解(強解) \ \Rightarrow \ 弱形式の解(弱解)
-	\label{eqn:}
+	\label{eqn:prop_s2w}
 \end{equation}
-一方，この逆，つまり弱解が同時に強形式の解となるかは自明で無い.しかしながら，
+となる．一方この逆，すなわち，弱解が同時に強形式の解となるか否かは自明で無い.
+しかしながら，
 \begin{equation}
-	強形式の解(強解) \ \Leftarrow \ 弱形式の解(弱解)
-	\label{eqn:}
+	弱形式の解(弱解) \ \Rightarrow \ 強形式の解(強解)
+	\label{eqn:prop_w2s}
 \end{equation}
-となることは以下のようにして示すことができる．
-式(\ref{eqn:WF_N_tilde})の左辺を，部分積分を行い次のように変形する．
+となることは以下のようにして示すことができる．\\
+
+式(\ref{eqn:WF_N_tilde})の左辺を，部分積分により次のように変形する．
 \begin{eqnarray}
 	a(\tilde u, \xi) 
 	&=& 
@@ -185,67 +184,60 @@ $\xi(0)=0$であるような任意の$\xi(x)$について$a(\tilde u, \xi)=b(\xi
 	\left. EA \tilde u'\xi \right|_{x=l} - \int_0^l (EA\tilde u')'\xi dx
 	\label{eqn:}
 \end{eqnarray}
-以上では，$\xi(0)=0$であることを用いたが，$\tilde u$が強形式の解であるかどうか
-この時点では不明であるため、$\tilde N = EA\tilde u'=\bar F$とすることはできないことに
-注意が必要である．この結果を式(\ref{eqn:WF_N_tilde})に代入して整理すると,
+以上では，$\xi(0)=0$であることを用いた．一方，$\tilde u$が強解であるかどうか
+この時点では不明であるため、$\tilde N = EA\tilde u'=\bar F$とすることはでき
+ないことに注意が必要である．式(\ref{eqn:WF_N_tilde})に代入して整理すると,
 \begin{equation}
 	\int_0^l \left\{ (EA\tilde u')'+p \right\} \xi dx 
 	+ \left\{ \bar F-EA\tilde u'(l) \right\}\xi(l)=0
 	\label{eqn:w2s_proof}
 \end{equation}
-となる.ここで,$\xi(x)$として
+となる.$\xi(x)$は任意の関数でよいことから，適当な関数$\phi(x)$を用いて，
 \begin{equation}
-	\xi (x) =\left\{ (EA\tilde u')'+p \right\} \phi(x)
+	\xi (x) =\left\{ (EA\tilde u')'+p \right\} \phi(x), \ \ (\phi(0)=0)
 	\label{eqn:xi_special}
 \end{equation}
-のような形を持つ特別な場合について考える.式(\ref{eqn:xi_special})の$\phi(x)$を
+としてもよい．さらに$\phi(x)$を
 \begin{equation}
 	\phi(x)= x(l-x)
 	\label{eqn:}
 \end{equation}
-とすれば,$\xi(0)=0$とすることができる.式(\ref{eqn:xi_special})を式(\ref{eqn:w2s_proof})
-に代入すると，
+とすれば，$\xi(0)=\xi(l)=0$となるようにでき，これを踏まえて式(\ref{eqn:xi_special})の
+$\xi(x)$を式(\ref{eqn:w2s_proof})に代入すると，
 \begin{equation}
 	\int_0^l \left\{ (EA\tilde u')'+p \right\}^2\phi dx =0
 	\label{eqn:w2s_proof2}
 \end{equation}
-式(\ref{eqn:w2s_proof2})において，被積分関数は全て正または零で，$\phi(x)$は
-$0<x<l$で正であるため，この積分が零であるためには
+となることが分かる． 式(\ref{eqn:w2s_proof2})の被積分関数は全て正または零で，
+$\phi(x)$は$0<x<l$で正である．従って,式(\ref{eqn:w2s_proof2})となるためには，
 \begin{equation}
 	(EA\tilde u')'+p =0
 	\label{eqn:}
 \end{equation}
-でなければならない．このことを踏まえれば，式(\ref{eqn:w2s_proof})は
+でなければならない．このことを踏まえれば，式(\ref{eqn:w2s_proof})は，
+任意の$\xi(l)$について
 \begin{equation}
 	\left\{ \bar F-EA\tilde u'(l)\right\}\xi(l) =0
 	\label{eqn:}
 \end{equation}
-となることから，
+でなければならず，
 \begin{equation}
 	\tilde N =EA\tilde u' =\bar F
 	\label{eqn:}
 \end{equation}
-が言える．従って，式\ref{eqn:WF_N_tilde}と$\tilde u(0)=0$となるものは，
-強形式の解であることがわかり，
+が言える．以上のことから，式(\ref{eqn:WF_N_tilde})を満たすものの中で，
+$\tilde u(0)=0$となるものは強形式の解であることがわかり，
 \begin{equation}
 	u=\tilde u
 	\label{eqn:w2s}
 \end{equation}
-となることが示される．以上より，強形式と弱形式は同じ解を与えることから
-双方とも同じ軸力問題を表現する等価なものであることが分かる．
-\subsubsection{弱解}
-任意の$\xi(x)$(ただし$\xi(0)=0$)について式(\ref{eqn:WF_N})を満足する$u(x)$のうち，
-$u(0)=0$となる$u(x)$("弱解"と呼ぶ)は，強形式の解("強解"と呼ぶ)に一致することは
-数学的に証明することができる．
-従って，強解を直接求める代わりに弱解を求めることでも，軸力問題を解くことができる．
-式(\ref{eqn:WF_N})に基づく問題の表現を弱形式と呼ぶ．
-弱解と強解が一致するという意味において，弱形式と強形式は等価である．
+となることが結論される．すなわち，強形式と弱形式は同じ解を与え，この意味において
+2つの問題の定式化は互いに等価なものということができる．
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{仮想仕事式}
-図\ref{fig:fig1_2}に示すような２つの系を考える．これらの系は，
-部材に加えられる外力のみが異なり，支持条件と材料定数$E,A$は
-同じであるとする．そこで，系$i,\, (i=1,2)$に加えれた分布力を
-$p_i(x)$ 部材右端Bに作用する集中荷重を$\bar F_i$, 
-その結果生じる変位と軸力をそれぞれ$u_i(x), N_i(x)$と表す．
+図\ref{fig:fig1_2}に示す２つの系を考える．これらの系では，部材に加えられた外力だけが互いに異なり，
+支持条件と断面係数$E,A$は同じとする．そこで，系$i,\, (i=1,2)$に加えれた分布力を
+$p_i(x)$，部材右端Bに作用する集中荷重を$\bar F_i$, その結果生じる変位と軸力をそれぞれ$u_i(x), N_i(x)$と表す．
 \begin{figure}[h]
 	\begin{center}
 	\includegraphics[width=0.8\linewidth]{fig1_2.eps} 
@@ -262,18 +254,50 @@ $p_i(x)$ 部材右端Bに作用する集中荷重を$\bar F_i$,
 	b(u_2)=\bar F_1 u_2(l)+\int_0^l p_1 u_2dx
 	\label{eqn:vw_ext}
 \end{equation}
-となる．ここで，式(\ref{eqn:vw_int})と式(\ref{eqn:vw_ext})は，ともに
+となり，これらの量が互いに等しいとの結果が得られる．
+式(\ref{eqn:vw_int})と式(\ref{eqn:vw_ext})は，ともに
 力$\times$長さ，すなわち仕事の次元を持つ量となっている．
 前者は内力である$N_1$, 後者は外力$\bar F_1$と$p_1(x)$に関するものである
 ことから，これらの量をそれぞれ，内部仮想仕事，外部仮想仕事と呼ぶ．
 "仮想"と呼ぶ理由は，力は系1の，変位は系2に関するものであることから，
-両者の積が物理的に存在する仕事を指す訳ではないことによる．
+両者の積が物理的に行われた仕事を指す訳ではないことによる．
 系1と系2の間に成り立つ関係
 \begin{equation}
 	a(u_1,u_2)=b(u_2)
 	\label{eqn:vw_eq}
 \end{equation}
 を，仮想仕事式と呼ぶ．
+\subsection{力学的エネルギー保存則}
+仮想仕事式(\ref{eqn:vw_eq})において，$u_1=u_2$とする．すなわち，系1だけを考え，
+弱形式(\ref{eqn:WF_N})において
+\[
+	u=u_1, \ \ \xi=u_1
+\]
+としたときの仮想仕事式を考える．このとき，$a(u_1,u_2)$と$b(u_2)$は
+それぞれ
+\begin{equation}
+	a(u_1,u_1)=\int_0^l N_1u_1'dx = \int_0^l\frac{N_1N_1}{EA}dx
+	\label{eqn:w_int}
+\end{equation}
+\begin{equation}
+	b(u_1)=\bar F_1 u_1(l)+\int_0^l p_1 u_1dx
+	\label{eqn:w_ext}
+\end{equation}
+となる．いずれも
+\[
+	系1に作用する力 \times 系2に生じる変位
+\]
+となり，これらは実際に行われた仕事を表すことから，
+\begin{equation}
+	a(u_1,u_1)=b(u_1)
+	\label{eqn:energy_conservation}
+\end{equation}
+は，(仮想ではなく)実際に行われた内部仕事と外部仕事が等しいという
+関係を示している．この関係は，外力になされた仕事として系に加えられた
+エネルギー(外部仕事)は，その結果発生した内力とひずみとして蓄えれれる
+エネルギ−である内部仕事に等しいと読むことができる．
+この意味で，式(\ref{eqn:energy_conservation})は力学的エネルギーの保存則を
+表すものと理解することができる．
 \subsection{単位荷重法}
 仮想仕事式(\ref{eqn:vw_eq})における系1として，次のような特別な場合を考える．
 \begin{equation}
