@@ -1,0 +1,249 @@
+\documentclass[10pt,a4j]{jarticle}
+%\usepackage{graphicx,wrapfig}
+\usepackage{graphicx}
+\setlength{\topmargin}{-1.5cm}
+\setlength{\textwidth}{16.5cm}
+\setlength{\textheight}{25.2cm}
+\newlength{\minitwocolumn}
+\setlength{\minitwocolumn}{0.5\textwidth}
+\addtolength{\minitwocolumn}{-\columnsep}
+%\addtolength{\baselineskip}{-0.1\baselineskip}
+%
+\def\Mmaru#1{{\ooalign{\hfil#1\/\hfil\crcr
+\raise.167ex\hbox{\mathhexbox 20D}}}}
+%
+\begin{document}
+\newcommand{\fat}[1]{\mbox{\boldmath $#1$}}
+\newcommand{\D}{\partial}
+\newcommand{\w}{\omega}
+\newcommand{\ga}{\alpha}
+\newcommand{\gb}{\beta}
+\newcommand{\gx}{\xi}
+\newcommand{\gz}{\zeta}
+\newcommand{\vhat}[1]{\hat{\fat{#1}}}
+\newcommand{\spc}{\vspace{0.7\baselineskip}}
+\newcommand{\halfspc}{\vspace{0.3\baselineskip}}
+\bibliographystyle{unsrt}
+%\pagestyle{empty}
+\newcommand{\twofig}[2]
+ {
+   \begin{figure}
+     \begin{minipage}[t]{\minitwocolumn}
+         \begin{center}   #1
+         \end{center}
+     \end{minipage}
+         \hspace{\columnsep}
+     \begin{minipage}[t]{\minitwocolumn}
+         \begin{center} #2
+         \end{center}
+     \end{minipage}
+   \end{figure}
+ }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\vspace*{\baselineskip}
+\begin{center}
+	{\Large \bf 2020年度 構造力学II 第２回} \\
+\end{center}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{曲げ問題}
+\subsection{強形式}
+曲げ問題のたわみに関する支配方程式は
+\begin{equation}
+	\frac{d^2}{dx^2}\left(EI \frac{d^2v}{dx^2}\right) -q =0, \ \ \left(x\in (0,l)\right)
+	\label{eqn:gveq_beam}
+\end{equation}
+で与えられる．ここで，$v$はたわみを，$E$はヤング率を，
+$I$は部材の断面2次モーメントを，$q(x)$は鉛直下向きに作用する分布力を表し，
+$q(x)$は単位長さあたりの力の次元を持つ．
+式(\ref{eqn:gveq_beam})は, 曲げモーメント$M$とせん断力$Q$に関する釣り合い条件:
+\begin{eqnarray}
+	\frac{dM}{dx} &=& Q
+	\label{eqn:equiv_M} \\
+	\frac{dQ}{dx} &=& -q
+	\label{eqn:equiv_Q}
+\end{eqnarray}
+と，フックの法則と平面保持の仮定に由来する次の関係
+から導かれるものである．
+\begin{equation}
+	M=EI \kappa= -EI\frac{d^2v}{dx^2}
+	\label{eqn:M_k}
+\end{equation}
+ただし$\kappa$は曲率を表し，たわみ$v$と$\kappa\approx -v''$の関係にある. 
+なお，釣り合い条件式(\ref{eqn:equiv_M})と(\ref{eqn:equiv_Q})をまとめると，
+\begin{equation}
+	\frac{d^2M}{dx^2}+q=0
+	\label{eqn:equiv_MQ}
+\end{equation}
+となる．梁が図\ref{fig:fig2_1}のように，片持梁として支持されている場合，
+$x=0$と$x=l$における境界条件(支持条件)は次のようになる．
+\begin{eqnarray}
+	v (0) &= & 0 
+	\label{eqn:BC_v}
+	\\
+	v' (0) &= & 0 
+	\label{eqn:BC_th}
+	\\
+	M (l) &= & -EI v''(l)=\bar M 
+	\label{eqn:BC_M} \\
+	Q (l) &= & \left(-EI v''\right)'(l)=\bar Q 
+	\label{eqn:BC_Q} 
+\end{eqnarray}
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[width=0.6\linewidth]{fig1.eps} 
+	\end{center}
+	\caption{鉛直下向きの分布荷重$q(x)$を受ける片持梁.} 
+	\label{fig:fig2_1}
+\end{figure}
+\subsection{弱形式}
+$\eta (x)$を，$0\leq x \leq l$上で定義され，$\eta(0)=0,\, \eta'(0)=0$を
+満たす任意の関数とする．$\eta (x)$を式(\ref{eqn:equiv_MQ})の両辺に掛け，
+$x=0$から$x=l$の範囲で次のように積分する．
+\begin{equation}
+	\int _0^l 
+	\left(M''+q \right) \eta dx =0
+	\label{eqn:int_gveq_eta}
+\end{equation}
+この式の左辺第一項を，部分積分を2回行って変形すると，
+\begin{eqnarray}
+	\int _0^l M''\eta dx &= & \left[ M'\eta \right]_0^l -\int_0^l M' \eta'dx  
+	\label{eqn:}
+	\\
+	&= & \left[ M'\eta \right]_0^l -\left[M\eta'\right]_0^l+\int_0^l M \eta''dx  
+	\label{eqn:}
+	\\
+	&= & \bar Q \eta(l) - \bar M \eta'(l)+\int_0^l M \eta''dx  
+\end{eqnarray}
+となる．これを，式(\ref{eqn:int_gveq_eta})に代入すれば次の関係が得られる．
+\begin{equation}
+	a(v,\eta)=b(\eta)
+	\label{eqn:WF_M}
+\end{equation}
+ただし，$a(v,\eta)$と$b(\eta)$は以下の通りである．
+\begin{equation}
+	a(v,\eta) = -\int_0^l M \eta''dx  
+	= \int_0^l EI v'' \eta''dx  
+	\label{eqn:blinf_M}
+\end{equation}
+\begin{equation}
+	b(\eta)= 
+	\bar Q \eta (l) - 
+	\bar M \eta' (l) + 
+	\int_0^l q\eta dx 
+	\label{eqn:linf_M}
+\end{equation}
+$a(v,\eta)$と$b(\eta)$は，ともに，関数$v$や$\eta$に対して作用して
+一つの値を返す関数と見ることができる．このような，関数の関数
+は汎関数(functional)と呼ばれ，中でも特に$a(v,\eta)$は
+双線形形式(bilinear form)と，$b$は線形形式(linear form)と呼ばれる．
+任意の$\eta(x)$(ただし$\eta(0)=0,\, \eta'(0)=0$)について，
+式(\ref{eqn:WF_M})を満足する$v(x)$のうち，$v(0)=0,\, v'(0)=0$
+となる$v(x)$(弱解)が強解に一致することは,軸力問題の場合と同様，
+数学的に証明することできる．
+\subsection{仮想仕事式}
+図\ref{fig:fig2_2}に示すような２つの系を考える．これらの系は，
+互いに外力のみが異なり，支持条件と材料定数$E,I$は
+共通である．ここで，系$i,\, (i=1,2)$に加えられた分布力を
+$q_i(x)$ 部材右端Bに作用する鉛直力と曲げモーメントをそれぞれ
+$\bar Q_i, \bar M_i$とする．また，これら外力によってそれぞれの系に
+生じるたわみを$v_i$, たわみ角を$\theta_i$とし，
+曲げモーメントとせん断力をそれぞれ$M_i(x), Q_i(x)$と表す．
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[width=0.8\linewidth]{fig2.eps} 
+	\end{center}
+	\caption{荷重条件のみが異なる2つの系.(a)系1, (b)系2.} 
+	\label{fig:fig2_2}
+\end{figure}
+ここで式(\ref{eqn:WF_M})において，$v=v_1$, $\eta=v_2$とすれば，
+式(\ref{eqn:WF_M})の各辺は，
+\begin{equation}
+	a(v_1,v_2)=-\int_0^l M_1v''_2dx = \int_0^l\frac{M_1M_2}{EI}dx
+	\label{eqn:vw_int_M}
+\end{equation}
+\begin{equation}
+	b(v_2)=\bar Q_1 v_2(l)-\bar M_1  v'_2(l) +\int_0^l q_1 v_2dx
+	\label{eqn:vw_ext_M}
+\end{equation}
+となる．式(\ref{eqn:vw_int_M})と式(\ref{eqn:vw_ext_M})は，ともに
+力$\times$長さ，すなわち仕事の次元を持つ量となっている．
+前者は内力である$M_1$と$Q_1$, 後者は外力である$\bar M_1, \bar Q_1$と$q_1(x)$
+に関するものであることから，$a(v_1,v_2)$を内部仮想仕事，$b(v_2)$を外部仮想仕事と呼ぶ．
+系1と系2の間に成り立つ関係
+\begin{equation}
+	a(v_1,v_2)=b(v_2)
+	\label{eqn:vw_eq_M}
+\end{equation}
+を，曲げ問題に対する仮想仕事式と呼ぶ．
+%%%%%%%%%%%%%%%%%%%%%%%%%5
+\subsection{単位荷重法}
+仮想仕事式(\ref{eqn:vw_eq_M})における系1として，次の特別な場合を考える．
+\begin{equation}
+	\bar Q_1=0,\ \ \bar M_1=0\ \ q_1(x)=\delta(x-a), \ \ (0<a<l)
+	\label{eqn:sys1_M}
+\end{equation}
+すなわち，系1として$x=a$に鉛直方向へ単位集中荷重だけが外力として作用する場合を考える．
+このとき，デルタ関数の性質を用いれば，式(\ref{eqn:vw_ext_M})は次のようになる. 
+\begin{equation}
+	b(v_2)=\int_0^l \delta(x-a)v_2(x)dx= v_2(a)
+	\label{eqn:vw_eq_dlt}
+\end{equation}
+とすることができ，これを仮想仕事式(\ref{eqn:vw_eq_M})に代入すれば，
+\begin{equation}
+	v_2(a)=\int_0^l \frac{M_1M_2}{EI}dx
+	\label{eqn:u2_a}
+\end{equation}
+の結果を得る．これは，2つの系1と2における曲げモーメント$M_1$と$M_2$から，
+$x=a$における系2のたわみ$v_2(a)$が求められることを示している．
+ここで, 系1を補助系，系2を解くべき問題とみるために，
+系1と2に関する諸量を,あらためて 
+\begin{eqnarray}
+	\left( v_1, \theta_1, M_1, Q_1;\, \bar M_1, \bar Q_1, q_1 \right)& = &
+		\left(\tilde v, \tilde \theta, \tilde M, \tilde Q;\, 
+		\bar{\tilde{M}}=0, \bar{\tilde{Q}}=0, \tilde q= \delta(x-a) \right) 
+	\label{eqn:aux}
+	\\
+	\left( v_2, \theta_2, M_2, Q_2 ;\, \bar M_2, \bar Q_2, q_2 \right)& = &
+		\left( v,\theta,M, Q;\, \bar M,\bar Q, q \right) 
+	\label{eqn:prb_M}
+\end{eqnarray}
+と書き直す．このとき式(\ref{eqn:u2_a})は，
+\begin{equation}
+	v(a)=\int_0^l \frac{M \tilde M}{EI}dx
+	\label{eqn:uload_M}
+\end{equation}
+と表される．式(\ref{eqn:uload_M})を利用してたわみの計算を行う解法を曲げ問題に対する単位荷重法と呼ぶ．
+\subsubsection{例題1}
+図\ref{fig:fig2_3}-(a)に示す片持梁ABの点Bと点Cにおけるたわみを，
+単位荷重法を用いて求めよ．なお，断面剛性$EA$は全断面で一定とする．
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[width=0.8\linewidth]{fig3.eps} 
+	\end{center}
+	\caption{(a)等分布荷重を受ける片持梁(問題).
+	 (b)単位荷重法の適用において用いる補助系.} 
+	\label{fig:fig2_3}
+\end{figure}
+\subsubsection{問題1}
+図\ref{fig:fig2_4}に示す4種類の系について，以下の問に答えよ．
+なお，曲げ剛性$EI$は全ての部材，全ての断面で一定とする．
+\begin{enumerate}
+\item
+	図\ref{fig:fig2_4}-(a)に示す単純支持梁の, 点Bにおけるたわみを求めよ．
+\item
+	図\ref{fig:fig2_4}-(b)に示す単純支持梁の, 点Bにおけるたわみを求めよ．
+\item
+	図\ref{fig:fig2_4}-(c)に示す単純支持梁の, 点Bにおけるたわみを求めよ．
+\item
+	図\ref{fig:fig2_4}-(d)に示す片持梁の点Bと点Cにおけるたわみを求めよ．
+\end{enumerate}
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[width=0.8\linewidth]{fig4.eps} 
+	\end{center}
+	\caption{支持条件，荷重条件の異なる4種類の単径間梁.} 
+	\label{fig:fig2_4}
+\end{figure}
+
+\end{document}
+
