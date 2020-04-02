@@ -255,12 +255,12 @@ $p_i(x)$，部材右端Bに作用する集中荷重を$\bar F_i$, その結果�
 	\label{eqn:vw_ext}
 \end{equation}
 となり，これらの量が互いに等しいとの結果が得られる．
-式(\ref{eqn:vw_int})と式(\ref{eqn:vw_ext})は，ともに
-力$\times$長さ，すなわち仕事の次元を持つ量となっている．
-前者は内力である$N_1$, 後者は外力$\bar F_1$と$p_1(x)$に関するものである
-ことから，これらの量をそれぞれ，内部仮想仕事，外部仮想仕事と呼ぶ．
-"仮想"と呼ぶ理由は，力は系1の，変位は系2に関するものであることから，
-両者の積が物理的に行われた仕事を指す訳ではないことによる．
+式(\ref{eqn:vw_int})と式(\ref{eqn:vw_ext})はともに，
+力$\times$長さ，すなわち，仕事の次元を持つ量となっている．
+前者は内力である$N_1$に, 後者は外力$\bar F_1$と$p_1(x)$に関する
+ものであることから，これらの量をそれぞれ，内部仮想仕事，外部仮想仕事と呼ぶ．
+"仮想"と呼ぶ理由は，力については系1，変位とひずみについては系2に関するもので，
+両者の積が物理的に行われた仕事を指すものではないことによる．
 系1と系2の間に成り立つ関係
 \begin{equation}
 	a(u_1,u_2)=b(u_2)
@@ -268,7 +268,7 @@ $p_i(x)$，部材右端Bに作用する集中荷重を$\bar F_i$, その結果�
 \end{equation}
 は，{\bf 仮想仕事式}と呼ばれる．
 \subsection{力学的エネルギー保存則}
-仮想仕事式(\ref{eqn:vw_eq})において，$u_1=u_2$とする．すなわち，系1だけを考え，
+仮想仕事式(\ref{eqn:vw_eq})において$u_1=u_2$とする．すなわち，系1だけを考え，
 弱形式(\ref{eqn:WF_N})において
 \[
 	u=u_1, \ \ \xi=u_1
@@ -287,21 +287,21 @@ $p_i(x)$，部材右端Bに作用する集中荷重を$\bar F_i$, その結果�
 \[
 	系1に作用する力 \times 系1に生じる変位 = 実際に行われた仕事
 \]
-であることが分かる．ことから，
+であることから，
 \begin{equation}
 	a(u_1,u_1)=b(u_1)
 	\label{eqn:energy_conservation}
 \end{equation}
-は，(仮想ではなく)実際に行われた内部仕事と外部仕事が等しくなることを意味する．
-また，外力が過度に大きなものでない限り，外力が無くなれば部材は元の状態に
-戻ると期待される．このことに加え，外力に起因して内力やひずみが発生する
-という見方をすれば，外力によってなされた仕事として系に加えられたエネルギーは，
-部材内部に内力やひずみとして蓄えられていると考えることができる．
-仕事とエネルギーは同じ次元を持つことから，内力仕事を系内に蓄えれれた
+は，(仮想ではなく)実際に行われた外部仕事と内部仕事が等しいことを意味する．
+通常，外力が過度に大きなものでない限り，外力を取り去れば部材は元の状態に
+戻る．このことに加え，外力に起因して内力やひずみが発生するという見方をすれば，
+外力による仕事として系に加えられたエネルギーは，内力やひずみのエネルギーとして
+部材内部に蓄えられていると考えることができる．
+仕事とエネルギーは同じ次元を持つことから，内力仕事を系内に蓄えられた
 エネルギーの大きさとみなせば，式(\ref{eqn:energy_conservation})は，
-系外から加えられたエネルギーと，系内に蓄えられたエネルギーが等しいことを
+系外から加えられたエネルギーと系内に蓄えられたエネルギーが等しいことを
 示すと解釈できる．この意味で，式(\ref{eqn:energy_conservation})は
-{\bf 力学的エネルギー保存則}を表していると言うことができる．
+{\bf 力学的エネルギー保存則}を表している．
 \subsection{単位荷重法}
 仮想仕事式(\ref{eqn:vw_eq})における系1として，次のような特別な場合を考える．
 \begin{equation}
@@ -311,7 +311,7 @@ $p_i(x)$，部材右端Bに作用する集中荷重を$\bar F_i$, その結果�
 すなわち，図\ref{fig:fig1_3}に示すように，$x=a$に単位集中荷重だけが作用する場合を考える．
 ここで，$\delta(x-a)$はディラクのデルタ関数を表し，
 実数軸上全体で定義された任意の関数$f(x)$に対して，
-次のような性質を持つ．
+次のような性質を持つ(証明は次節を参照)．
 \begin{equation}
 	\int_{-\infty}^{+\infty} f(x) \delta(x)dx =f(0)
 	\label{eqn:dlt_sampling}
@@ -354,7 +354,44 @@ $x=a$における系2の変位$u_2(a)$が求められることを意味する．
 	\caption{$x=a$に部材軸方向への単位集中荷重を受ける棒部材.} 
 	\label{fig:fig1_3}
 \end{figure}
+\subsubsection{デルタ関数の性質}
+式(\ref{eqn:dlt_sampling})が成り立つことの，簡易な証明は以下のようである．\\
+
+デルタ関数を幅$2\varepsilon$の矩形関数:
+\begin{equation}
+	U(x;\varepsilon)=\left\{
+	\begin{array}{cc}
+		1/2\varepsilon & (|x|<\varepsilon) \\
+		0 & (|x|>\varepsilon) \\
+	\end{array}
+	\right.
+	\label{eqn:rec_fun}
+\end{equation}
+で近似する.これを，式(\ref{eqn:dlt_sampling})のデルタ関数の代わりに用いる．
+さらに，$f(x)$の原始関数を$F(x)$と表せば，式(\ref{eqn:dlt_sampling})
+左辺の積分は，次のように近似することができる．
+\begin{equation}
+	\int_{-\infty}^{+\infty} f(x) \delta(x)dx 
+	\simeq 
+	\int_{-\varepsilon}^{\varepsilon} f(x) \times \frac{1}{2\varepsilon}dx 
+	=\frac{F(\varepsilon)-F(-\varepsilon)}{2\varepsilon}
+	\label{eqn:dlt_apprx}
+\end{equation}
+この関係は$\varepsilon \rightarrow 0$において厳密に成り立つので，
+式(\ref{eqn:dlt_apprx})の極限をとると，
+\begin{equation}
+	\int_{-\infty}^{+\infty} f(x) \delta(x)dx 
+	=
+	\lim_{\varepsilon \rightarrow 0} 
+	\left\{
+	\frac{F(\varepsilon)-F(-\varepsilon)}{2\varepsilon}
+	\right\}
+	=F'(0)=f(0)
+	\label{eqn:}
+\end{equation}
+となり，式(\ref{eqn:dlt_sampling})が導かれる．
 %
+\newpage
 \subsubsection{例題1}
 図\ref{fig:fig1_4}-(a)に示す棒部材の点Bと点Cに発生する軸変位を，単位荷重法を用いて求めよ．
 ただし，断面剛性$EA$は全断面で一定とする．
@@ -461,7 +498,7 @@ $\bar{F}=H_C$と置くことにより，
 \end{figure}
 %----------------------------------
 \subsubsection{練習問題2{\small (講義内課題$\Rightarrow$講義日中に解答をPDFファイルで提出)}}
-図\ref{fig:fig1_8}に示す棒部材に作用する，支点反力の大きさと向きを答えよ．
+図\ref{fig:fig1_8}の棒部材ACに作用する支点反力の大きさと向きを答えよ．また，軸力分布を求め，軸力図として示せ．
 \begin{figure}[h]
 	\begin{center}
 	\includegraphics[width=0.4\linewidth]{fig1_8.eps} 

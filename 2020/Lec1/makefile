@@ -1,7 +1,12 @@
+all: note1.pdf prb1.pdf
 note1.pdf: note1.dvi
 	dvipdfmx note1.dvi
-note1.dvi: note1.tex fig1_1.eps fig1_2.eps fig1_3.eps fig1_4.eps fig1_4_1.eps fig1_4_2.eps fig1_5.eps fig1_6.eps fig1_7.eps fig1_8.eps
+note1.dvi: note1.tex fig1_1.eps fig1_2.eps fig1_3.eps fig1_4.eps fig1_4_1.eps fig1_4_2.eps fig1_5.eps fig1_6.eps fig1_7.eps 
 	platex note1.tex
+prb1.pdf: prb1.dvi
+	dvipdfmx prb1.dvi
+prb1.dvi: prb1.tex fig1_8.eps
+	platex prb1.tex
 
 fig1_1.eps: fig1_1.svgz
 	inkscape -z -f fig1_1.svgz -E fig1_1.eps 
