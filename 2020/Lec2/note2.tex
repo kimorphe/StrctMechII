@@ -216,6 +216,43 @@ $x=a$における系2のたわみ$v_2(a)$が求められることを示してい
 \subsubsection{例題1}
 図\ref{fig:fig2_3}-(a)に示す片持梁ABの点Bと点Cにおけるたわみを，
 単位荷重法を用いて求めよ．なお，断面剛性$EA$は全断面で一定とする．
+\paragraph{解答:}
+\begin{equation}
+	M(s)=-\frac{q_0s^2}{2}
+	\label{eqn:}
+\end{equation}
+\begin{equation}
+	\tilde M(s) = -H(s-b)(s-b), \ \ (b=l-a)
+	\label{eqn:}
+\end{equation}
+\begin{eqnarray}
+	\int_0^l M(s)\tilde M(s) ds
+	&=&
+	\int_b^l\frac{q_0s^2}{2}(s-b)ds \\
+	&=&
+	\frac{q_0}{2}\int_b^ls^3-bs^2ds \\
+	&=&
+	\frac{q_0}{2}\left[
+		\frac{s^4}{4}-\frac{bs^3}{3}
+		\right]_b^l \\
+	&=&
+	\frac{q_0}{2}
+	\left(
+	\frac{l^4-b^4}{4}-\frac{bl^3-b^4}{3}
+	\right)
+	\label{eqn:}
+\end{eqnarray}
+
+\begin{equation}
+	\int_0^l M(s)\tilde M(s) ds =
+	\left\{
+	\begin{array}{cc}
+		\frac{1}{8}q_0l^4& (b=l)  \\
+		\frac{7}{192}q_0l^4& (b=l/2)  
+	\end{array}
+	\right.
+	\label{eqn:}
+\end{equation}
 \begin{figure}[h]
 	\begin{center}
 	\includegraphics[width=0.8\linewidth]{fig3.eps} 
