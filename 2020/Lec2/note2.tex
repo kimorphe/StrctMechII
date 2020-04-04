@@ -46,7 +46,7 @@
 \end{center}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{曲げ問題}
-\subsection{強形式}
+\subsection{強形式(復習)}
 曲げ問題のたわみに関する支配方程式は
 \begin{equation}
 	\frac{d^2}{dx^2}\left(EI \frac{d^2v}{dx^2}\right) -q =0, \ \ \left(x\in (0,l)\right)
@@ -55,6 +55,17 @@
 で与えられる．ここで，$v$はたわみを，$E$はヤング率を，
 $I$は部材の断面2次モーメントを，$q(x)$は鉛直下向きに作用する分布力を表し，
 $q(x)$は単位長さあたりの力の次元を持つ．
+断面$S$に関する断面2次モーメント$I$は，
+\begin{equation}
+	I=\int_S y^2 dS
+	\label{eqn:}
+\end{equation}
+で与えられる．$y$は中立軸からの距離を表し，中立軸位置は，断面1次モーメント
+に関する次の条件から決定できる．
+\begin{equation}
+	G=\int _S ydS=0
+	\label{eqn:}
+\end{equation}
 式(\ref{eqn:gveq_beam})は, 曲げモーメント$M$とせん断力$Q$に関する釣り合い条件:
 \begin{eqnarray}
 	\frac{dM}{dx} &=& Q
@@ -214,17 +225,38 @@ $x=a$における系2のたわみ$v_2(a)$が求められることを示してい
 \end{equation}
 と表される．式(\ref{eqn:uload_M})を利用してたわみの計算を行う解法を曲げ問題に対する単位荷重法と呼ぶ．
 \subsubsection{例題1}
-図\ref{fig:fig2_3}-(a)に示す片持梁ABの点Bと点Cにおけるたわみを，
-単位荷重法を用いて求めよ．なお，断面剛性$EA$は全断面で一定とする．
+図\ref{fig:fig2_3}-(a)に示す片持梁ABの点Bにおけるたわみ$u_B$と
+点Cにおけるたわみ$u_C$を単位荷重法を用いて求めよ．
+断面剛性$EA$は全断面で一定とする．
 \paragraph{解答:}
+問題で与えら得れた系の曲げモーメントは，図\ref{f:g:}に示した座標$s$により
 \begin{equation}
 	M(s)=-\frac{q_0s^2}{2}
 	\label{eqn:}
 \end{equation}
+と与えられる．
+単位荷重法を適用するための補助系には，たわみを求めたい点に鉛直荷重を加えた系を用いればよい。
+点Bにおけるたわみを求める際には$x=l/2$に，	
+点Cにおけるたわみを求める際には$x=l$に，集中荷重が加えられた系を補助系として，
+その曲げモーメント$\tilde M$を求める．
+ここでは，より一般の場合を考え、位置$s=l-x=b$に集中荷重が加えられた場合の
+曲げモーメントを求めておけば、
 \begin{equation}
 	\tilde M(s) = -H(s-b)(s-b), \ \ (b=l-a)
 	\label{eqn:}
 \end{equation}
+となる．ただし$H(s)$は単位ステップ関数:
+\begin{equation}
+	H(s)=
+	\left\{
+	\begin{array}{cc}
+		0 &  (s<0) \\
+		1 & ( s>0)
+	\end{array}
+	\right.
+	\label{eqn:}
+\end{equation}
+を表す．また、$\int_SM\tilde Mds$を計算すると
 \begin{eqnarray}
 	\int_0^l M(s)\tilde M(s) ds
 	&=&
@@ -242,7 +274,7 @@ $x=a$における系2のたわみ$v_2(a)$が求められることを示してい
 	\right)
 	\label{eqn:}
 \end{eqnarray}
-
+となることが示される．この結果において$b=l/2$および$b=l$とすれば
 \begin{equation}
 	\int_0^l M(s)\tilde M(s) ds =
 	\left\{
@@ -251,6 +283,13 @@ $x=a$における系2のたわみ$v_2(a)$が求められることを示してい
 		\frac{7}{192}q_0l^4& (b=l/2)  
 	\end{array}
 	\right.
+	\label{eqn:}
+\end{equation}
+が得られる．以上を式()に代入すれば、求めるべきたわみが次の通りとなることが分かる．
+\begin{equation}
+	u_B= \frac{7}{192}\frac{q_0l^4}{EI}
+	, \ \ 
+	u_C= \frac{1}{8}\frac{q_0l^4}{EI}
 	\label{eqn:}
 \end{equation}
 \begin{figure}[h]
