@@ -313,7 +313,41 @@ $x=a$における系2のたわみ$v_2(a)$が求められることを示してい
 	\label{fig:fig2_3}
 \end{figure}
 \subsubsection{例題2}
-	図\ref{fig:fig2_5}に示す単純支持梁の点Bにおけるたわみを求めよ．
+	図\ref{fig:fig2_5}-(a)に示す単純支持梁の点Bにおけるたわみを求めよ．
+\paragraph{解答:}
+	点Bにおけるたわみを求めるためには，点Bに単位集中荷重を加えた図\ref{fig:fig2_5}-(b)を
+	補助系として単位荷重法を適用すればよい．
+	単純支持梁は，静定構造であるため，曲げモーメント分布は力の釣り合いから決定することができ，
+	その結果を問題の系，補助系，それぞれについて示すと図\ref{fig:fig2_6}のようになる．
+	この図にあるように，曲げモーメントはいずれの系でも左右対称で，左半分の区間ABにおける
+	曲げモーメント分布を位置$x$の関数として表せば，以下のようになる．
+	\begin{eqnarray}
+		M(x) &=& \frac{q_0lx}{2}-\frac{q_0x^2}{2}, \ \ \left(x<\frac{l}{2}\right) \\
+		\tilde M(x) &=& \frac{\tilde P x}{2}
+		\label{eqn:}
+	\end{eqnarray}
+	これを踏まえて$\int_0^{l/2} M\tilde Mdx$を求めると，
+	\begin{equation}
+		2\int_0^{l/2} M\tilde Mdx
+		=\frac{\tilde Pq_0l^4}{2}
+		\int_0^{l/2} 
+		\left\{
+			\left(\frac{x}{l}\right)- \left(\frac{x}{l} \right)^2
+		\right\}
+			\left(\frac{x}{l}\right)
+		\frac{dx}{l}
+		=\frac{5}{384}q_0l^4
+		\label{eqn:}
+	\end{equation}
+	となる．よって、
+	\begin{equation}
+		u\left(\frac{l}{2}\right)=
+		\int_0^l \frac{M\tilde M}{EI}dx=
+		2\int_0^{l/2} \frac{M\tilde M}{EI}dx
+		=\frac{5}{384}\frac{q_0l^4}{EI}
+		.
+		\label{eqn:}
+	\end{equation}
 \begin{figure}[h]
 	\begin{center}
 	\includegraphics[width=0.75\linewidth]{fig4_1.eps} 
@@ -326,7 +360,7 @@ $x=a$における系2のたわみ$v_2(a)$が求められることを示してい
 	\begin{center}
 	\includegraphics[width=0.8\linewidth]{fig4_1_2.eps} 
 	\end{center}
-	\caption{曲げモーメント図(例題2).}
+	\caption{(a)問題，(b)補助系の曲げモーメント図(例題2).}
 	\label{fig:fig2_6}
 \end{figure}
 \subsubsection{問題}
@@ -334,9 +368,12 @@ $x=a$における系2のたわみ$v_2(a)$が求められることを示してい
 なお，梁の曲げ剛性$EI$は全ての部材と断面で一定とする．
 \begin{enumerate}
 \item
-	図\ref{fig:fig2_4}-(a)に示す単純支持梁の, 点Bにおけるたわみを求めよ．
+	図\ref{fig:fig2_4}-(a)に示す単純支持梁の, 点Bにおけるたわみを求めよ．\\
+	{\bf 解答:}$\frac{Pl^3}{48EI}$
 \item
-	図\ref{fig:fig2_4}-(b)に示す単純支持梁の, 点Bと点Cにおけるたわみを求めよ．
+	図\ref{fig:fig2_4}-(b)に示す単純支持梁の, 点Bにおけるたわみ$v_B$と
+	点Cにおけるたわみ$v_C$を求めよ．\\
+	{\bf 解答:}$v_B=\frac{q_0l^4}{128EI}, v_C=\frac{11}{768}\frac{q_0l^4}{EI}$
 \end{enumerate}
 \begin{figure}[h]
 	\begin{center}
