@@ -42,10 +42,15 @@
  }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\vspace*{\baselineskip}
+\begin{flushright}
+	構造力学II\\
+	2020/04/27
+\end{flushright}
 \begin{center}
-	{\Large \bf 2020年度 構造力学II 第２回} \\
+	{\Large \bf 講義ノート２} \\
 \end{center}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setcounter{section}{1}
 \section{曲げ問題}
 \subsection{強形式(復習)}
 曲げ問題のたわみに関する支配方程式は
@@ -61,7 +66,7 @@ $q(x)$は単位長さあたりの力の次元を持つ．
 	I=\int_S y^2 dS
 	\label{eqn:}
 \end{equation}
-で与えられる．$y$は中立軸からの距離を表し，中立軸位置は，断面1次モーメント
+で与えられる．$y$は中立軸からの距離を表し，中立軸位置は断面1次モーメント
 に関する次の条件から決定できる．
 \begin{equation}
 	G=\int _S ydS=0
@@ -71,11 +76,10 @@ $q(x)$は単位長さあたりの力の次元を持つ．
 \begin{eqnarray}
 	\frac{dM}{dx} &=& Q
 	\label{eqn:equiv_M} \\
-	\frac{dQ}{dx} &=& -q
+	\frac{dQ}{dx} &=& -q,
 	\label{eqn:equiv_Q}
 \end{eqnarray}
-と，フックの法則と平面保持の仮定に由来する次の関係
-から導かれるものである．
+フックの法則と平面保持の仮定に由来する次の関係から導かれるものである．
 \begin{equation}
 	M=EI \kappa= -EI\frac{d^2v}{dx^2}
 	\label{eqn:M_k}
@@ -87,17 +91,18 @@ $q(x)$は単位長さあたりの力の次元を持つ．
 	\label{eqn:equiv_MQ}
 \end{equation}
 となる．梁が図\ref{fig:fig2_1}のように，片持梁として支持されている場合，
-$x=0$と$x=l$における境界条件(支持条件)は次のようになる．
+$x=0$と$x=l$における境界条件(支持条件)は書くことができる．
 \begin{eqnarray}
 	v (0) &= & 0 
-	\label{eqn:BC_v}
+		\label{eqn:BC_v}
 	\\
 	v' (0) &= & 0 
-	\label{eqn:BC_th}
+		\label{eqn:BC_th}
 	\\
 	M (l) &= & -EI v''(l)=\bar M 
-	\label{eqn:BC_M} \\
+		\label{eqn:BC_M} \\
 	Q (l) &= & \left(-EI v''\right)'(l)=\bar Q 
+		\label{eqn:BC_Q}
 	\label{eqn:BC_Q} 
 \end{eqnarray}
 \begin{figure}[h]
@@ -108,8 +113,12 @@ $x=0$と$x=l$における境界条件(支持条件)は次のようになる．
 	\label{fig:fig2_1}
 \end{figure}
 \subsection{弱形式}
-$\eta (x)$を，$0\leq x \leq l$上で定義され，$\eta(0)=0,\, \eta'(0)=0$を
-満たす任意の関数とする．$\eta (x)$を式(\ref{eqn:equiv_MQ})の両辺に掛け，
+$\eta (x)$を，$0\leq x \leq l$上で定義され，
+\begin{equation}
+		\eta(0)=0, \ \  \eta'(0)=0
+	\label{eqn:eta_x0}
+\end{equation}
+を満たす任意の関数とする．$\eta (x)$を式(\ref{eqn:equiv_MQ})の両辺に掛け，
 $x=0$から$x=l$の範囲で次のように積分する．
 \begin{equation}
 	\int _0^l 
@@ -119,19 +128,18 @@ $x=0$から$x=l$の範囲で次のように積分する．
 この式の左辺第一項を，部分積分を2回行って変形すると，
 \begin{eqnarray}
 	\int _0^l M''\eta dx &= & \left[ M'\eta \right]_0^l -\int_0^l M' \eta'dx  
-	\label{eqn:}
+	\label{eqn:ibp0}
 	\\
 	&= & \left[ M'\eta \right]_0^l -\left[M\eta'\right]_0^l+\int_0^l M \eta''dx  
-	\label{eqn:}
+	\label{eqn:ibp1}
 	\\
 	&= & \bar Q \eta(l) - \bar M \eta'(l)+\int_0^l M \eta''dx  
+	\label{eqn:ibp2}
 \end{eqnarray}
-となる．これを，式(\ref{eqn:int_gveq_eta})に代入すれば次の関係が得られる．
-\begin{equation}
-	a(v,\eta)=b(\eta)
-	\label{eqn:WF_M}
-\end{equation}
-ただし，$a(v,\eta)$と$b(\eta)$は以下の通りである．
+となる．なお，式(\ref{eqn:ibp1})から式(\ref{eqn:ibp2})を得るにあたり，
+$\eta{x}$に関する条件(\ref{eqn:eta_x0})と，曲げモーメントおよびせん断力に関する
+境界条件(\ref{eqn:BC_M}),(\ref{eqn:BC_Q})を用いた．
+ここで，式(\ref{eqn:ibp2})を式(\ref{eqn:int_gveq_eta})に代入し，
 \begin{equation}
 	a(v,\eta) = -\int_0^l M \eta''dx  
 	= \int_0^l EI v'' \eta''dx  
@@ -144,22 +152,29 @@ $x=0$から$x=l$の範囲で次のように積分する．
 	\int_0^l q\eta dx 
 	\label{eqn:linf_M}
 \end{equation}
-$a(v,\eta)$と$b(\eta)$は，ともに，関数$v$や$\eta$に対して作用して
-一つの値を返す関数と見ることができる．このような，関数の関数
-は汎関数(functional)と呼ばれ，中でも特に$a(v,\eta)$は
-双線形形式(bilinear form)と，$b$は線形形式(linear form)と呼ばれる．
-任意の$\eta(x)$(ただし$\eta(0)=0,\, \eta'(0)=0$)について，
-式(\ref{eqn:WF_M})を満足する$v(x)$のうち，$v(0)=0,\, v'(0)=0$
-となる$v(x)$(弱解)が強解に一致することは,軸力問題の場合と同様，
-数学的に証明することできる．
+とおけば，
+\begin{equation}
+	a(v,\eta)=b(\eta)
+	\label{eqn:WF_M}
+\end{equation}
+となることが示される．
+$a(v,\eta)$と$b(\eta)$は，ともに，関数$v$や$\eta$に作用して一つの値を返す関数と
+見ることができる．このような，関数の関数は汎関数(functional)と呼ばれ，$a(v,\eta)$を
+双線形形式(bilinear form)，$b$を線形形式(linear form)と呼ぶ．
+以上より，曲げ問題の弱形式による定式化が次のように与えられる．\\
+\begin{itemize}
+	\item
+	{\bf 曲げ問題の弱形式:}
+	任意の$\eta(x)$(ただし$\eta(0)=0,\, \eta'(0)=0$)について，式(\ref{eqn:WF_M})を満足する
+	$v(x)$のうち，$v(0)=0,\, v'(0)=0$となるものを(弱解)を求めよ．
+\end{itemize}
+弱解が強解に一致することの証明は,軸力問題の場合と同様にして行うことができる．
 \subsection{仮想仕事式}
-図\ref{fig:fig2_2}に示すような２つの系を考える．これらの系は，
-互いに外力のみが異なり，支持条件と材料定数$E,I$は
-共通である．ここで，系$i,\, (i=1,2)$に加えられた分布力を
-$q_i(x)$ 部材右端Bに作用する鉛直力と曲げモーメントをそれぞれ
-$\bar Q_i, \bar M_i$とする．また，これら外力によってそれぞれの系に
-生じるたわみを$v_i$, たわみ角を$\theta_i$とし，
-曲げモーメントとせん断力をそれぞれ$M_i(x), Q_i(x)$と表す．
+図\ref{fig:fig2_2}に示すような２つの系を考える．これらの系は互いに外力のみが異なり，
+支持条件と曲げ剛性$EI$は共通とする．ここで，系$i,\, (i=1,2)$に加えられた分布力を
+$q_i(x)$，部材右端Bに作用する鉛直力と曲げモーメントをそれぞれ$\bar Q_i, \bar M_i$とする．
+また，これらの外力に起因して系$i$に生じるたわみを$v_i$, たわみ角を$\theta_i$とし，
+曲げモーメントとせん断力をそれぞれ$M_i(x), Q_i(x)$と表すことにする．
 \begin{figure}[h]
 	\begin{center}
 	\includegraphics[width=0.8\linewidth]{fig2.eps} 
@@ -167,14 +182,14 @@ $\bar Q_i, \bar M_i$とする．また，これら外力によってそれぞれ
 	\caption{荷重条件のみが異なる2つの系.(a)系1, (b)系2.} 
 	\label{fig:fig2_2}
 \end{figure}
-ここで式(\ref{eqn:WF_M})において，$v=v_1$, $\eta=v_2$とすれば，
+ここで，式(\ref{eqn:WF_M})において，$v=v_1$, $\eta=v_2$とすれば，
 式(\ref{eqn:WF_M})の各辺は，
 \begin{equation}
 	a(v_1,v_2)=-\int_0^l M_1v''_2dx = \int_0^l\frac{M_1M_2}{EI}dx
 	\label{eqn:vw_int_M}
 \end{equation}
 \begin{equation}
-	b(v_2)=\bar Q_1 v_2(l)-\bar M_1  v'_2(l) +\int_0^l q_1 v_2dx
+	b(v_2)=\bar Q_1 v_2(l)-\bar M_1  \theta_2(l) +\int_0^l q_1 v_2dx
 	\label{eqn:vw_ext_M}
 \end{equation}
 となる．式(\ref{eqn:vw_int_M})と式(\ref{eqn:vw_ext_M})は，ともに
@@ -189,30 +204,30 @@ $\bar Q_i, \bar M_i$とする．また，これら外力によってそれぞれ
 を，曲げ問題に対する仮想仕事式と呼ぶ．
 %%%%%%%%%%%%%%%%%%%%%%%%%5
 \subsection{単位荷重法}
-仮想仕事式(\ref{eqn:vw_eq_M})における系1として，次の特別な場合を考える．
+仮想仕事式(\ref{eqn:vw_eq_M})における系1として，次のような特別な場合を考える．
 \begin{equation}
 	\bar Q_1=0,\ \ \bar M_1=0\ \ q_1(x)=\delta(x-a), \ \ (0<a<l)
 	\label{eqn:sys1_M}
 \end{equation}
-すなわち，系1として$x=a$に鉛直方向へ単位集中荷重だけが外力として作用する場合を考える．
+すなわち，系1として$x=a$に単位集中荷重が外力として作用する場合を考える．
 このとき，デルタ関数の性質を用いれば，式(\ref{eqn:vw_ext_M})は次のようになる. 
 \begin{equation}
-	b(v_2)=\int_0^l \delta(x-a)v_2(x)dx= v_2(a)
+	b(v_2)=\int_0^l \delta(x-a)v_2(x)dx= v_2(a).
 	\label{eqn:vw_eq_dlt}
 \end{equation}
-とすることができ，これを仮想仕事式(\ref{eqn:vw_eq_M})に代入すれば，
+これを仮想仕事式(\ref{eqn:vw_eq_M})に代入すれば，
 \begin{equation}
 	v_2(a)=\int_0^l \frac{M_1M_2}{EI}dx
 	\label{eqn:u2_a}
 \end{equation}
-の結果を得る．これは，2つの系1と2における曲げモーメント$M_1$と$M_2$から，
+を得る．これは，2つの系における曲げモーメント$M_1$と$M_2$から，
 $x=a$における系2のたわみ$v_2(a)$が求められることを示している．
 ここで, 系1を補助系，系2を解くべき問題とみるために，
 系1と2に関する諸量を,あらためて 
 \begin{eqnarray}
 	\left( v_1, \theta_1, M_1, Q_1;\, \bar M_1, \bar Q_1, q_1 \right)& = &
 		\left(\tilde v, \tilde \theta, \tilde M, \tilde Q;\, 
-		\bar{\tilde{M}}=0, \bar{\tilde{Q}}=0, \tilde q= \delta(x-a) \right) 
+		\bar M_1=0, \bar Q_1=0, q_1= \delta(x-a) \right) 
 	\label{eqn:aux}
 	\\
 	\left( v_2, \theta_2, M_2, Q_2 ;\, \bar M_2, \bar Q_2, q_2 \right)& = &
@@ -228,7 +243,7 @@ $x=a$における系2のたわみ$v_2(a)$が求められることを示してい
 \subsubsection{例題1}
 図\ref{fig:fig2_3}-(a)に示す片持梁ABの点Bにおけるたわみ$u_B$と
 点Cにおけるたわみ$u_C$を単位荷重法を用いて求めよ．
-断面剛性$EA$は全断面で一定とする．
+曲げ剛性$EI$は全断面で一定とする．
 \paragraph{解答:}
 問題で与えら得れた系の曲げモーメントは，図\ref{f:g:fig2_3}に示した座標$s$により
 \begin{equation}
