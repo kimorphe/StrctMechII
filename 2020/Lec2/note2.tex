@@ -1,9 +1,9 @@
 \documentclass[10pt,a4j]{jarticle}
 %\usepackage{graphicx,wrapfig}
 \usepackage{graphicx}
-\usepackage{showkeys}
+%\usepackage{showkeys}
 \setlength{\topmargin}{-1.5cm}
-\setlength{\textwidth}{16.5cm}
+%\setlength{\textwidth}{16.5cm}
 \setlength{\textheight}{25.2cm}
 \newlength{\minitwocolumn}
 \setlength{\minitwocolumn}{0.5\textwidth}
@@ -47,7 +47,7 @@
 	2020/04/27
 \end{flushright}
 \begin{center}
-	{\Large \bf 講義ノート２} \\
+	{\LARGE \bf 講義ノート２} \\
 \end{center}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \setcounter{section}{1}
@@ -241,27 +241,31 @@ $x=a$における系2のたわみ$v_2(a)$が求められることを示してい
 \end{equation}
 と表される．式(\ref{eqn:uload_M})を利用してたわみの計算を行う解法を曲げ問題に対する単位荷重法と呼ぶ．
 \subsubsection{例題1}
-図\ref{fig:fig2_3}-(a)に示す片持梁ABの点Bにおけるたわみ$u_B$と
-点Cにおけるたわみ$u_C$を単位荷重法を用いて求めよ．
-曲げ剛性$EI$は全断面で一定とする．
+図\ref{fig:fig2_3}-(a)に示す片持梁ABの点Bにおけるたわみ$v_B$と点Cにおけるたわみ$v_C$を
+単位荷重法を用いて求めよ．曲げ剛性$EI$は全断面で一定とする．
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[width=0.8\linewidth]{fig3.eps} 
+	\end{center}
+	\caption{(a)等分布荷重を受ける片持梁(問題).(b)単位荷重法における補助系.} 
+	\label{fig:fig2_3}
+\end{figure}
 \paragraph{解答:}
-問題で与えら得れた系の曲げモーメントは，図\ref{f:g:fig2_3}に示した座標$s$により
+問題で与えられた系の曲げモーメント$M$は，図\ref{fig:fig2_3}に示した座標$s$により
 \begin{equation}
 	M(s)=-\frac{q_0s^2}{2}
 	\label{eqn:}
 \end{equation}
 と与えられる．
-単位荷重法を適用するための補助系には，たわみを求めたい点に鉛直荷重を加えた系を用いればよい。
-点Bにおけるたわみを求める際には$x=l/2$に，	
-点Cにおけるたわみを求める際には$x=l$に，集中荷重が加えられた系を補助系として，
-その曲げモーメント$\tilde M$を求める．
-ここでは，より一般の場合を考え、位置$s=l-x=b$に集中荷重が加えられた場合の
-曲げモーメントを求めておけば、
+単位荷重法における補助系には，たわみを求める点に単位荷重を加えた系を用いればよい．
+つまり，$v_B$を求める際には$x=l/2$に，$v_C$を求める際には$x=l$に集中荷重を加えた
+系を補助系とすればよい．ここでは，より一般の場合として，位置$s=b$に集中荷重が
+加えられた場合の曲げモーメント$\tilde M$を求めれば，
 \begin{equation}
 	\tilde M(s) = -H(s-b)(s-b), \ \ (b=l-a)
-	\label{eqn:}
+	\label{eqn:Mt_ex1}
 \end{equation}
-となる．ただし$H(s)$は単位ステップ関数:
+となる．ただし，$H(s)$は単位ステップ関数:
 \begin{equation}
 	H(s)=
 	\left\{
@@ -272,7 +276,7 @@ $x=a$における系2のたわみ$v_2(a)$が求められることを示してい
 	\right.
 	\label{eqn:}
 \end{equation}
-を表す．また、$\int_SM\tilde Mds$を計算すると
+を表す．式(\ref{eqn:Mt_ex1})について，$\int_SM\tilde Mds$を計算すると
 \begin{eqnarray}
 	\int_0^l M(s)\tilde M(s) ds
 	&=&
@@ -298,9 +302,9 @@ $x=a$における系2のたわみ$v_2(a)$が求められることを示してい
 		\frac{1}{12}
 		\left(\frac{b}{l}\right)^4
 	\right\}
-	\label{eqn:}
+	\label{eqn:int_MMt_ex1}
 \end{eqnarray}
-となることが示される．この結果において$b=l/2$および$b=0$とすれば
+となる．式(\ref{eqn:int_MMt_ex1})において，$b=l/2$あるいは$b=0$とすれば
 \begin{equation}
 	\int_0^l M(s)\tilde M(s) ds =
 	\left\{
@@ -311,37 +315,37 @@ $x=a$における系2のたわみ$v_2(a)$が求められることを示してい
 	\right.
 	\label{eqn:}
 \end{equation}
-となり，以上を式(\ref{eqn:uload_M})に代入すれば、
-求めるべきたわみが次のように得られる．
+となる．この結果を式(\ref{eqn:uload_M})に代入すれば，
+求めるべきたわみが
 \begin{equation}
-	u_B= \frac{17}{384}\frac{q_0l^4}{EI}
+	v_B= \frac{17}{384}\frac{q_0l^4}{EI}
 	, \ \ 
-	u_C= \frac{1}{8}\frac{q_0l^4}{EI}
+	v_C= \frac{1}{8}\frac{q_0l^4}{EI}
 	\label{eqn:}
 \end{equation}
-\begin{figure}[h]
-	\begin{center}
-	\includegraphics[width=0.8\linewidth]{fig3.eps} 
-	\end{center}
-	\caption{(a)等分布荷重を受ける片持梁(問題).
-	 (b)単位荷重法の適用において用いる補助系.} 
-	\label{fig:fig2_3}
-\end{figure}
+となることが分かる．
 \subsubsection{例題2}
-	図\ref{fig:fig2_5}-(a)に示す単純支持梁の点Bにおけるたわみを求めよ．
+	図\ref{fig:fig2_5}-(a)に示す単純支持梁の，支間中央の点Bにおけるたわみ$v_B$を求めよ．
+	\begin{figure}[h]
+		\begin{center}
+		\includegraphics[width=0.75\linewidth]{fig4_1.eps} 
+		\end{center}
+		\caption{(a)等分布荷重を受ける単純支持梁(問題).
+		 (b)単位荷重法における補助系.} 
+		\label{fig:fig2_5}
+	\end{figure}
 \paragraph{解答:}
-	点Bにおけるたわみを求めるためには，点Bに単位集中荷重を加えた図\ref{fig:fig2_5}-(b)を
-	補助系として単位荷重法を適用すればよい．
-	単純支持梁は，静定構造であるため，曲げモーメント分布は力の釣り合いから決定することができ，
-	その結果を問題の系，補助系，それぞれについて示すと図\ref{fig:fig2_6}のようになる．
-	この図にあるように，曲げモーメントはいずれの系でも左右対称で，左半分の区間ABにおける
-	曲げモーメント分布を位置$x$の関数として表せば，以下のようになる．
+	点Bにおけるたわみを単位荷重法で求めるためには，点Bに単位集中荷重を加えた図\ref{fig:fig2_5}-(b)を
+	補助系として用いればよい．単純支持梁は静定構造であるため，曲げモーメント分布を力の釣り合い条件
+	から決定することができる．その結果を問題と補助系それぞれについて示すと，図\ref{fig:fig2_6}のようになる．
+	この図に示されるように，曲げモーメント$M$と$\tilde M$はいずれも左右対称である．そこで，
+	左半分の区間ABにおける曲げモーメントを位置$x$の関数として表せば，
 	\begin{eqnarray}
-		M(x) &=& \frac{q_0lx}{2}-\frac{q_0x^2}{2}, \ \ \left(x<\frac{l}{2}\right) \\
+		M(x) &=& \frac{q_0lx}{2}-\frac{q_0x^2}{2} \\
 		\tilde M(x) &=& \frac{\tilde P x}{2}
 		\label{eqn:}
 	\end{eqnarray}
-	これを踏まえて$\int_0^{l/2} M\tilde Mdx$を求めると，
+	となる．これを踏まえて$\int_0^{l/2} M\tilde Mdx$を求めると，
 	\begin{equation}
 		2\int_0^{l/2} M\tilde Mdx
 		=\frac{\tilde Pq_0l^4}{2}
@@ -354,9 +358,10 @@ $x=a$における系2のたわみ$v_2(a)$が求められることを示してい
 		=\frac{5}{384}q_0l^4
 		\label{eqn:}
 	\end{equation}
-	となる．よって、
+	となる．よって，
 	\begin{equation}
-		u\left(\frac{l}{2}\right)=
+		v_B=
+		v\left(\frac{l}{2}\right)=
 		\int_0^l \frac{M\tilde M}{EI}dx=
 		2\int_0^{l/2} \frac{M\tilde M}{EI}dx
 		=\frac{5}{384}\frac{q_0l^4}{EI}
@@ -365,28 +370,20 @@ $x=a$における系2のたわみ$v_2(a)$が求められることを示してい
 	\end{equation}
 \begin{figure}[h]
 	\begin{center}
-	\includegraphics[width=0.75\linewidth]{fig4_1.eps} 
-	\end{center}
-	\caption{(a)等分布荷重を受ける単純支持梁(問題).
-	 (b)単位荷重法の適用において用いる補助系.} 
-	\label{fig:fig2_5}
-\end{figure}
-\begin{figure}[h]
-	\begin{center}
 	\includegraphics[width=0.8\linewidth]{fig4_1_2.eps} 
 	\end{center}
-	\caption{(a)問題，(b)補助系の曲げモーメント図(例題2).}
+	\caption{(a)問題で与えられた系と(b)補助系の曲げモーメント図(例題2).}
 	\label{fig:fig2_6}
 \end{figure}
 \subsubsection{問題}
 図\ref{fig:fig2_4}に示す2種類の系に関する以下の問に答えよ．
-なお，梁の曲げ剛性$EI$は全ての部材と断面で一定とする．
+なお，梁の曲げ剛性$EI$は全断面で一定とする．
 \begin{enumerate}
 \item
-	図\ref{fig:fig2_4}-(a)に示す単純支持梁の, 点Bにおけるたわみを求めよ．\\
-	{\bf 解答:}$\frac{Pl^3}{48EI}$
+	図\ref{fig:fig2_4}-(a)に示す単純支持梁の点Bにおけるたわみ$v_B$を求めよ．\\
+	{\bf 解答:}$v_B=\frac{Pl^3}{48EI}$
 \item
-	図\ref{fig:fig2_4}-(b)に示す単純支持梁の, 点Bにおけるたわみ$v_B$と
+	図\ref{fig:fig2_4}-(b)に示す単純支持梁の点Bにおけるたわみ$v_B$と
 	点Cにおけるたわみ$v_C$を求めよ．\\
 	{\bf 解答:}$v_B=\frac{q_0l^4}{128EI}, v_C=\frac{11}{768}\frac{q_0l^4}{EI}$
 \end{enumerate}
@@ -394,7 +391,7 @@ $x=a$における系2のたわみ$v_2(a)$が求められることを示してい
 	\begin{center}
 	\includegraphics[width=0.8\linewidth]{fig4_2.eps} 
 	\end{center}
-	\caption{支持条件，荷重条件の異なる2種類の単径間梁.} 
+	\caption{支持条件と荷重条件が異なる2種類の単径間梁.} 
 	\label{fig:fig2_4}
 \end{figure}
 \end{document}
