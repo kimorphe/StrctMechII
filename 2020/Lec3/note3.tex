@@ -1,4 +1,4 @@
-\documentclass[10pt,a4j]{jarticle}
+﻿\documentclass[10pt,a4j]{jarticle}
 %\usepackage{graphicx,wrapfig}
 \usepackage{graphicx}
 \setlength{\topmargin}{-1.5cm}
@@ -48,31 +48,32 @@
 \setcounter{section}{2}
 \section{曲げ問題に対する単位荷重法の応用}
 \subsection{概要}
-本講では，曲げ問題に対する単位荷重法の応用について例題を通して学習する．
+本講では，曲げ問題に対する単位荷重法の応用について，例題を通して学習する．
 軸力問題において既に見たように，単位荷重法を用いて特定の点の変位を求める
 ことができれば，不静定構造における反力や断面力の計算を効率的に行う上で有用となる．
-また，曲げ問題の場合，支点位置は部材端部にあるとは限らず，例えば張出し梁やゲルバー梁
+また，曲げ問題では支点位置が部材端部にあるとは限らない．例えば張出し梁やゲルバー梁
 では，たわみの微分方程式を解く際，反力を未知の荷重項として表現することや，
 支間毎にたわみを求めるなどの作業が必要となる。一方，単位荷重法では支点位置に応じた
-手順の変更は必要無く，微分方程式を解く場合のような煩わしさが無い．
-以下では，様々な張出し梁のたわみを単位荷重法で計算する方法と，
+計算手順の変更は必要無く，微分方程式を解く場合のような煩わしさが無い．
+以下では，張出し梁のたわみを単位荷重法で計算する方法についての例題をはじめに扱う．
 次に，連続梁をはじめとする簡単な不静定構造の支点反力と断面力を，単位荷重法を
-利用してい求める方法を示す．
+利用して求める方法を示す．
 \subsection{単位荷重法}
+単位荷重法の公式が,次のように表されることは,前回の講義において既に学習した.
 \begin{equation}
 	v(a)=\int_{梁全体} \frac{M\tilde M}{EI}dx
 	\label{eqn:va}
 \end{equation}
-ただし，$M$は問題の$\tilde M$は$x=a$において単位集中荷重が加えれた補助系の曲げモーメントを表す．
-曲げ剛性$EI$が全断面で一定の場合，
+ここに，$M$は問題の曲げモーメントを表し,$\tilde M$は$x=a$に単位集中荷重が加えられた補助系の曲げモーメントを表す．曲げ剛性$EI$が全断面で一定の場合，式(\ref{eqn:va})は
 \begin{equation}
 	v(a)=(EI)^{-1}\int_{梁全体} M\tilde Mdx
 	\label{eqn:va2}
 \end{equation}
-となるため，単位荷重法の計算は実質上，曲げモーメント$M,\tilde M$の計算と
-$\int M\tilde M dx$の積分を計算する作業となる．
+となるため，単位荷重法の計算は実質的に，曲げモーメント$M,\tilde M$を求め,
+$\int M\tilde M dx$の積分を計算する作業に帰着される．
 \subsection{張出し梁のたわみ}
-\subsubsection{例題2}
+\subsubsection{例題１}
+\paragraph{問題：}
 図\ref{fig:fig2_5}-(a)に示す張出し梁の，点Cにおけるたわみを
 単位荷重法を用いて求めよ．なお，断面剛性$EA$は全断面で一定とする．
 \begin{figure}[h]
@@ -83,7 +84,17 @@ $\int M\tilde M dx$の積分を計算する作業となる．
 	 (b)単位荷重法の適用において用いる補助系.} 
 	\label{fig:fig2_5}
 \end{figure}
-\subsubsection{問題2}
+\paragraph{解答：}
+単位荷重法の適用において用いる補助系を,図\ref{fig:fig2_5}-(b)に示す.
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[width=0.8\linewidth]{fig3.eps} 
+	\end{center}
+	\caption{問題で与えられた系と単位荷重法における補助系の曲げモーメント(例題1).} 
+	\label{fig:fig3}
+\end{figure}
+
+\subsubsection{問題1}
 \begin{figure}
 	\begin{center}
 	\includegraphics[width=0.8\linewidth]{fig6.eps} 
