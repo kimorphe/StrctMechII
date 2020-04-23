@@ -1,0 +1,359 @@
+\documentclass[10pt,a4j]{jarticle}
+%\usepackage{graphicx,wrapfig}
+\usepackage{graphicx}
+\usepackage{showkeys}
+\setlength{\topmargin}{-1.5cm}
+%\setlength{\textwidth}{16.5cm}
+\setlength{\textheight}{25.2cm}
+\newlength{\minitwocolumn}
+\setlength{\minitwocolumn}{0.5\textwidth}
+\addtolength{\minitwocolumn}{-\columnsep}
+%\addtolength{\baselineskip}{-0.1\baselineskip}
+%
+\def\Mmaru#1{{\ooalign{\hfil#1\/\hfil\crcr
+\raise.167ex\hbox{\mathhexbox 20D}}}}
+%
+\begin{document}
+\newcommand{\fat}[1]{\mbox{\boldmath $#1$}}
+\newcommand{\D}{\partial}
+\newcommand{\w}{\omega}
+\newcommand{\ga}{\alpha}
+\newcommand{\gb}{\beta}
+\newcommand{\gx}{\xi}
+\newcommand{\gz}{\zeta}
+\newcommand{\vhat}[1]{\hat{\fat{#1}}}
+\newcommand{\spc}{\vspace{0.7\baselineskip}}
+\newcommand{\halfspc}{\vspace{0.3\baselineskip}}
+\bibliographystyle{unsrt}
+%\pagestyle{empty}
+\newcommand{\twofig}[2]
+ {
+   \begin{figure}
+     \begin{minipage}[t]{\minitwocolumn}
+         \begin{center}   #1
+         \end{center}
+     \end{minipage}
+         \hspace{\columnsep}
+     \begin{minipage}[t]{\minitwocolumn}
+         \begin{center} #2
+         \end{center}
+     \end{minipage}
+   \end{figure}
+ }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\vspace*{\baselineskip}
+\begin{flushright}
+	構造力学II\\
+	2020/05/18
+\end{flushright}
+\begin{center}
+	{\LARGE \bf 講義ノート 5} \\
+\end{center}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{骨組構造に対する仮想仕事式}
+$n$本の直線部材を連結してできる骨組み構造を考える．
+図\ref{fig:fig5}-(a)は部材数が$n=3$の骨組み構造を示したもので，以下ではこれを
+具体例として参照しながら，一般の骨組み構造に対する仮想仕事式を導く．
+なお，ここで対象とする骨組み構造では，部材間の連結は剛結でもピン結合でもよく，
+一つの節点(部材の接合点)には何本の部材が連結されていてもよい．
+各部材は，部材番号が与えられており，一般の部材の番号を$e$とし
+断面力や断面係数等，その部材に関する諸量にはインデックス$e$をつけて表す．
+例えば，部材$e$における軸力を$N_e$, 部材長さを$l_e$等と書く．
+なお，部材中の断面位置や，荷重，変位方向を指定するためには, 図\ref{fig:fig5}-(b)に示す
+ように，部材軸方向に$x_e$軸を，部材軸直角方向に$y_e$軸をとった$(x_e,\,y_e)$直交座標系を用いる．
+\subsection{仮想仕事式}
+図\ref{fig:fig5}に示す骨組み構造について，2つの異なる荷重条件:
+\begin{eqnarray}
+	条件1:
+	\left( \bar{\fat{F}}, \, \bar M,  \fat{p}\right) 
+	&=& \left( \bar{\fat{F}}^{(1)}, \, \bar M ^{(1)}, \fat{p}^{(1)}\right) 
+	\label{eqn:sys1}
+	\\
+	条件2:
+	\left( \bar{\fat{F}}, \, \bar M, \fat{p}\right) 
+	&=&
+	\left( \bar{\fat{F}}^{(2)}, \, \bar M ^{(2)}, \fat{p}^{(2)}\right) 
+	\label{eqn:sys2}
+\end{eqnarray}
+に対して生じる変位を,それぞれ$\fat{u}^{(1)}, \fat{u}^{(2)}$と書く．
+条件1にある骨組み構造を系1, 同じ骨組み構造が条件2の状態にある場合を系2とよぶ．
+これら2つの系の，部材$e$に対する仮想仕事式は，部材両端部が図\ref{fig:fig5}-(b)のように荷重が既知の
+境界と考えて仮想仕事式を立てれば，
+\begin{equation}
+	\int_{x_e=0}^{l_e} 
+	\left(
+	\frac{N_e^{(1)}N_e^{(2)}}{EA_e}
+	+
+	\frac{M_e^{(1)}M_e^{(2)}}{EI_e}
+	\right)
+	dx_e
+	=
+	\left[ 
+		\bar{\fat{F}}_e^{(1)}\cdot \fat{u}^{(2)}
+		-
+		\bar{M}_e^{(1)}
+		(v^{(2)})'
+	\right]_{x_e=0}^{l_e}
+	+
+	\int_{x_e=0}^{l_e} 
+	\fat{p}^{(1)}\cdot \fat{u}^{(2)}
+	dx_e
+	\label{eqn:}
+\end{equation}
+となる．ただし，
+\begin{eqnarray}
+	& & 
+	\bar{\fat{F}}_e(0)=\left( \bar{N}^e_1, \, \bar{Q}^e_1 \right)^T, \ \  \bar M_e (0)=\bar M^e_1
+	\label{eqn:}
+	\\
+	& & 
+	\bar{\fat{F}}_e(l_e)=\left( \bar{N}^e_2, \, \bar{Q}^e_2 \right)^T, \ \  \bar M_e (l_e)=\bar M^e_2
+	\label{eqn:}
+\end{eqnarray}
+で，右肩の括弧内の数字は，いずれの系に関する量であるかを示すためのものである．
+なお，図\ref{fig:fig5}-(a)に示す構造において，部材$e=1$では，$x_e=0$において変位ベクトルと
+たわみ角がゼロであることから，仮想仕事式は
+\begin{equation}
+	\int_{x_1=0}^{l_1} 
+	\left(
+	\frac{N_1^{(1)}N_1^{(2)}}{EA_1}
+	+
+	\frac{M_1^{(1)}M_1^{(2)}}{EI_1}
+	\right)
+	dx_1
+	=
+	\left. 
+		\bar{\fat{F}}_1^{(1)}\cdot \fat{u}^{(2)}
+	\right|_{x_1=l_1}
+		-
+	\left. 
+		\bar{M}_1^{(1)}
+		(v^{(2)})'
+	\right|_{x_1=l_1}
+	+
+	\int_{x_1=0}^{l_1} 
+	\fat{p}^{(1)}\cdot \fat{u}^{(2)}
+	dx_1
+	\label{eqn:}
+\end{equation}
+となる．また，部材$e=3$では$x_3=l_3$すなわちD点において，実際に荷重が指定された境界と
+なっていることから
+\begin{equation}
+	\bar{\fat{F}}_3(l_3)=\left( \bar{N}^e_2=\bar{N}, \, \bar{Q}^3_2=\bar{Q} \right)^T, 
+	\ \  \bar{ M}_3 (l_3)=\bar M
+	\label{eqn:}
+\end{equation}
+とできる．この他の節点(B,C)における力は全て内力である.
+以上を踏まえ,全ての部材に対する仮想仕事式の辺々の和をとると，骨組み構造全体に対する
+仮想仕事式が
+\begin{equation}
+	a\left(
+		 \fat{u}^{(1)}
+		,\,  
+		\fat{u}^{(2)}
+	\right) 
+	=
+	b\left( 
+		\fat{u}^{(2)}
+	\right)
+	\label{eqn:VW_frame}
+\end{equation}
+\begin{eqnarray}
+	a\left(
+		\fat{u}^{(1)}
+		,\,  
+		\fat{u}^{(2)}
+	\right) 
+	&=& 
+	\sum_{e=1}^n 
+	\int_{x_e=0}^{l_1} 
+	\left(
+	\frac{N_e^{(1)}N_e^{(2)}}{EA_e}
+	+
+	\frac{M_e^{(1)}M_e^{(2)}}{EI_e}
+	\right)
+	dx_e
+	\label{eqn:}
+	\\
+	b\left( 
+		 \fat{u}^{(2)}
+	\right)
+	&=&
+	\left.
+	\bar{\fat{F}}^{(1)} \cdot \fat{u}^{(2)}
+	\right|_{x_3=l_3}
+	-
+	\left.
+	\bar{M}^{(1)}(v^{(2)})'
+	\right|_{x_3=l_3}
+	+
+	\sum_{e=1}^n 
+	\int_{x_e=0}^{l_e} 
+	\fat{p}^{(1)} \cdot \fat{u}^{(2)}dx_e
+\end{eqnarray}
+と得られる．
+ここで，系1に対する荷重条件を
+\begin{equation}
+	\bar{\fat{F}}^{(1)}=\fat{0}, \ \ \bar M^{(1)} =0, 
+	\ \ 
+	\fat{p}^{(1)}=
+	\left\{
+	\begin{array}{cc}
+	\hat{\fat{e}}\delta (x_{e}-a) & (e=e') \\
+	\fat{0} & (e\neq e')
+	\end{array}
+	\right.
+	\label{eqn:}
+\end{equation}
+とする．これは，部材$e=e'$の$x_{e'}=a$で，単位ベクトル$\hat{\fat{e}}$の方向に作用する
+単位荷重のみが作用する場合を表す．このとき，仮想仕事式(\ref{eqn:VW_frame})は
+\begin{equation}
+	\left.
+	\hat{\fat{e}}\cdot \fat{u}^{(2)}
+	\right|_{x_{e'}=a}
+	=
+	\sum_{e=1}^n 
+	\int_{x_e=0}^{l_1} 
+	\left(
+	\frac{N_e^{(1)}N_e^{(2)}}{EA_e}
+	+
+	\frac{M_e^{(1)}M_e^{(2)}}{EI_e}
+	\right)
+	dx_e
+	\label{eqn:uload_frame}
+\end{equation}
+となり，骨組み構造に対する単位荷重法の式が導かれる．
+なお，図\ref{fig:fig6}は，$e'=2$とした場合の，系1の荷重条件を示したものである．
+最後に，
+\begin{equation}
+	\left(M^{(1)}_e,\, N_e^{(1)}\right)
+	=
+	\left(	\tilde M_e,\, \tilde N_e \right)
+	\ \ 
+	\left(M^{(2)}_e,\,N_e^{(2)}\right)
+	=
+	\left( M_e,\, N_e \right), \ \ 
+	\fat{u}^{(2)}=\fat{u}, \ \ (e=1,\dots n)
+	\label{eqn:}
+\end{equation}
+と書き直せば，式(\ref{eqn:uload_frame})は次のようになる．
+\begin{equation}
+	\left.
+	\hat{\fat{e}}\cdot \fat{u}
+	\right|_{x_{e'}=a}
+	=
+	\sum_{e=1}^n 
+	\int_{x_e=0}^{l_1} 
+	\left(
+	\frac{N_e \tilde N_e}{EA_e}
+	+
+	\frac{M_e \tilde M_e}{EI_e}
+	\right)
+	dx_e
+	\label{eqn:uload_frame2}
+\end{equation}
+この結果は一般の骨組み構造に対して成立するものである．一方，トラス構造の場合，各部材には
+軸力のみが作用することから，曲げモーメントに関する項は現れない．また，節点の変位を単位荷重法で求める場合，問題
+と補助系ともに，外力は全て節点に加えられるおとから，軸力が部材内で一定となる．
+その結果，軸力に関する積分は簡単に実行することができ，単位荷重法の式は次のようになる．
+\begin{equation}
+	\left.
+	\hat{\fat{e}}\cdot \fat{u}
+	\right|_{x_{e'}=a}
+	=
+	\sum_{e=1}^n 
+	\frac{N_e \tilde N_e}{EA_e}l_e
+\end{equation}
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[width=0.8\linewidth]{fig5.eps} 
+	\end{center}
+	\caption{(a)骨組み構造の例. 
+	 (b)部材$e$に関する諸量と局所座標($x_e,\,y_e$).} 
+	\label{fig:fig5}
+\end{figure}
+\begin{figure}
+	\begin{center}
+	\includegraphics[width=0.5\linewidth]{fig6.eps} 
+	\end{center}
+	\caption{単位集中荷重を受ける骨組み構造.} 
+	\label{fig:fig6}
+\end{figure}
+\subsection{例題2}
+図\ref{fig:fig7}に示した3種類の骨組み構造について以下の問に答えよ．
+なお，断面剛性$EA$と$EI$は全ての部材，全ての断面で一定とする．
+\begin{enumerate}
+\item
+	骨組み構造(a),(b),(c)のそれぞれにおける曲げモーメント分布を求めよ．
+\item
+	骨組み構造(a)の点Cにおける鉛直変位$v_C$を求めよ．
+\item
+	骨組み構造(a)の点Cにおける水平変位$u_C$を求めよ．
+\end{enumerate}
+\begin{figure}
+	\begin{center}
+	\includegraphics[width=1.0\linewidth]{fig7.eps} 
+	\end{center}
+	\caption{荷重条件が異なる3種類の骨組み構造(a)-(c).}
+	\label{fig:fig7}
+\end{figure}
+\subsection{例題3}
+図\ref{fig:fig8}に示す２つのトラス構造について次の問に答えよ．
+なお，トラス部材の断面剛性$EA$は，全ての部材，全ての断面で一定とする．
+\begin{enumerate}
+\item
+	トラス構造(a)の点Cにおける水平変位を求めよ．
+\item
+	トラス構造(b)の点Cにおける鉛直変位を求めよ．
+\item
+	トラス構造(a)の点Cにおける鉛直変位を求めよ．
+\end{enumerate}
+\begin{figure}
+	\begin{center}
+	\includegraphics[width=0.6\linewidth]{fig8.eps} 
+	\end{center}
+	\caption{(a)節点Cで水平力を受けるトラス.(b)節点Cで鉛直力を受けるトラス．}
+	\label{fig:fig8}
+\end{figure}
+\subsection{問題1}
+図\ref{fig:fig9}に示す骨組み構造(a)，(b)および(c)について以下の問に答えよ. 
+なお，断面剛性$EI$と$EA$は全ての部材，全ての断面で一定とする．
+\begin{figure}
+	\begin{center}
+	\includegraphics[width=1.0\linewidth]{fig9.eps} 
+	\end{center}
+	\caption{支持条件と荷重条件の異なる3種類の骨組み構造.} 
+	\label{fig:fig9}
+\end{figure}
+\begin{enumerate}
+\item
+	骨組み構造(a)の点Bにおける水平変位を求めよ．
+\item
+	骨組み構造(a)の点Bにおける鉛直変位を求めよ．
+\item
+	骨組み構造(b)の点Aにおける水平変位を求めよ．
+\item
+	骨組み構造(c)の点Cにおける鉛直変位を求めよ．
+\item
+	骨組み構造(c)の点Cにおける水平変位を求めよ．
+\end{enumerate}
+\subsection{問題2}
+図\ref{fig:fig9}に示す，2つのトラス骨組(a)と(b)について以下の問に答えよ. 
+なお，トラス部材の断面剛性$EA$は，全ての部材，全ての断面で一定とする．
+\begin{figure}
+	\begin{center}
+	\includegraphics[width=0.8\linewidth]{fig10.eps} 
+	\end{center}
+	\caption{単純支持された二つのトラス構造.} 
+	\label{fig:fig10}
+\end{figure}
+\begin{enumerate}
+\item
+	トラス構造(a)の点Dにおける水平変位を求めよ．
+\item
+	トラス構造(a)の点Eにおける水平変位を求めよ．
+\item
+	トラス構造(b)の点Dにおける荷重方向の変位を求めよ．
+\end{enumerate}
+\end{document}
+

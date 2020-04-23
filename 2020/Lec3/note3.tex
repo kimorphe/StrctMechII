@@ -1,8 +1,9 @@
 ﻿\documentclass[10pt,a4j]{jarticle}
 %\usepackage{graphicx,wrapfig}
 \usepackage{graphicx}
+\usepackage{showkeys}
 \setlength{\topmargin}{-1.5cm}
-\setlength{\textwidth}{16.5cm}
+%\setlength{\textwidth}{16.5cm}
 \setlength{\textheight}{25.2cm}
 \newlength{\minitwocolumn}
 \setlength{\minitwocolumn}{0.5\textwidth}
@@ -41,18 +42,22 @@
  }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\vspace*{\baselineskip}
+\begin{flushright}
+	構造力学II\\
+	2020/05/11
+\end{flushright}
 \begin{center}
-	{\Large \bf 2020年度 構造力学II 第3回} \\
+	{\LARGE \bf 講義ノート 3} \\
 \end{center}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \setcounter{section}{2}
 \section{曲げ問題に対する単位荷重法の応用}
 \subsection{概要}
-本講では，曲げ問題に対する単位荷重法の応用について，例題を通して学習する．
+本講では，曲げ問題に対する単位荷重法の応用について例題を通して学習する．
 軸力問題において既に見たように，単位荷重法を用いて特定の点の変位を求める
-ことができれば，不静定構造における反力や断面力の計算を効率的に行う上で有用となる．
-また，曲げ問題では支点位置が部材端部にあるとは限らない．例えば張出し梁やゲルバー梁
-では，たわみの微分方程式を解く際，反力を未知の荷重項として表現することや，
+ことができれば，不静定構造における反力や断面力計算を効率的に行う上で有用となる．
+また，曲げ問題では支点位置が部材端部にあるとは限らず，例えば張出し梁やゲルバー梁
+では，たわみの微分方程式を解く際，反力を未知荷重項として表現することや，
 支間毎にたわみを求めるなどの作業が必要となる。一方，単位荷重法では支点位置に応じた
 計算手順の変更は必要無く，微分方程式を解く場合のような煩わしさが無い．
 以下では，張出し梁のたわみを単位荷重法で計算する方法についての例題をはじめに扱う．
@@ -64,18 +69,19 @@
 	v(a)=\int_{梁全体} \frac{M\tilde M}{EI}dx
 	\label{eqn:va}
 \end{equation}
-ここに，$M$は問題の曲げモーメントを表し,$\tilde M$は$x=a$に単位集中荷重が加えられた補助系の曲げモーメントを表す．曲げ剛性$EI$が全断面で一定の場合，式(\ref{eqn:va})は
+ここに，$M$は問題で与えられた系の曲げモーメントを,$\tilde M$は$x=a$に単位集中荷重が加えられた
+補助系の曲げモーメントを表す．曲げ剛性$EI$が全断面で一定の場合，式(\ref{eqn:va})は
 \begin{equation}
 	v(a)=(EI)^{-1}\int_{梁全体} M\tilde Mdx
 	\label{eqn:va2}
 \end{equation}
 となるため，単位荷重法の計算は実質的に，曲げモーメント$M,\tilde M$を求め,
 $\int M\tilde M dx$の積分を計算する作業に帰着される．
+以下に示す問題では，曲げ剛性$EI$は全断面で一定とする．
 \subsection{張出し梁のたわみ}
 \subsubsection{例題１}
 \paragraph{問題：}
-図\ref{fig:fig2_5}-(a)に示す張出し梁の，点Cにおけるたわみを
-単位荷重法を用いて求めよ．なお，断面剛性$EA$は全断面で一定とする．
+図\ref{fig:fig2_5}-(a)に示す張出し梁の，点Cにおけるたわみを単位荷重法を用いて求めよ．
 \begin{figure}[h]
 	\begin{center}
 	\includegraphics[width=0.8\linewidth]{fig5.eps} 
@@ -86,6 +92,47 @@ $\int M\tilde M dx$の積分を計算する作業に帰着される．
 \end{figure}
 \paragraph{解答：}
 単位荷重法の適用において用いる補助系を,図\ref{fig:fig2_5}-(b)に示す.
+図\ref{fig:fig2_5}に示した2つの系に対する自由物体図は，
+図\ref{fig:fig3}の上段に示したようになり，これらは静定構造である．
+そこで，力とモーメントの釣り合いから，支点反力と断面力を求めることができ，
+ここで必要となる曲げモーメント$M$と$\tilde M$の分布を示せば，
+図\ref{fig:fig3}の(c)と(d)のようになる．これらは，同図に示した座標$x$あるいは
+$s$を用いて次のように表される．
+\begin{equation}
+	M = \left\{
+	\begin{array}{cc}
+		-\frac{q_0x^2}{2}+\frac{q_0lx}{2} & (0<x<l) \\
+		0 & \left( 0< s< \frac{l}{2}\right)
+	\end{array}
+	\right.
+	\label{eqn:}
+\end{equation}
+\begin{equation}
+	\tilde M = \left\{
+	\begin{array}{cc}
+		-\frac{\tilde P}{2}x & \left( 0<x<l \right) \\
+		-\tilde P s & \left( 0< s< \frac{l}{2}\right)
+	\end{array}
+	\right.
+	\label{eqn:}
+\end{equation}
+従って，$\int_C^B M\tilde Mds=0$だから，
+\begin{eqnarray}
+	\int_A^CM\tilde M dx & = &  \int_A^BM\tilde M dx  \nonumber \\
+	&=&
+	\int_0^l
+	\left(	-\frac{q_0x^2}{2}+\frac{q_0lx}{2}  \right)
+	\left(	-\frac{\tilde P}{2}x \right)
+	dx \\
+	&= & -\frac{q_0l^4}{16}
+	\label{eqn:}
+\end{eqnarray}
+となり，C点のたわみ$v_C$が
+\begin{equation}
+	v_C=-\frac{1}{16} \frac{q_0l^4}{EI}
+	\label{eqn:}
+\end{equation}
+と求められる．
 \begin{figure}[h]
 	\begin{center}
 	\includegraphics[width=0.8\linewidth]{fig3.eps} 
@@ -95,12 +142,19 @@ $\int M\tilde M dx$の積分を計算する作業に帰着される．
 \end{figure}
 
 \subsubsection{問題1}
-\begin{figure}
+\begin{figure}[h]
 	\begin{center}
-	\includegraphics[width=0.8\linewidth]{fig6.eps} 
+	\includegraphics[width=0.8\linewidth]{fig6_2.eps} 
 	\end{center}
-	\caption{荷重条件の異なる4種類の張出し梁.} 
-	\label{fig:fig2_6}
+	\caption{荷重条件の異なる2種類の張出し梁.} 
+	\label{fig:fig6_2}
+\end{figure}
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[width=0.8\linewidth]{fig6_1.eps} 
+	\end{center}
+	\caption{荷重条件の異なる2種類の張出し梁.} 
+	\label{fig:fig6_1}
 \end{figure}
 \begin{enumerate}
 \item
@@ -119,7 +173,7 @@ $R_A, R_B$および$R_C$を求め，曲げモーメント図を描け．
 なお，断面剛性$EA$は全断面で一定とする．
 \begin{figure}
 	\begin{center}
-	\includegraphics[width=0.4\linewidth]{fig7.eps} 
+	\includegraphics[width=0.5\linewidth]{fig7.eps} 
 	\end{center}
 	\caption{(a)2径間連続梁と梁に作用する支点反力.(b),(c)2径間連続梁の
 	支点反力計算に用いる2つの静定系.} 
@@ -128,13 +182,20 @@ $R_A, R_B$および$R_C$を求め，曲げモーメント図を描け．
 \subsubsection{問題3}
 図\ref{fig:fig2_8}に示す梁(a)から(d)について，梁に作用する支点反力を求め，
 曲げモーメント図を描け．なお，梁の曲げ剛性$EI$は全ての梁，全ての断面で一定とする．
+\subsection{問題}
 \begin{figure}
 	\begin{center}
-	\includegraphics[width=0.8\linewidth]{fig8.eps} 
+	\includegraphics[width=1.0\linewidth]{fig8_2.eps} 
 	\end{center}
-	\caption{支持条件と荷重条件の異なる4種類の不静定梁.} 
-	\label{fig:fig2_8}
+	\caption{支持条件と荷重条件の異なる3種類の不静定梁.} 
+	\label{fig:fig8_2}
 \end{figure}
-\subsection{問題}
+\begin{figure}
+	\begin{center}
+	\includegraphics[width=0.4\linewidth]{fig8_1.eps} 
+	\end{center}
+	\caption{不静定梁.} 
+	\label{fig:fig8_1}
+\end{figure}
 \end{document}
 

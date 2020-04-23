@@ -1,0 +1,226 @@
+\documentclass[10pt,a4j]{jarticle}
+%\usepackage{graphicx,wrapfig}
+\usepackage{graphicx}
+\usepackage{showkeys}
+\setlength{\topmargin}{-1.5cm}
+%\setlength{\textwidth}{16.5cm}
+\setlength{\textheight}{25.2cm}
+\newlength{\minitwocolumn}
+\setlength{\minitwocolumn}{0.5\textwidth}
+\addtolength{\minitwocolumn}{-\columnsep}
+%\addtolength{\baselineskip}{-0.1\baselineskip}
+%
+\def\Mmaru#1{{\ooalign{\hfil#1\/\hfil\crcr
+\raise.167ex\hbox{\mathhexbox 20D}}}}
+%
+\begin{document}
+\newcommand{\fat}[1]{\mbox{\boldmath $#1$}}
+\newcommand{\D}{\partial}
+\newcommand{\w}{\omega}
+\newcommand{\ga}{\alpha}
+\newcommand{\gb}{\beta}
+\newcommand{\gx}{\xi}
+\newcommand{\gz}{\zeta}
+\newcommand{\vhat}[1]{\hat{\fat{#1}}}
+\newcommand{\spc}{\vspace{0.7\baselineskip}}
+\newcommand{\halfspc}{\vspace{0.3\baselineskip}}
+\bibliographystyle{unsrt}
+%\pagestyle{empty}
+\newcommand{\twofig}[2]
+ {
+   \begin{figure}
+     \begin{minipage}[t]{\minitwocolumn}
+         \begin{center}   #1
+         \end{center}
+     \end{minipage}
+         \hspace{\columnsep}
+     \begin{minipage}[t]{\minitwocolumn}
+         \begin{center} #2
+         \end{center}
+     \end{minipage}
+   \end{figure}
+ }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\vspace*{\baselineskip}
+\begin{flushright}
+	構造力学II\\
+	2020/05/18
+\end{flushright}
+\begin{center}
+	{\LARGE \bf 講義ノート 4} \\
+\end{center}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{曲げ-軸力問題}
+梁の長手方向に対して傾いた荷重が作用するとき，曲げモーメントと軸力が
+同時に発生する．この場合，軸力問題と曲げ問題の方程式両方を解く必要がある．
+構造部材全てが同一直線上に並んでいる場合，軸力問題と曲げ問題は各々
+独立に解くことができる．一方，骨組構造のように，部材軸が様々な方向を
+向く構造では，軸力と曲げに関する問題を分離することはできず，軸力と曲げ問題を
+同時に解く必要がある．強形式による骨組み構造の解析は非常に煩雑となるが，
+弱形式，あるいは仮想仕事式を骨組み構造に拡張することは容易である．
+ここでは，仮想仕事式を骨組み構造に適用するための準備として，
+単一部材に対する曲げ−軸力問題の仮想仕事式を示し，単位荷重法の公式を導く．
+なお，以下の内容は，諸公式の表記法の問題に過ぎず，本質的に新しい内容を含むものではない．
+\subsection{弱形式，仮想仕事式}
+図\ref{fig:fig1}に示すような，軸方向と軸直角方向の外力を受ける片持梁の曲げ-軸力問題を考える．
+軸変位を$u$, たわみを$v$とすれば，この問題の弱形式が次のようになることは，既に示した通りである．
+\begin{eqnarray}
+	\int_0^l EAu'\xi'dx &= & 
+	\bar N \xi(l)+\int_0^l p\xi dx 
+	\label{eqn:WF_N}
+	\\
+	\int_0^l EIv''\eta''dx &= & 
+	\bar Q \eta(l)-\bar M\eta'(l) +\int_0^l q\eta dx 
+	\label{eqn:WF_M}
+\end{eqnarray}
+ただし，$\xi(x),\eta(x)$は，$0\leq x \leq l$上で定義された，次の条件を満足する任意の関数である．
+\begin{equation}
+	\xi(0)=0, \ \ \eta(0)=0, \ \ \eta'(0)=0
+	\label{eqn:}
+\end{equation}
+また，$p(x),q(x)$は軸方向，軸直角方向の分布荷重を，$\bar{N},\bar{Q},\bar{M}$は，
+それぞれ部材右端に作用する既知の軸力，せん断力および曲げモーメントを表す．
+$(u,v)$は変位ベクトルを，$(p,q)$と$(\bar{N},\bar{Q})$は，それぞれ，
+分布力と部材端に作用する集中外力を表すベクトルとみなすことができる．そこで，これらを
+\begin{equation}
+	\fat{u}(x)=\left(u(x),\, v(x) \right)^T
+	, \ \ 
+	\fat{p}(x)=\left(p(x),\, q(x) \right)^T
+	, \ \ 
+	\bar{\fat{F}}(x)=\left(\bar{N},\, \bar{Q} \right)^T
+	\label{eqn:def_vecs}
+\end{equation}
+と書くことにする．
+
+次に，図\ref{fig:fig2}に示すような2つの系を考える．
+軸力と曲げ問題の弱形式を表す式(\ref{eqn:WF_N})と(\ref{eqn:WF_M})において
+\begin{equation}
+	\fat{u}=\fat{u}_1=(u_1,\, v_1 )^T, 
+	\ \ 
+	(\xi,\, \eta )^T
+	=
+	\fat{u}_2=(u_2,\, v_2 )^T,
+	\label{eqn:}
+\end{equation}
+とすれば，各々の問題に対する仮想仕事式は
+\begin{eqnarray}
+	\int_0^l \frac{N_1N_2}{EA}dx &= & 
+	\bar N_1 u_2(l)+\int_0^l p_1u_2 dx 
+	\label{eqn:VW_N}
+	\\
+	\int_0^l \frac{M_1M_2}{EI}dx &= & 
+	\bar Q_1 v_2(l)-\bar M_1v_2'(l) +\int_0^l q_1v_2 dx 
+	\label{eqn:VW_M}
+\end{eqnarray}
+となる．ただし，インデックス1と2は，それぞれ系1と系2に関する量であることを意味する．
+これら，式(\ref{eqn:VW_N})と(\ref{eqn:VW_M})の辺々を加えると，
+\begin{equation}
+	\int_0^l \left( \frac{N_1N_2}{EA}+ \frac{M_1M_2}{EI} \right) dx 
+	=
+	\bar{\fat{F}}_1\cdot \fat{u}_2(l)-\bar{M}_1 v_2'(l)
+	+
+	\int_0^l \fat{p}_1\cdot \fat{u}_2 dx 
+	\label{eqn:}
+\end{equation}
+となる．ここで，
+\begin{eqnarray}
+	a(\fat{u}_1,\fat{u}_2)&= & 
+	\int_0^l \left( \frac{N_1N_2}{EA}+ \frac{M_1M_2}{EI} \right) dx 
+	\label{eqn:def_a_NM}
+	\\
+	b(\fat{u}_2) &=& 
+	\bar{\fat{F}}_1\cdot \fat{u}_2(l)-\bar{M}_1 v_2'(l)
+	+
+	\int_0^l \fat{p}_1\cdot \fat{u}_2 dx 
+	\label{eqn:def_b_NM}
+\end{eqnarray}
+と置けば，
+\begin{equation}
+	a(\fat{u}_1,\fat{u}_2) = b(\fat{u}_2) 
+	\label{eqn:VW_NM}
+\end{equation}
+と，曲げ-軸力問題の仮想仕事式を表すことができる．
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[width=0.5\linewidth]{fig1.eps} 
+	\end{center}
+	\caption{軸力と鉛直力を受ける片持梁.} 
+	\label{fig:fig1}
+\end{figure}
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[width=0.8\linewidth]{fig2.eps} 
+	\end{center}
+	\caption{荷重条件が異なる2つの系.(a)系1, (b)系2.} 
+	\label{fig:fig2}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%5
+\subsection{単位荷重法}
+図\ref{fig:fig3}に示すような，傾いた単位集中荷重を受ける梁を考える，
+これを，仮想仕事式(\ref{eqn:VW_NM})の系1として用いる．
+単位荷重の作用点位置を$x=a$，方向を部材軸からの角度で$\alpha$とすれば，系1の外力項は
+\begin{equation}
+	\bar{\fat{F}}_1=\fat{0},\, \bar M_1=0, \,
+	\fat{p}_1=\hat{\fat{e}}(\alpha)\delta(x-a), \ \ 
+	\hat{\fat{e}}=\left( \cos\alpha,\, \sin \alpha \right)^T
+	\label{eqn:aux}
+\end{equation}
+と表され，式\ref{eqn:def_b_NM}は，
+\begin{equation}
+	b(\fat{u}_2)=\hat{\fat{e}}\cdot\fat{u}_2(a) 
+	\label{eqn:dlt_smp}
+\end{equation}
+となる，従って，仮想仕事式(\ref{eqn:VW_NM})から
+\begin{equation}
+	\hat{\fat{e}}\cdot\fat{u}_2(a) 
+	=
+	\int_0^l \left( \frac{N_1N_2}{EA}+ \frac{M_1M_2}{EI} \right) dx 
+	\label{eqn:uload_NM}
+\end{equation}
+が得られる．
+$\hat{\fat{e}}$は単位ベクトルだから, 式(\ref{eqn:uload_NM})の左辺は
+$x=a$における変位ベクトル$\fat{u}$の$\hat{\fat{e}}$方向成分を意味する．
+よって，式(\ref{eqn:uload_NM})を用いることで，
+単位荷重の作用点位置$x=a$における変位ベクトル$\fat{u}$の，
+単位荷重方向成分が得られることが分かる．
+最後に，
+\begin{equation}
+	\left( \tilde{N},\, \tilde{M}\right)= \left(N_1,\, M_1\right), \ \ 
+	\left( N,\, M\right)= \left(N_2,\, M_2\right), \ \ \fat{u}=\fat{u}_2
+	\label{eqn:}
+\end{equation}
+とおき，式(\ref{eqn:uload_NM})を次のように書き直しておく．
+\begin{equation}
+	\hat{\fat{e}}\cdot\fat{u}(a) 
+	=
+	\int_0^l \left( \frac{N \tilde N }{EA}+ \frac{M \tilde M }{EI} \right) dx 
+	\label{eqn:uload_NM2}
+\end{equation}
+以下では，これを用いて傾斜部材や骨組み構造の変位計算を行う．
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[width=0.4\linewidth]{fig3.eps} 
+	\end{center}
+	\caption{曲げ−軸力問題の単位荷重法における補助系(片持梁の場合).} 
+	\label{fig:fig3}
+\end{figure}
+\subsection{例題1}
+図\ref{fig:fig4}に示す4つの系(a)$\sim$(d)について，以下の問に答えよ．
+なお，ヤング率$E$，断面積$A$，断面2次モーメント$I$は全ての
+部材と断面で一定とする．
+\begin{enumerate}
+\item
+	系(a)から(d)における曲げモーメント分布を求めよ．
+\item
+	系(a)の, 点Bにおける鉛直変位と水平変位を求めよ．
+\item
+	系(b)の, 点Bにおける鉛直変位と水平変位を求めよ．
+\end{enumerate}
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[width=0.5\linewidth]{fig4.eps} 
+	\end{center}
+	\caption{荷重条件の異なる4種類の傾斜した片持梁.} 
+	\label{fig:fig4}
+\end{figure}
+\end{document}
