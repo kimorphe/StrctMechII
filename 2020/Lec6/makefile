@@ -1,3 +1,8 @@
+all: prb6.pdf note6.pdf 
+prb6.pdf: prb6.dvi
+	dvipdfmx prb6.dvi
+prb6.dvi: prb6.tex prb.eps
+	platex prb6.tex
 note6.pdf: note6.dvi
 	dvipdfmx note6.dvi
 note6.dvi: note6.tex fig1.eps fig2.eps fig3.eps fig4.eps fig5.eps fig6.eps fig7.eps fig8.eps
@@ -20,3 +25,5 @@ fig8.eps: Figs/fig8.svgz
 	inkscape -z -f Figs/fig8.svgz -E fig8.eps 
 
 
+prb.eps: Figs/prb.svgz
+	inkscape -z -f Figs/prb.svgz -E prb.eps 

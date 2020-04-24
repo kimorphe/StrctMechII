@@ -1,0 +1,66 @@
+\documentclass[10pt,a4j]{jarticle}
+%\usepackage{graphicx,wrapfig}
+\usepackage{graphicx}
+\setlength{\topmargin}{-1.5cm}
+%\setlength{\textwidth}{16.5cm}
+\setlength{\textheight}{25.2cm}
+\newlength{\minitwocolumn}
+\setlength{\minitwocolumn}{0.5\textwidth}
+\addtolength{\minitwocolumn}{-\columnsep}
+%\addtolength{\baselineskip}{-0.1\baselineskip}
+%
+\def\Mmaru#1{{\ooalign{\hfil#1\/\hfil\crcr
+\raise.167ex\hbox{\mathhexbox 20D}}}}
+%
+\begin{document}
+\newcommand{\fat}[1]{\mbox{\boldmath $#1$}}
+\newcommand{\D}{\partial}
+\newcommand{\w}{\omega}
+\newcommand{\ga}{\alpha}
+\newcommand{\gb}{\beta}
+\newcommand{\gx}{\xi}
+\newcommand{\gz}{\zeta}
+\newcommand{\vhat}[1]{\hat{\fat{#1}}}
+\newcommand{\spc}{\vspace{0.7\baselineskip}}
+\newcommand{\halfspc}{\vspace{0.3\baselineskip}}
+\bibliographystyle{unsrt}
+%\pagestyle{empty}
+\newcommand{\twofig}[2]
+ {
+   \begin{figure}
+     \begin{minipage}[t]{\minitwocolumn}
+         \begin{center}   #1
+         \end{center}
+     \end{minipage}
+         \hspace{\columnsep}
+     \begin{minipage}[t]{\minitwocolumn}
+         \begin{center} #2
+         \end{center}
+     \end{minipage}
+   \end{figure}
+ }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\vspace*{\baselineskip}
+\begin{flushright}
+	構造力学II\\
+	 2020/05/25
+\end{flushright}
+\begin{center}
+	{\LARGE	\bf 講義内課題 5} 
+\end{center}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%----------------------------------
+\vspace{10mm}
+解答は，PDFファイルとして講義実施日中(23:59まで)にMoodleからアップロードして提出すること．
+\subsection*{問題}
+図\ref{fig:prb}に示す骨組み構造の，点Aにおける水平変位$\delta_A$を求めよ．
+ただし，各部材の断面剛性$EI$と$EA$は一定とする．
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[width=0.4\linewidth]{prb.eps} 
+	\end{center}
+	\caption{鉛直部材に水平方向の等分布荷重を受ける骨組み構造.} 
+	\label{fig:prb}
+\end{figure}
+\end{document}
+
