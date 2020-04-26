@@ -1,7 +1,7 @@
 ﻿\documentclass[10pt,a4j]{jarticle}
 %\usepackage{graphicx,wrapfig}
 \usepackage{graphicx}
-\usepackage{showkeys}
+%\usepackage{showkeys}
 \setlength{\topmargin}{-1.5cm}
 %\setlength{\textwidth}{16.5cm}
 \setlength{\textheight}{25.2cm}
@@ -53,24 +53,28 @@
 \setcounter{section}{3}
 \section{曲げ-軸力問題}
 梁の長手方向に対して傾いた荷重が作用するとき，曲げモーメントと軸力が
-同時に発生する．この場合，軸力問題と曲げ問題の方程式両方を解く必要がある．
-構造部材全てが同一直線上に並んでいる場合，軸力問題と曲げ問題は各々
+同時に発生する．この場合，軸力問題と曲げ問題，両方の方程式を解く必要がある．
+部材全てが同一直線上に並んでいる場合，軸力問題と曲げ問題は各々
 独立に解くことができる．一方，骨組構造のように，部材軸が様々な方向を
-向く構造では，軸力と曲げに関する問題を分離することはできず，軸力と曲げ問題を
-同時に解く必要がある．強形式による骨組み構造の解析は非常に煩雑となるが，
-弱形式，あるいは仮想仕事式を骨組み構造に拡張することは容易である．
+向いて連結された骨組み構造では，軸力と曲げに関する問題を分離することはできず，
+両方の問題を同時に解く必要がある．そのため，強形式による骨組み構造の解析は非常に
+煩雑となるが，弱形式あるいは仮想仕事式を骨組み構造に拡張することは容易である．
 ここでは，仮想仕事式を骨組み構造に適用するための準備として，
-単一部材に対する曲げ−軸力問題の仮想仕事式を示し，単位荷重法の公式を導く．
-なお，以下の内容は，諸公式の表記法の問題に過ぎず，本質的に新しい内容を含むものではない．
+単一部材に対する曲げ−軸力問題の仮想仕事式を示し，その後，単位荷重法の公式を導く．
+なお，以下は本質的に新しい内容を含むものではなく，諸公式をより一般的な問題に
+適用するために適した表記法で表すことが主たる内容である．
 \subsection{弱形式，仮想仕事式}
-図\ref{fig:fig1}に示すような，軸方向の分布力$p(x)$と軸直角方向の分布力$q(x)$を受ける片持梁を考える．軸変位を$u(x)$, たわみを$v(x)$とすれば，この問題の弱形式が次のようになる．
+図\ref{fig:fig1}に示すような，軸方向の分布力$p(x)$と軸直角方向の分布力$q(x)$を受ける片持梁を考える．
+軸変位を$u(x)$, たわみを$v(x)$とすれば，この問題の弱形式が次のようになる．
 このことは，これまでの講義で示した通りである．
 \begin{eqnarray}
-	\int_0^l EAu'\xi'dx &= & 
+	軸力問題 &:&
+	\int_0^l EAu'\xi'dx =  
 	\bar N \xi(l)+\int_0^l p\xi dx 
 	\label{eqn:WF_N}
 	\\
-	\int_0^l EIv''\eta''dx &= & 
+	曲げ問題 &:&
+	\int_0^l EIv''\eta''dx =
 	\bar Q \eta(l)-\bar M\eta'(l) +\int_0^l q\eta dx 
 	\label{eqn:WF_M}
 \end{eqnarray}
@@ -90,7 +94,9 @@
 	\bar{\fat{F}}(x)=\left(\bar{N},\, \bar{Q} \right)^T
 	\label{eqn:def_vecs}
 \end{equation}
-と書くことにする．
+と書くことにする．ここで$(\cdot)^T$は，$(\cdot)$の転置を意味する．
+従って，式(\ref{eqn:def_vecs})は，実際には2$\times$1の，
+縦ベクトルを表している．
 \begin{figure}[h]
 	\begin{center}
 	\includegraphics[width=0.5\linewidth]{fig1.eps} 
@@ -122,7 +128,7 @@
 	\label{eqn:VW_M}
 \end{eqnarray}
 となる．ただし，インデックス1と2は，それぞれ系1と系2に関する量であることを意味する．
-これら，式(\ref{eqn:VW_N})と(\ref{eqn:VW_M})の辺々を加えると，
+式(\ref{eqn:VW_N})と(\ref{eqn:VW_M})の辺々を加えると，
 \begin{equation}
 	曲げ-軸力問題:
 	\int_0^l \left( \frac{N_1N_2}{EA}+ \frac{M_1M_2}{EI} \right) dx 
@@ -130,13 +136,19 @@
 	\bar{\fat{F}}_1\cdot \fat{u}_2(l)-\bar{M}_1 v_2'(l)
 	+
 	\int_0^l \fat{p}_1\cdot \fat{u}_2 dx 
+	\label{eqn:VW_NM_explicit}
+\end{equation}
+となる．ただし$\cdot$(ドット)は内積を表し，例えば$\fat{p}_1\cdot \fat{u}_2$は
+\begin{equation}
+	\fat{p}_1=\left(p_1,\, q_1\right)^T, \ \ 
+	\fat{u}_2=\left(u_2,\, v_2\right)^T
 	\label{eqn:}
 \end{equation}
-となる．ただし$\cdot$（ドット）は内積を表し，例えば$\fat{p}_1\cdot \fat{u}_2$は
+より
 \begin{equation}
-	\fat{p}_1\cdot \fat{u}_2=p_1u_1+q_1u_2
+	\fat{p}_1\cdot \fat{u}_2=p_1u_2+q_1v_2
 \end{equation}
-を意味する．ここで，
+を意味する．ここで，式(\ref{eqn:VW_NM_explicit})において
 \begin{eqnarray}
 	a(\fat{u}_1,\fat{u}_2)&= & 
 	\int_0^l \left( \frac{N_1N_2}{EA}+ \frac{M_1M_2}{EI} \right) dx 
@@ -164,12 +176,12 @@
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%5
 \subsection{単位荷重法}
-図\ref{fig:fig3}に示すような，傾いた単位集中荷重を受ける梁を考え，
+図\ref{fig:fig3}に示すような傾いた単位集中荷重を受ける梁を考える．
 これを仮想仕事式(\ref{eqn:VW_NM})の系1として用いる．
 単位荷重の作用点位置を$x=a$，作用方向を部材軸からの角度で$\alpha$と表せば，
 系1の分布力項$\fat{p}_1$は
 \begin{equation}
-	\fat{p}_1=\hat{\fat{e}}(\alpha)(\alpha)\delta(x-a), \ \ 
+	\fat{p}_1=\hat{\fat{e}}(\alpha)\delta(x-a), \ \ 
 	\hat{\fat{e}}=\left( \cos\alpha,\, \sin \alpha \right)^T
 	\label{eqn:aux}
 \end{equation}
@@ -196,15 +208,20 @@
 \end{equation}
 の関係が得られる．
 $\hat{\fat{e}}$は単位ベクトルだから, 式(\ref{eqn:uload_NM})の左辺は
-$x=a$における変位ベクトル$\fat{u}$の$\hat{\fat{e}}$方向成分を意味する．
-よって，式(\ref{eqn:uload_NM})を用いることで，
-単位荷重の作用点位置$x=a$における変位ベクトル$\fat{u}$の，
-$\hat{\fat{e}}$方向の変位成分が得ることができる．
-最後に，
+$x=a$における変位ベクトル$\fat{u}_2$の$\hat{\fat{e}}$方向成分を意味する．
+従って，式(\ref{eqn:uload_NM})を用いれば，
+２つの系の軸力と曲げモーメントに関する積分から，
+変位ベクトル$\fat{u}_2(a)$の$\hat{\fat{e}}$方向成分が得られる．
+最後に，系2を変位を求める対象となる系，系1をそのための補助系と見る
+立場を明確にするために，
 \begin{equation}
-	\left( \tilde{N},\, \tilde{M}\right)= \left(N_1,\, M_1\right), \ \ 
-	\left( N,\, M\right)= \left(N_2,\, M_2\right), \ \ \fat{u}=\fat{u}_2
-	\label{eqn:}
+	\left(N_1,\, M_1\right) = \left( \tilde{N},\, \tilde{M}\right)
+\end{equation}
+\begin{equation}
+	\left(N_2,\, M_2\right) = \left( N,\, M\right)
+\end{equation}
+\begin{equation}
+	\fat{u}_2=\fat{u}
 \end{equation}
 とおき，式(\ref{eqn:uload_NM})を次のように書き直しておく．
 \begin{equation}
@@ -213,8 +230,6 @@ $\hat{\fat{e}}$方向の変位成分が得ることができる．
 	\int_0^l \left( \frac{N \tilde N }{EA}+ \frac{M \tilde M }{EI} \right) dx 
 	\label{eqn:uload_NM2}
 \end{equation}
-この結果は，曲げモーメントと軸力が同時に作用するとき，式(\ref{eqn:uload_NM2})右辺にある
-積分を行うことで，$x=a$における変位の$\hat{\fat{e}}$方向の変位成分が得られることを意味する．
 以下では，式(\ref{eqn:uload_NM2})を用いて傾斜部材や骨組み構造の変位計算を行う．
 \begin{figure}[h]
 	\begin{center}
@@ -225,7 +240,8 @@ $\hat{\fat{e}}$方向の変位成分が得ることができる．
 \end{figure}
 \subsection{例題}
 \paragraph{問題:}
-図\ref{fig:fig5}に示す片持梁の点Bにおける水平変位$u_B$を求めよ．
+図\ref{fig:fig5}に示す片持梁の，点Bにおける水平変位$u_B$を求めよ．
+ただし，断面剛性$EI$と$EA$はいずれも一定とする．
 \begin{figure}[h]
 	\begin{center}
 	\includegraphics[width=0.25\linewidth]{fig5.eps} 
@@ -234,36 +250,39 @@ $\hat{\fat{e}}$方向の変位成分が得ることができる．
 	\label{fig:fig5}
 \end{figure}
 \paragraph{解答:}
-はじめに，問題で与えられた系の軸力$N$と曲げモーメント$M$を求める．
+式(\ref{eqn:uload_NM2})を用いて変位を計算するためには，
+軸力$N$と$\tilde N$，曲げモーメント$M$と$\tilde M$が必要となる．
+そこではじめに，問題で与えられた系の軸力$N$と曲げモーメント$M$を求める．
 そのために，図\ref{fig:fig7}-(a)に示す$a-a’$断面で構造を切断して
-自由物体図を描く．その結果は，同図（ｂ）のようである．ここで，鉛直方向の
-等分布荷重を集中荷重に置き換え，図\ref{fig:fig7}-(c)のようにして
-釣り合い式を立てることを考える．さらに，鉛直方向の集中荷重を，部材軸方向
-と部材軸直角方向の成分に分解する．この状態で，断面$a-a’$に関する
-モーメントと，部材軸方向の力の釣り合い式を立てることで，
-$N$と$M$が次のように求められる．
+自由物体図を描き，断面力の正方向を図\ref{fig:fig7}-(b)のように取る．
+ここで，鉛直方向の等分布荷重を集中荷重に置き換えれば，
+図\ref{fig:fig7}-(c)のようになるため，これをもとに釣り合い式を立てる．
+その際，鉛直方向の集中荷重を，部材軸方向と部材軸直角方向の成分に分解し，
+断面$a-a’$に関するモーメントと，部材軸方向の力の釣り合い式を立てれば，
+$N$と$M$が次のように求められる．\\
 \begin{equation}
 	N(s)=-\frac{q_0s}{\sqrt{2}}, \ \ 
 	M(s)=-\frac{q_0s^2}{2\sqrt{2}}
 	\label{eqn:}
 \end{equation}
-次に補助系の軸力$\tilde N$と曲げモーメント$\tilde M$を求める．
-補助系は，点Bに単位水平荷重$\tilde F(=1)$を加えた，
-図\ref{fig:fig8}のように取れば良い．$\tilde M$と$\tilde N$は，
-同図(b)のような自由物体図を描き，モーメントと軸方向の力の釣り合い式を立てる
-ことで，
+次に，補助系の軸力$\tilde N$と曲げモーメント$\tilde M$を求める．
+ここでは，点Bにおける水平変位を求めることが目的であるため，
+補助系には，梁の点Bに単位水平荷重を加えた図\ref{fig:fig8}のような
+系を取る．$\tilde M$と$\tilde N$は，同図(b)のように自由物体図を描き，
+モーメントと軸方向の力の釣り合い式を立てることで，
 \begin{equation}
 	\tilde N(s)=\frac{\tilde F}{\sqrt{2}}, \ \ 
 	\tilde M(s)=-\frac{\tilde F s}{\sqrt{2}}
 	\label{eqn:}
 \end{equation}
-と求まる．これらを用いて軸力と曲げモーメントに関する積分を行えば，
+と$\tilde N, \, \tilde M$が求められる．
+以上の結果を用いて軸力と曲げモーメントに関する積分を行えば，
 \begin{equation}
 	\int_0^l N \tilde N ds = -\frac{q_0l^2}{4}, \\
 	\int_0^l M \tilde M ds = \frac{q_0l^4}{16}
 	\label{eqn:}
 \end{equation}
-となる．これより，点Cにおける水平変位が
+となる．これを式(\ref{eqn:uload_NM2})に代入すれば，点Cにおける水平変位が
 \begin{equation}
 	u_B=
 	\int_0^l \left( 
@@ -294,6 +313,7 @@ $N$と$M$が次のように求められる．
 \end{figure}
 \subsection{練習問題}
 図\ref{fig:fig6}に示す片持梁の点Bにおける水平変位$u_B$を求めよ．
+ただし，断面剛性$EI$と$EA$はいずれも一定とする．
 \begin{figure}[h]
 	\begin{center}
 	\includegraphics[width=0.25\linewidth]{fig6.eps} 

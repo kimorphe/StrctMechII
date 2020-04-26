@@ -1,7 +1,7 @@
 ﻿\documentclass[10pt,a4j]{jarticle}
 %\usepackage{graphicx,wrapfig}
 \usepackage{graphicx}
-\usepackage{showkeys}
+%\usepackage{showkeys}
 \setlength{\topmargin}{-1.5cm}
 %\setlength{\textwidth}{16.5cm}
 \setlength{\textheight}{25.2cm}
@@ -64,7 +64,7 @@
 次に，連続梁をはじめとする簡単な不静定構造の支点反力と断面力を，単位荷重法を
 利用して求める方法を示す．
 \subsection{単位荷重法}
-単位荷重法の公式が,次のように表されることは,前回の講義において既に学習した.
+前回の講義では，単位荷重法の公式が次のように表されることを示した．
 \begin{equation}
 	v(a)=\int_{梁全体} \frac{M\tilde M}{EI}dx
 	\label{eqn:va}
@@ -75,12 +75,18 @@
 	v(a)=(EI)^{-1}\int_{梁全体} M\tilde Mdx
 	\label{eqn:va2}
 \end{equation}
-となるため，単位荷重法の計算は実質的に，曲げモーメント$M,\tilde M$を求め,
-$\int M\tilde M dx$の積分を計算する作業に帰着される．
-以下に示す問題では，曲げ剛性$EI$は全断面で一定とする．
+となり，単位荷重法の計算は実質的に，
+\begin{itemize}
+\item
+	曲げモーメント$M$と$\tilde M$の計算，
+\item
+	積分$\int M\tilde M dx$の計算，
+\end{itemize}	
+の2つの作業に帰着される．このことは，以下の例題で示すように，張出し梁も同様である．
 \subsection{張出し梁のたわみ}
+以下，曲げ剛性$EI$は全断面で一定とする．
 \subsubsection{例題1}
-\paragraph{問題：}
+\paragraph{問題:}
 図\ref{fig:fig2_5}-(a)に示す張出し梁の，点Cにおけるたわみ$v_C$を単位荷重法を用いて求めよ．
 \begin{figure}[h]
 	\begin{center}
@@ -90,14 +96,14 @@ $\int M\tilde M dx$の積分を計算する作業に帰着される．
 	 (b)単位荷重法の適用において用いる補助系.} 
 	\label{fig:fig2_5}
 \end{figure}
-\paragraph{解答：}
-単位荷重法の適用において用いる補助系を,図\ref{fig:fig2_5}-(b)に示す.
-図\ref{fig:fig2_5}に示した2つの系に対する自由物体図は，
-図\ref{fig:fig3}の上段に示したようになり，これらは静定構造である．
-そこで，力とモーメントの釣り合いから，支点反力と断面力を求めることができ，
-ここで必要となる曲げモーメント$M$と$\tilde M$の分布を示せば，
-図\ref{fig:fig3}の(c)と(d)のようになる．これらは，同図に示した座標$x$あるいは
-$s$を用いて次のように表される．
+\paragraph{解答:}
+図\ref{fig:fig2_5}-(b)に，点Cにおけるたわみを求めるための補助系を示す.
+図\ref{fig:fig2_5}に示した2つの系に作用する反力は，
+図\ref{fig:fig3}の上段に示す3つで，これらは静定構造
+である．そこで，力とモーメントの釣り合いから，曲げモーメント分布を
+求めると，図\ref{fig:fig3}の下段に示したようになる．これらの
+曲げモーメント分布は，図\ref{fig:fig3}に示した座標$x$と$s$
+を用いて次のように表すことができる．
 \begin{equation}
 	M = \left\{
 	\begin{array}{cc}
@@ -116,7 +122,9 @@ $s$を用いて次のように表される．
 	\right.
 	\label{eqn:}
 \end{equation}
-従って，$\int_C^B M\tilde Mds=0$だから，
+従って，区間BCにおける積分$\int_C^B M\tilde Mds$は零となる．
+このことを踏まえ，梁全体，すなわち区間ACにおける曲げモーメント
+に関する積分を行うと，
 \begin{eqnarray}
 	\int_A^CM\tilde M dx & = &  \int_A^BM\tilde M dx  \nonumber \\
 	&=&
@@ -127,12 +135,13 @@ $s$を用いて次のように表される．
 	&= & -\frac{q_0l^4}{48}
 	\label{eqn:}
 \end{eqnarray}
-となり，C点のたわみ$v_C$が
+となる．以上より，
 \begin{equation}
 	v_C=-\frac{1}{48} \frac{q_0l^4}{EI}
 	\label{eqn:}
 \end{equation}
-と求められる．
+と求められる．なお，たわみが負になるということは，
+点Cでは鉛直上向きのたわみが生じていることを意味する．
 \begin{figure}[h]
 	\begin{center}
 	\includegraphics[width=0.8\linewidth]{fig3.eps} 
@@ -142,7 +151,7 @@ $s$を用いて次のように表される．
 \end{figure}
 \subsubsection{例題2}
 \paragraph{問題:}
-図\ref{fig:fig6_2}-(a)に示す張出梁の点Cにおけるたわみ$v_C$を求めよ．
+図\ref{fig:fig6_2}-(a)に示す張出し梁の点Cにおけるたわみ$v_C$を求めよ．
 \begin{figure}[h]
 	\begin{center}
 	\includegraphics[width=0.8\linewidth]{fig6_2.eps} 
@@ -151,34 +160,38 @@ $s$を用いて次のように表される．
 	\label{fig:fig6_2}
 \end{figure}
 \paragraph{解答:}
-問題で与えられた系の曲げモーメント分布を釣り合い条件から求めると，
-図\ref{fig:fig6_2}-(b)に示すように，点Bに関して左右対称になることが分かる．
-この図に示した座標$x$を用いて曲げモーメント分布を表すと，区間ABでは
+問題で与えられた系の曲げモーメント$M$を釣り合い条件から求めると，
+図\ref{fig:fig6_2}-(b)に示すようになる．この図に示されるように，$M$は
+点Bに関して左右対称である．
+そこで，左半分の区間ABにおける曲げモーメントを，図中の座標$x$の
+関数として表すと
 \begin{equation}
 	M(x)=-Px,  \ \ \left(0< x < \frac{l}{2} \right) 
 	\label{eqn:Mx_ex1}
 \end{equation}
-となる．点Cのたわみを求めるための単位荷重法における補助系は，図\ref{fig:fig6_2}-(a)
-において$P=1$としたものであるから，補助系の曲げモーメント$\tilde M$も式(\ref{eqn:Mx_ex1})
-から直ちに得られ
+となる．点Cのたわみを求めるための補助系は，図\ref{fig:fig6_2}-(a)
+において$P=1$としたものであるから，補助系の曲げモーメント$\tilde M$
+は，式(\ref{eqn:Mx_ex1})において$P=1$と置くことで
 \begin{equation}
 	\tilde M(x)=-x,  \ \ \left(0< x < \frac{l}{2} \right) 
 	\label{eqn:Mxt_ex1}
 \end{equation}
-となる．これより，
+と得られ，やはり点Bに関して左右対称である．従って，$M\tilde M$も
+左右対称となるため，$M\tilde M$に関する積分は， 
+区間ABにおける積分:
 \begin{equation}
 	\int _A^B M\tilde M dx = 
 	\int_0^{l/2} (-Px)(-x) dx = \frac{Pl^3}{24}
 	\label{eqn:}
 \end{equation}
-が得られ，$v_C$が
+の結果を2倍することで得られる．よって，$v_C$は
 \begin{equation}
 	v_C=\int_A^C \frac{M \tilde M}{EI}dx
 	=2\int_A^B \frac{M \tilde M}{EI}dx=
 	\frac{Pl^3}{12EI}
 	\label{eqn:}
 \end{equation}
-と決まる．
+となる．
 \subsubsection{練習問題1}
 \begin{enumerate}
 \item
@@ -195,6 +208,8 @@ $s$を用いて次のように表される．
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{不静定梁の反力と断面力}
+以下の例題で示されるように，単位荷重法は不静定構造の反力を決定するためにも
+役立てることができる．以下，引続き梁の曲げ剛性$EI$は全断面で一定とする．
 \subsubsection{例題3}
 \paragraph{問題:}
 図\ref{fig:fig7_1}に示す2径間連続梁に働く支点反力を求め，曲げモーメント図を描け．
@@ -206,43 +221,55 @@ $s$を用いて次のように表される．
 	\label{fig:fig7_1}
 \end{figure}
 \paragraph{解答:}
-与えられた2径間連続梁に作用する支点反力の正方向を図\ref{fig:fig2_7}-(a)のように定め，
-同図の(b)と(c)に示すような2つの静定系(系1，系2)の重ね合わせで表現する．
-系1と2の，点Bにおけるたわみをそれぞれ$v_B^{(1)},v_B^{(2)}$とすれば，
-これらのたわみが満足すべき適合条件は
+2径間連続梁に作用する支点反力の正方向を図\ref{fig:fig2_7}-(a)のように定める．
+ここで，支点Bにおける未知の鉛直反力$R_B$を用い，不静定構造である2径間連続梁を
+図\ref{fig:fig2_7}-(b)と(c)に示す2つの静定系(系1，系2)に分割する．
+系1と系2の点Bにおけるたわみをそれぞれ$v_B^{(1)},v_B^{(2)}$とすれば，
+系1と系2の重ね合わせが2径間連続梁を表現するためには，
+$v_B^{(1)}$と$v_B^{(2)}$が次の適合条件を満足しなければならない．
 \begin{equation}
 	v_B^{(1)} + v_B^{(2)}=0
 	\label{eqn:vb_vanish}
 \end{equation}
-と表される．これらのたわみは，前回の講義で単位荷重法を用いて
+$v_B^{(1)}$と$v_B^{(2)}$は，前回の講義で示した通り単位荷重法を用いて
+計算することができ，その結果は
 \begin{equation}
 	v_B^{(1)}=
 	\frac{5}{384} \frac{q_0l^4}{EI}, \ \ 
 	 v_B^{(2)}=
-	\frac{-1}{48} \frac{R_Bl^3}{EI}
-	\label{eqn:}
+	 -
+	\frac{1}{48} \frac{R_Bl^3}{EI}
+	\label{eqn:vbs}
 \end{equation}
-となることが分かっているため，以上から$R_B=\frac{5}{8}q_0l$が得られる．
-そこで，梁全体の釣り合い条件を考えれば，全ての支点反力が
+となることが分かっている．そこで，式(\ref{eqn:vbs})$を式(\ref{eqn:vb_vanish})$に
+用いれば，$R_B$が
 \begin{equation}
-	H_A=0, \ \ R_A=R_C=\frac{3}{16}q_0l, \ \ R_B=\frac{5}{8}q_0l
+	R_B=\frac{5}{8}q_0l
+	\label{Rb}
+\end{equation}
+と決まる．さらに，この結果を踏まえて連続梁全体の釣り合い条を考えれば，
+残る全ての支点反力が
+\begin{equation}
+	H_A=0, \ \ R_A=R_C=\frac{3}{16}q_0l
 	\label{eqn:}
 \end{equation}
-と求められる．支点反力が決まれば，任意の断面における断面力を釣り条件から求めることができる．あるいは，系1と系2の曲げモーメント分布(それぞれ$M_1, M_2$とする)
-が，図\ref{fig:fig9}のようになることを知っていれば，
+と求められる．支点反力が求められれば，任意の断面における断面力は
+力とモーメントの釣り合い条件から決定できる．
+あるいは，系1の曲げモーメント$M_1$と系2の曲げモーメント$M_2$が，
+図\ref{fig:fig9}のようになることを知っていれば，
 \begin{equation}
 	M=M_1+M_2
 	\label{eqn:}
 \end{equation}
-に上で求めた$R_B$を代入して，曲げモーメント分布を求めることや
-曲げモーメント図を描くことができる．
-その結果は図\ref{fig:fig10}のようになる．
+に，式(\ref{eqn:Rb})を代入して曲げモーメント分布を求めることができる．
+その結果，等分布荷重が作用する2径間連続梁の曲げモーメント図は，
+図\ref{fig:fig10}に示したようになる．
 \begin{figure}
 	\begin{center}
 	\includegraphics[width=0.5\linewidth]{fig7.eps} 
 	\end{center}
-	\caption{(a)2径間連続梁と梁に作用する支点反力.(b),(c)2径間連続梁の
-	支点反力を計算するために用いる2つの静定系.それぞれ，系1，系2と呼ぶ．} 
+	\caption{(a)2径間連続梁に作用する支点反力.
+	(b),(c)支点反力を計算するために用いる2つの静定系1と2．} 
 	\label{fig:fig2_7}
 \end{figure}
 \begin{figure}[h]
@@ -271,26 +298,37 @@ $s$を用いて次のように表される．
 \end{figure}
 \paragraph{解答:}
 問題で与えられた不静定構造を，図\ref{fig:fig11}の(b)と(c)に示す
-２つの片持梁に分解する．ただし，$R_B$は元の不静定系において支点Bで作用する反力である．
-静定系1と2，それぞれの点Bにおけるたわみを$v_B^{(1)},v_B^{(2)}$とすれば，
-たわみの適合条件はここでも式(\ref{eqn:vb_vanish})で与えられる．
-また，これらのたわみを単位荷重法で求めると
+ような2つの片持梁に分解する．ただし，$R_B$は元の不静定構造において
+支点Bに加わる未知の反力である．静定系1と2の点Bにおけるたわみを，
+それぞれ$v_B^{(1)},v_B^{(2)}$とすれば，たわみの適合条件はここでも
+式(\ref{eqn:vb_vanish})で与えられる．
+また，これら$v_B^{(1)}$と$v_B^{(2)}$を単位荷重法で求めると
 \begin{equation}
 	v_B^{(1)}=
 	\frac{5}{48} \frac{Pl^3}{EI}, \ \ 
 	 v_B^{(2)}=
 	-\frac{1}{24} \frac{R_Bl^3}{EI}
-	\label{eqn:}
+	\label{eqn:vbs2}
 \end{equation}
-となる．よって，$R_B=\frac{5}{2}P$と決まり，これ以外の反力は，不静定系全体の釣り合い条件から
+となる．式(\ref{eqn:vbs2})を式(\ref{eqn:vb_vanish})代入すれば，
+\begin{equation}
+	R_B=\frac{5}{2}P
+	\label{eqn:Rb2}
+\end{equation}	
+が得られる．これ以外の反力$M_A$と$R_A$は，
+不静定系全体の釣り合い条件から
 \begin{equation}
 	R_A=-\frac{3}{2}P, \ \ M_A=\frac{1}{4}Pl
 	\label{eqn:}
 \end{equation}
-と求められる．これらの結果を元に曲げモーメント分布を求め，曲げモーメント図を描くと，
+と求められる．最後に，静定系1の曲げモーメント$M_1$(図\ref{fig:fig12}-(a))と
+静定系2の曲げモーメント$M_2$(図\ref{fig:fig12}-(b))を求め，
+これに式(\ref{eqn:Rb2})を代入して$M_1+M_2$を計算すれば，求めるべき不静定梁の
+曲げモーメント図を図\ref{fig:fig12}-(c)のように描くことができる．
 図\ref{fig:fig12}のようになる．
-なお，単位荷重法の適用にあたって必要となる曲げモーメント分布は，全て，前回講義の例題1
-で求めた結果から直ちに得ることができる(講義ノート2，図3-(b)および(c)を参照).
+なお，単位荷重法の適用にあたって必要となる曲げモーメント分布は，
+全て，前回講義の例題1で求めた結果から直ちに得ることができる
+(講義ノート2，図3-(b)および図3-(c)を参照).
 \begin{figure}[h]
 	\begin{center}
 	\includegraphics[width=1.0\linewidth]{fig11.eps} 
@@ -300,17 +338,18 @@ $s$を用いて次のように表される．
 \end{figure}
 \begin{figure}[h]
 	\begin{center}
-	\includegraphics[width=0.4\linewidth]{fig12.eps} 
+	\includegraphics[width=1.0\linewidth]{fig12.eps} 
 	\end{center}
 	\caption{曲げモーメント図(例題4の解答).} 
 	\label{fig:fig12}
 \end{figure}
+\clearpage
 \subsubsection{練習問題2}
 図\ref{fig:fig8_2}に示す梁(a)から(c)について，梁に作用する支点反力を求め，
 曲げモーメント図を描け．
-\begin{figure}
+\begin{figure}[h]
 	\begin{center}
-	\includegraphics[width=1.0\linewidth]{fig8_2.eps} 
+	\includegraphics[width=0.4\linewidth]{fig8_2.eps} 
 	\end{center}
 	\caption{支持条件と荷重条件の異なる3種類の不静定梁. } 
 	\label{fig:fig8_2}

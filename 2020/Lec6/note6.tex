@@ -1,8 +1,9 @@
 \documentclass[10pt,a4j]{jarticle}
 %\usepackage{graphicx,wrapfig}
 \usepackage{graphicx}
+%\usepackage{showkeys}
 \setlength{\topmargin}{-1.5cm}
-\setlength{\textwidth}{16.5cm}
+%\setlength{\textwidth}{16.5cm}
 \setlength{\textheight}{25.2cm}
 \newlength{\minitwocolumn}
 \setlength{\minitwocolumn}{0.5\textwidth}
@@ -49,15 +50,19 @@
 	{\LARGE  \bf 講義ノート 6} \\
 \end{center}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setcounter{section}{5}
 \section{マトリクス構造解析(有限要素法)}
+\subsection{軸力問題の設定}
 図\ref{fig:fig1}に示すような荷重を受ける軸力部材を考える．
 いま，部材の左端部を節点1, 右端を節点2と呼び，これらの節点における荷重を，
 $x$軸方向を正として$f_1,f_2$と表す．
-同様に，節点1と2における変位を$u_1,\,u_2$とし，節点荷重$(f_1,\, f_2)$と節点変位$(u_1,\, u_2)$
-が満足すべき関係を求める．ただしここでは，軸力問題の厳密な解$u(x)$を求めるのでなく，
-その近似解を求めることを考える．従って，以下に示す方法で求められるものはあくまで近似解だが，
-問題によっては厳密な解が与えられることもできる．また，計算量の増加を許容するならば，
-必要に応じて任意に高い精度の近似解を構成することができる．
+同様に，節点1と2における変位を$u_1,\,u_2$とし，
+節点荷重$(f_1,\, f_2)$と節点変位$(u_1,\, u_2)$
+が満足すべき関係を求める．ただし，以下では，軸力問題の厳密な解$u(x)$ではなく，
+その近似解を求めることを念頭においた議論を行う．従って，以下に示す方法で
+求められるものは一般には近似解だが，問題によっては厳密な解が与えられることもある．
+また，計算量の増加を許容するならば，以下に示す方法を用いて任意に高い精度の
+近似解を構成することも可能になる．
 \begin{figure}[b]
 	\begin{center}
 	\includegraphics[width=0.4\linewidth]{fig1.eps} 
@@ -67,7 +72,8 @@ $x$軸方向を正として$f_1,f_2$と表す．
 \end{figure}
 \subsection{近似解と内挿関数}
 軸力問題の厳密解を$u(x)$, 近似解を$\tilde u(x)$と表す．
-はじめに，未知の解$u(x)$を$0<x<l$において直線で近似することを考える．
+はじめに，未知の解$u(x)$を$0<x<l$において図\ref{fig:fig9}のように
+直線で近似することを考える．
 このとき，$\phi_1(x)$と$\phi_2(x)$を
 \begin{equation}
 	\phi_1(x)= 1-\frac{x}{l}, \ \ 
@@ -80,12 +86,25 @@ $x$軸方向を正として$f_1,f_2$と表す．
 	\label{eqn:u_tilde}
 \end{equation}
 と表すことができる．$\phi_1,\, \phi_2$は，節点間の解を内挿する役割を果たすことから
-"内挿関数"と呼ばれる．ここで，$x_1=0, x_2=l$とすれば、内挿関数$\phi_1,\phi_2$は
+"内挿関数"と呼ばれる．ここで，$x_1=0, x_2=l$とすれば，内挿関数$\phi_1,\phi_2$は
 \begin{equation}
-	\phi_i(x_j)=\delta_{ij}, \ \ (i,j=1,2)
+	\phi_i(x_j)=\delta_{ij}
+	=\left\{
+	\begin{array}{cc}
+		1 & (i=j)  \\
+		0 & (i\neq j) 
+	\end{array}
+		\right.
 	\label{eqn:phi_01}
 \end{equation}
 の関係を満足する．
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[width=0.5\linewidth]{fig9.eps} 
+	\end{center}
+	\caption{変位$u(x)$とその近似$\tilde u(x)$および内挿関数$\phi_1(x),\phi_2(x)$.} 
+	\label{fig:fig9}
+\end{figure}
 \subsection{弱形式}
 図\ref{fig:fig1}に示す軸力問題に対する弱形式:
 \begin{equation}
@@ -100,8 +119,8 @@ $x$軸方向を正として$f_1,f_2$と表す．
 	b(\xi) &= & \sum_{i=1}^2 f_i\xi(x_i) + \int_{0}^{l}p\xi dx
 	\label{eqn:def_b}
 \end{eqnarray}
-で与えられる．
-そこで，近似解(\ref{eqn:u_tilde})を$u=\tilde u$とし，$\xi=\phi_i,\,(i=1,2)$を
+と書ける(導出は，講義ノート1を参照)．
+ここで，近似解(\ref{eqn:u_tilde})を$u=\tilde u$とし，$\xi=\phi_i,\,(i=1,2)$
 として式(\ref{eqn:WF})に代入すれば，
 \begin{equation}
 	a\left(\sum_{j=1}^2u_j\phi_j, \phi_i \right)
@@ -109,12 +128,23 @@ $x$軸方向を正として$f_1,f_2$と表す．
 	\sum_{j=1}  a\left( \phi_i, \phi_j \right)u_j=b(\phi_i), \ \ (i=1,2)
 	\label{eqn:VW2fem}
 \end{equation}
-の関係が得られる．ここで，式(\ref{eqn:VW2fem})を得るにあたり，
+の関係が得られる．ここで式(\ref{eqn:VW2fem})を得るにあたり，
 \begin{equation}
 	a(u_j\phi_j,\phi_i)=u_ja(\phi_i,\phi_j), \ \ a(\phi_j,\phi_i)=a(\phi_i,\phi_j)
 \end{equation}
-とできることを利用した．式(\ref{eqn:VW2fem})を，$i=1,2$の場合をまとめ，行列とベクトルを
-用いて整理すると，次のようになる．
+とできることを利用した．
+また，式(\ref{eqn:VW2fem})の右辺は，式(\ref{eqn:phi_01})を踏まえ，
+\begin{eqnarray}
+	b(\phi_i) &=&
+	\sum_{j=1}^2 f_j\phi_i(x_j) + \int_{0}^{l}p\phi_i dx \\
+	&=&
+	\sum_{j=1}^2 f_j\delta_{ij} + \int_{0}^{l}p\phi_i dx \\
+	&=&
+	f_i + \int_{0}^{l}p\phi_i dx, \ \ (i=1,2)
+	\label{eqn:}
+\end{eqnarray}
+とすることができる．これより，式(\ref{eqn:VW2fem})を$i=1,2$の場合でまとめ，
+行列とベクトルを用いて整理すると次のようになる．
 \begin{equation}
 	\left(
 	\begin{array}{cc}
@@ -202,8 +232,8 @@ $x$軸方向を正として$f_1,f_2$と表す．
 \subsection{例題1}
 \begin{enumerate}
 \item
-図\ref{fig:fig2}に示す軸力部材に生じる変位の近似解$\tilde u(x)$を，
-剛性方程式(\ref{eqn:fem_n1})を用いて求める．
+図\ref{fig:fig2}に示す軸力部材に生じる変位$u(x)$の近似解$\tilde u(x)$を，
+剛性方程式(\ref{eqn:fem_eq0})を用いて求める．
 分布力は$p(x)=0$だから，$\fat{p}=(p_1,p_2)^T=\fat{0}$である．
 また，節点1は固定壁であることから，節点1の変位は$u_1=0$である．
 さらに，節点2では荷重が与えられていることから$f_2=F$と置くことができる．
@@ -247,7 +277,7 @@ $x$軸方向を正として$f_1,f_2$と表す．
 	\tilde u(x)=u_1\phi_1(x)+u_2\phi_2(x)=\frac{Fx}{EA}
 	\label{eqn:apprx1}
 \end{equation}
-と，この場合は厳密解に一致する結果が得られる．
+となり，この場合，厳密解に一致する結果が得られる．
 \begin{figure}[h]
 	\begin{center}
 	\includegraphics[width=0.4\linewidth]{fig2.eps} 
@@ -335,7 +365,7 @@ $x$軸方向を正として$f_1,f_2$と表す．
 	\end{array}
 	\right\}
 \end{equation}
-と縮約され，
+となり，
 \begin{equation}
 	u_2=\frac{p_0l^2}{2EA}, \ \ f_1=-p_0l
 \end{equation}
@@ -343,7 +373,7 @@ $x$軸方向を正として$f_1,f_2$と表す．
 \begin{equation}
 	\tilde u(x)= \frac{p_0l^2}{2EA}\frac{x}{l}
 \end{equation}
-となる．厳密解は$x$の2次関数だから，この問題では近似解と厳密解は一致し得ない．
+で，厳密解は$x$の2次関数だから，この問題では近似解と厳密解は一致し得ない．
 しかしながら，部材端部では，近似解と厳密解が一致することを確かめることができる．
 \begin{figure}[h]
 	\begin{center}
@@ -411,32 +441,39 @@ $x$軸方向を正として$f_1,f_2$と表す．
 	\label{fig:fig5}
 \end{figure}
 \end{enumerate}
-\subsection{問題1}
+\subsection{練習問題1}
 図\ref{fig:fig8}に示すような，右半分の区間に等分布荷重を受ける
-軸力部材に生じる変位を，式(\ref{eqn:fe_eq0})を用いて求めよ．
-なお，部材の断面剛性$EA$は一定とする．
+軸力部材を考える．この部材に生じる変位の近似解を，式(\ref{eqn:fe_eq0})
+を用いて求めよ．なお，部材の断面剛性$EA$は一定とする．
 \begin{figure}[h]
 	\begin{center}
 	\includegraphics[width=0.4\linewidth]{fig8.eps} 
 	\end{center}
-	\caption{右半分の区間に，大きさ$p_0$の等分布荷重を受ける片端が固定された軸力部材.} 
+	\caption{右半分の区間に大きさ$p_0$の等分布荷重を受ける片端が固定された軸力部材.} 
 	\label{fig:fig8}
 \end{figure}
 \subsection{2要素近似}
-ここでは，近似精度を改善するために，軸力部材を図\ref{fig:fig6}に示すような
-２つの要素に分割して近似解$\tilde u(x)$を構成する．
+近似精度を改善するために，軸力部材を図\ref{fig:fig10}に示すような
+２つの要素に分割し，2区間の折れ線で近似解$\tilde u(x)$を構成する．
 ２つの要素への分割位置を指定するために，軸力部材の左端を節点1, 
 右端を節点3, 部材内部の分割位置を節点2とし，
-節点1と2の区間を要素1，節点2と3の区間を要素2と呼ぶことにする．
+節点1と2の区間を要素1，節点2と3の区間を要素2と呼ぶことにする(図\ref{fig:fig6})．
 これらの節点1から3は，部材全体の中での節点配置を表すため，
 その番号を全体節点番号と呼ぶ．
-一方，特定の要素における力や変位，断面位置といった量を表現するには，
-当該要素の左端と右端を参照するために，要素毎に設定した節点番号(要素節点番号)
+一方，特定の要素における力や変位，断面位置といった量を表現する際には，
+当該要素の左端と右端の点を参照するために，要素毎に設定した節点番号(要素節点番号)
 を用いることが便利である．
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[width=0.6\linewidth]{fig10.eps} 
+	\end{center}
+	\caption{２つの要素(区間)で構成された折れ線状の近似解.} 
+	\label{fig:fig10}
+\end{figure}
 そこで，図\ref{fig:fig6}の(b)と(c)示すように，要素節点1と2を定め，
 要素$e$の要素節点$i$における軸変位を$u^e_i$，軸方向の力$f^e_i$と表す．
 さらに，要素長を$l_e$，部材軸方向の座標を$x_e$，断面積を$A_e$等と，要素毎に変化しうる
-量を表す際には，要素番号を付すことにする．このとき，要素$e(=1,2)$に対する剛性方程式は，
+量を表す際には，要素番号をつけて表記する．このとき，要素$e(=1,2)$に対する剛性方程式は，
 前節の議論から
 \begin{equation}
 	\frac{EA_e}{l_e}
@@ -474,12 +511,15 @@ $x$軸方向を正として$f_1,f_2$と表す．
 なお, 分布力$p(x)$に起因する節点荷重ベクトル$\fat{p}^e=(p^e_1,\, p^e_2)^T$の成分は，要素$e$上の内挿関数:
 \begin{equation}
 	\phi^e_1=1-\frac{x_e}{l_e}, \ \ 
-	\phi^e_2=\frac{x_e}{l_e} 
+	\phi^e_2=\frac{x_e}{l_e}, \ \ (0\leq x_e \leq l_e, \ e=1,2)
+	\label{eqn:phi_e_i}
 \end{equation}
 を用いて，次の式で与えられる．
 \begin{equation}
 	p^e_i:=\int_{x_e=0}^{l_e}p(x_e)\phi^e_i(x_e)dx_e, \ \ (i,e=1,2)
 \end{equation}
+式(\ref{eqn:phi_e_i})の内挿関数は，要素上で定義された図\ref{eqn:fig10}のような
+関数である．\\
 \begin{figure}[h]
 	\begin{center}
 	\includegraphics[width=0.6\linewidth]{fig6.eps} 
@@ -487,6 +527,7 @@ $x$軸方向を正として$f_1,f_2$と表す．
 	\caption{軸力部材の２つの要素への分割.} 
 	\label{fig:fig6}
 \end{figure}
+
 ここで，全体節点番号$I$の節点における変位を$u_I$，集中外力を$F_I$とすれば，
 要素節点変位$u^e_i$と荷重$f^e_i$との関係は
 \begin{equation}
@@ -498,6 +539,38 @@ $x$軸方向を正として$f_1,f_2$と表す．
 	\label{eqn:fi2FI}
 \end{equation}
 となる．従って，$e=1$に対する剛性方程式(\ref{eqn:fe_eq_e})は
+\begin{equation}
+	\frac{EA_1}{l_1}
+	\left(
+	\begin{array}{cc}
+		1 & -1  \\
+		-1 & 1 
+	\end{array}
+	\right)
+	\left\{
+	\begin{array}{c}
+		u_1 \\
+		u_2 
+	\end{array}
+	\right\}
+	=
+	\left\{
+	\begin{array}{c}
+		f^1_1  \\
+		f^1_2 
+	\end{array}
+	\right\}
+	+
+	\left\{
+	\begin{array}{c}
+		p^1_1 \\
+		p^1_2 
+	\end{array}
+	\right\}, 
+	\label{eqn:fe_eq_1_2d}
+\end{equation}
+式(\ref{eqn:fe_eq_2d})に$u_3$は含まれないが，
+これを$u_1,u_2$および$u_3$に関する方程式とするためには，
 \begin{equation}
 	\frac{EA_1}{l_1}
 	\left(
@@ -532,7 +605,38 @@ $x$軸方向を正として$f_1,f_2$と表す．
 	\right\}, 
 	\label{eqn:fe_eq_1}
 \end{equation}
-と書くことができる．同様に，要素$e=2$の剛性方程式は
+とすればよい．同様に，要素$e=2$の剛性方程式は
+\begin{equation}
+	\frac{EA_2}{l_2}
+	\left(
+	\begin{array}{cc}
+		 1 & -1 \\
+		-1 & 1 
+	\end{array}
+	\right)
+	\left\{
+	\begin{array}{c}
+		u_2 \\
+		u_3
+	\end{array}
+	\right\}
+	=
+	\left\{
+	\begin{array}{c}
+		f^2_1  \\
+		f^2_2  
+	\end{array}
+	\right\}
+	+
+	\left\{
+	\begin{array}{c}
+		p^2_1 \\
+		p^2_2
+	\end{array}
+	\right\}
+	\label{eqn:fe_eq_2}
+\end{equation}
+だから，
 \begin{equation}
 	\frac{EA_2}{l_2}
 	\left(
@@ -603,7 +707,7 @@ $x$軸方向を正として$f_1,f_2$と表す．
 	\right\}
 	\label{eqn:FE_eq}
 \end{equation}
-となる．これは，部材全体の接点変位と節点荷重の関係を表す式であることから，"全体剛性方程式"と呼ばれる．
+となる．これは，部材全体の節点変位と節点荷重の関係を表す式であることから，"全体剛性方程式"と呼ばれる．
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{例題2}
 \begin{enumerate}
@@ -624,7 +728,7 @@ $x$軸方向を正として$f_1,f_2$と表す．
 	p^e_i=\frac{p_0l}{4}, \ \ (e=1,2,\, i=1,2)
 	\label{eqn:}
 \end{equation}
-であることが示される．また，節点1は固定端，節点2と3に集中荷重は外部から加えられていないため，
+であることが示される．また，節点1は固定端，節点2と3に外部から集中荷重は加えられていないため，
 \begin{equation}
 	u_1=0, \ \ F_2=F_3=0
 \end{equation}
@@ -696,15 +800,16 @@ $x$軸方向を正として$f_1,f_2$と表す．
 	\label{eqn:u_nd_ex1}
 \end{equation}
 が得られる．これを，式(\ref{eqn:FE_eq_ex1})に代入すれば，全体節点1における力
-(反力が)$F_1=-p_0l$と求められる．
+(反力)が$F_1=-p_0l$と求められる．
 要素$e$における変位の近似解$\tilde u(x_e)$は，式(\ref{eqn:u_nd_ex1})を
 \begin{equation}
 	\tilde u(x_e) =\sum_{i=1}^2 u^e_i\phi^e_i(x_e), \ \ (0\leq x_e \leq l_e)
 \end{equation}
 に代入することで得られる．ここでは，変位分布を要素毎に1次式で
 近似しているため，2次式で与えられる厳密解には一致し得ない．
-しかしながら，部材全体の変位分布を一つの直線で
-近似よりも，解の精度は向上している．
+しかしながら，厳密解(微分方程式の厳密な解)と比較すると，
+部材全体の変位分布を一つの直線で 近似よりも解の精度が向上している
+ことを確かめることができる．
 \item
 図\ref{fig:fig5}に示す軸力部材に生じる変位分布を求める．
 ここでも，式(\ref{eqn:l1_l2})のように，長さの等しい2つの要素に
@@ -730,19 +835,10 @@ $x$軸方向を正として$f_1,f_2$と表す．
 	\end{array}
 	\right\}
 	=
-	F
-	\left\{
-	\begin{array}{c}
-		0 \\
-		1  \\
-		0  
-	\end{array}
-	\right\}
-	+
 	\left\{
 	\begin{array}{c}
 		F_1 \\
-		0  \\
+		F  \\
 		0  
 	\end{array}
 	\right\}
@@ -764,10 +860,9 @@ $x$軸方向を正として$f_1,f_2$と表す．
 	\end{array}
 	\right\}
 	=
-	F
 	\left\{
 	\begin{array}{c}
-		1 \\
+		F \\
 		0 
 	\end{array}
 	\right\} 
@@ -782,7 +877,7 @@ $x$軸方向を正として$f_1,f_2$と表す．
 \end{enumerate}
 \subsection{問題2}
 図\ref{fig:fig7}に示すような，両端が固定された軸力部材について，式(\ref{eqn:FE_eq})を用いて変位の近似解を
-求めよ．なお，部材の断面剛性$EA$は一定とし，要素1と要素2の長さは$l/2$となるように要素分割が行われているものとする．
+求めよ．なお，部材の断面剛性$EA$は一定とし，要素1と要素2の長さが$l/2$となるように要素分割が行われているものとする．
 \begin{figure}[h]
 	\begin{center}
 	\includegraphics[width=0.4\linewidth]{fig7.eps} 

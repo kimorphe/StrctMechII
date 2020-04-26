@@ -2,7 +2,7 @@ all: note3.pdf prb3.pdf
 
 note3.pdf: note3.dvi
 	dvipdfmx note3.dvi
-note3.dvi: note3.tex fig5.eps fig6.eps fig7.eps fig8.eps fig3.eps \
+note3.dvi: note3.tex fig5.eps fig6.eps fig7.eps  fig3.eps \
 	fig6_1.eps fig6_2.eps fig8_1.eps fig8_2.eps fig7_1.eps \
 	fig9.eps fig10.eps fig11.eps fig12.eps
 	platex note3.tex

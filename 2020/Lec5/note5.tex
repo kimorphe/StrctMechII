@@ -1,7 +1,7 @@
 \documentclass[10pt,a4j]{jarticle}
 %\usepackage{graphicx,wrapfig}
 \usepackage{graphicx}
-\usepackage{showkeys}
+%\usepackage{showkeys}
 \setlength{\topmargin}{-1.5cm}
 %\setlength{\textwidth}{16.5cm}
 \setlength{\textheight}{25.2cm}
@@ -54,28 +54,38 @@
 \section{骨組構造に対する仮想仕事式}
 \subsection{部材番号と座標系}
 $n$本の直線部材を連結してできる骨組み構造を考える．
-図\ref{fig:fig5}-(a)は骨組み構造の一例を示したもので，部材数が$n=3$の場合である. 
+図\ref{fig:fig4}-(a)はそのような骨組み構造の一例を示したもので，
+部材数$n$が3の場合である. 
 以下ではこれを具体例として参照しながら，一般の骨組み構造に対して成立する仮想仕事式を導く．
-なお，ここで対象とする骨組み構造は，部材間の連結は剛結でもピン結合でもよい．
+なお，ここで対象とする骨組み構造は，部材間の連結が剛結でもピン結合でもよい．
 また，一つの節点(部材の接合点)には何本の部材が連結されていてもよい．
 各部材には部材番号が与えられており，一般の部材の番号を$e(=1,2,\dots n)$と書くことにする．
 断面力や断面係数等，部材に関する諸量にはインデックス$e$をつけて表す．
 例えば，部材$e$における軸力を$N_e$,曲げモーメントを$M_e$，部材長さを$l_e$等と書く．
-なお，部材中の断面位置や荷重や変位などのベクトルを成分表記する際は，
-図\ref{fig:fig5}-(b)に示す，部材軸方向に$x_e$軸，部材軸直角方向に$y_e$軸をとった
-$x_ey_e$直交座標系を用いる．このような座標系は局所座標系，部材座標，あるいは要素座標系と呼ばれる．
+なお，部材中の断面位置や荷重や変位などのベクトル成分を示す際は，
+図\ref{fig:fig5}-(b)に示すように，部材軸方向に$x_e$軸，部材軸直角方向に$y_e$軸をとった
+$x_ey_e-$直交座標系を用いる．このような座標系は局所座標系，部材座標，あるいは要素座標系と呼ばれる．
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[width=0.8\linewidth]{fig4.eps} 
+	\end{center}
+	\caption{(a)骨組み構造の例. 
+	 (b)部材$e$に関する諸量と局所座標($x_e,\,y_e$).} 
+	\label{fig:fig4}
+\end{figure}
 \subsection{荷重条件}
 各部材には分布荷重(ベクトル)が作用すると考える．
 部材$e$に作用する，部材軸方向の分布力を$p_e(x_e)$，部材軸直角方向の分布力を$q_e(x_e)$と書き，
-両者をまとめて，分布荷重ベクトルとして次のように表す．
+両者をまとめ，分布荷重ベクトル$\fat{p}_e$として次のように表す．
 \begin{equation}
 	\fat{p}_e=\left( p_e(x_e),\, q_e(x_e) \right)^T, \ \ (e=1,\dots n)
 	\label{eqn:}
 \end{equation}
+ここに$(\cdot)^T$は$(\cdot)$の転置を意味する．
 同様に，部材$e$の$x_e$における軸方向，軸直角方向の変位をそれぞれ$u_e(x_e),\, v_e(x_e)$とし，
 変位ベクトルを
 \begin{equation}
-	\fat{u}_e=\left( p_e(x_e),\, q_e(x_e) \right)^T,  \ \ (e=1,\dots n)
+	\fat{u}_e=\left( u_e(x_e),\, v_e(x_e) \right)^T,  \ \ (e=1,\dots n)
 	\label{eqn:}
 \end{equation}
 と表し，軸力$N_e$とせん断力$Q_e$の対として与えられる内力ベクトルを
@@ -84,7 +94,7 @@ $x_ey_e$直交座標系を用いる．このような座標系は局所座標系
 	\label{eqn:}
 \end{equation}
 と書くことにする．なお，
-骨組み構造に作用する全ての分布力や，変位分布，断面力分布を表す際には，
+骨組み構造に作用する分布力や変位分布，断面力分布の全体を表す際には，
 部材番号$e$をつけず
 \begin{equation}
 	\fat{p}=\left\{ \fat{p}_e \right\}_{e=1}^n, 
@@ -94,13 +104,20 @@ $x_ey_e$直交座標系を用いる．このような座標系は局所座標系
 	\fat{F}=\left\{ \fat{F}_e \right\}_{e=1}^n,
 	\label{eqn:}
 \end{equation}
-と表す．以下では，簡単のため，節点あるいは部材端部に外部から作用する集中荷重は
-存在しないものと仮定しておく．
+と書く．以下では，簡単のため，節点あるいは部材端部に外部から作用する集中荷重は
+存在しないと仮定する．
 \subsection{仮想仕事式}
-図\ref{fig:fig5}に示す骨組み構造について，荷重条件$\fat{p}$の異なる2つの系を考える．
-これらの系を系1，系2と名付け，いずれの系に関する量であるかを区別する際には，右肩に
-系の番号をつけて諸量を表すことにする．例えば，系1の部材$e$における変位ベクトルは
-$\fat{u}^{(1)}_e$，系2の部材$s$における軸力と曲げモーメントを$N^{(2)}_e$および$M^{(2)}_e$等と表す．
+図\ref{fig:fig5}に示すような荷重条件$\fat{p}$の異なる2つの系を考える．
+これらの系を系1，系2と名付け，いずれの系に関する量であるかを区別する際には，
+右肩に系の番号をつけて諸量を表すことにする．例えば，系1の部材$e$における変位ベクトルは
+$\fat{u}^{(1)}_e$，系2の部材$i$における軸力と曲げモーメントを$N^{(2)}_i$および$M^{(2)}_i$等と表す．
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[width=0.9\linewidth]{fig5.eps} 
+	\end{center}
+	\caption{仮想仕事式が対象とする2つの骨組み構造.} 
+	\label{fig:fig5}
+\end{figure}
 以上の表記に従い，系1と系2の間で成立する仮想仕事式を部材$e$について導けば，
 \begin{equation}
 	\int_{x_e=0}^{l_e} 
@@ -123,11 +140,11 @@ $\fat{u}^{(1)}_e$，系2の部材$s$における軸力と曲げモーメント�
 	dx_e
 	\label{eqn:vwk_e}
 \end{equation}
-となる．この関係は単一の部材だけに関するものであることから，導出は単一部材の
-曲げ−軸力問題と同様にして行うことができる．ただし，式(\ref{eqn:vwk_e})では，
-部材端部($x_e=0,\,l_e$)で，変位やたわみが指定されていない場合を想定したものである．
-図\ref{fig:fig5}-(a)に示した骨組み構造で言えば，$e=2$の場合は
-式(\ref{eqn:vwk_e})はこのままの形で成立する．一方，$e=1$の場合は，
+となる．この関係は単一の部材に関するものであることから，導出は単一部材の
+曲げ−軸力問題と全く同様である，式(\ref{eqn:vwk_e})では，
+部材端部($x_e=0,\,l_e$)で，変位が未知の場合を想定したものである．
+図\ref{fig:fig5}-(a)に示した骨組み構造で言えば，$e=2$の場合，
+式(\ref{eqn:vwk_e})はこのままの形で成立する．一方，$e=1$の場合，
 $x_e=0$において変位ベクトルとたわみ角がゼロであることから，
 \begin{equation}
 	\left. \fat{u}^{(1)}_1\right|_{x_1=0}
@@ -165,14 +182,14 @@ $x_e=0$において変位ベクトルとたわみ角がゼロであることか�
 	dx_1
 	\label{eqn:}
 \end{equation}
-となる．また，部材$e=3$では$x_3=l_3$すなわちD点で断面力は零でなければならないので，
+となる．また，部材3($e=3$)では，D点すなわち$x_3=l_3$で断面力は零でなければならないので，
 \begin{equation}
 	\left. \fat{F}^{(1)}_3 \right|_{x_3=l_3}=\fat{0}, \ \ 
 	\left. M_3^{(1)} \right|_{x_3=l_3}=0
 	\label{eqn:free_end}
 \end{equation}
 とすることができる．
-ここで，$e=1,\dot n(=3)$に対して，式(\ref{eqn:vwk_e})の辺々の和を取る．
+ここで，$e=1,\dots n(=3)$に対して，式(\ref{eqn:vwk_e})の辺々の和を取る．
 その際，
 \begin{eqnarray}
 	a\left(
@@ -224,8 +241,8 @@ $x_e=0$において変位ベクトルとたわみ角がゼロであることか�
 	\label{eqn:VW_frame}
 \end{equation}
 と得られる．
-ただし，式(\ref{eqn:def_be})右辺の第1項の和は，
-式(\ref{eqn:fixed_end})および(\ref{eqn:free_end})と，
+ただし，式(\ref{eqn:def_be})の右辺第1項の和は，
+式(\ref{eqn:fixed_end})および(\ref{eqn:free_end})に加え，
 部材2両端の接合条件:
 \begin{equation}
 	\left. \fat{u}_1^{(2)} \right|_{x_1=l_1}
@@ -258,16 +275,27 @@ $x_e=0$において変位ベクトルとたわみ角がゼロであることか�
 	\label{eqn:}
 \end{equation}
 \begin{equation}
-	\left. M_1^{(2)} \right|_{x_1=l_1}
+	\left. M_1^{(1)} \right|_{x_1=l_1}
 	+
-	\left. M_2^{(2)} \right|_{x_2=0}=0
+	\left. M_2^{(1)} \right|_{x_2=0}=0
 	, \ \ 
-	\left. M_2^{(2)} \right|_{x_2=l_2}
+	\left. M_2^{(1)} \right|_{x_2=l_2}
 	+
-	\left. M_3^{(2)} \right|_{x_3=0}=0
+	\left. M_3^{(1)} \right|_{x_3=0}=0
 	\label{eqn:}
 \end{equation}
-より，零となることが示される．
+より，
+\begin{equation}
+	\sum_{e=1}^n
+	\left[ 
+		\fat{F}_e^{(1)}\cdot \fat{u}_e^{(2)}
+		-
+		M_e^{(1)}
+		(v_e^{(2)})'
+	\right]_{x_e=0}^{l_e}
+	=0
+\end{equation}
+となることが示される．
 従って，式(\ref{eqn:def_be})は
 \begin{equation}
 	b\left( 
@@ -350,7 +378,7 @@ $x_e=0$において変位ベクトルとたわみ角がゼロであることか�
 この結果は一般の骨組み構造に対して成立するものである．
 \subsubsection{トラス構造}
 トラス構造の場合，各部材には軸力のみが作用することから，曲げモーメントに関する項は現れない．
-そのため，式(\ref{eqn:uload_frame2})において$M_e=0$とすることができ，単位荷重法の式は
+そのため，式(\ref{eqn:uload_frame2})において$M_e=\tilde M_e=0$とすることができ，単位荷重法の式は
 \begin{equation}
 	\left.
 	\hat{\fat{e}}\cdot \fat{u}
@@ -362,9 +390,9 @@ $x_e=0$において変位ベクトルとたわみ角がゼロであることか�
 	dx_e
 	\label{eqn:uload_truss0}
 \end{equation}
-また，トラスの節点にのみ外力が働く場合，部材内部で軸力は変化しない．さらに，
-断面剛性$EA_e$がどの部材でも一定値のときには，式(\ref{eqn:uload_truss0})は
-直ちに積分を行うことができ，単位荷重法の式は次のように非常に単純なものとなる．
+となる．また，トラスの節点にのみ外力が働く場合に限定すると，部材内部で軸力は変化しない．
+さらに， 断面剛性$EA_e$がどの部材でも一定値のときには，式(\ref{eqn:uload_truss0})
+の積分を行うことができ，単位荷重法の式は次のように非常に単純なものとなる．
 \begin{equation}
 	\left.
 	\hat{\fat{e}}\cdot \fat{u}
@@ -372,15 +400,8 @@ $x_e=0$において変位ベクトルとたわみ角がゼロであることか�
 	=
 	\sum_{e=1}^n 
 	\frac{N_e \tilde N_e}{EA_e}l_e
+	\label{eqn:uload_truss}
 \end{equation}
-\begin{figure}[h]
-	\begin{center}
-	\includegraphics[width=0.8\linewidth]{fig5.eps} 
-	\end{center}
-	\caption{(a)骨組み構造の例. 
-	 (b)部材$e$に関する諸量と局所座標($x_e,\,y_e$).} 
-	\label{fig:fig5}
-\end{figure}
 \begin{figure}
 	\begin{center}
 	\includegraphics[width=0.5\linewidth]{fig6.eps} 
@@ -411,8 +432,14 @@ $x_e=0$において変位ベクトルとたわみ角がゼロであることか�
 \paragraph{解答:}
 \begin{enumerate}
 \item
+	断面力分布を表すための座標$s_1$と$s_2$を，図\ref{fig:fig11}-(a)
+	に示すように取る．また，$a-a'$断面，$b-b'$断面に作用する
+	断面力の正方向を図\ref{fig:fig11}-(b)と(c)のように定める．
 	\begin{enumerate}
 	\item
+		図\ref{fig:fig11}-(b)と(c)に示した自由物体図を参照して
+		釣り合い条件式を立てれば，各々の部材における軸力と
+		曲げモーメントが次のように求められる．
 		\begin{equation}
 		N_1=-q_0l, \ \ M_1=-\frac{q_0l^2}{2}
 		\label{eqn:}
@@ -422,6 +449,8 @@ $x_e=0$において変位ベクトルとたわみ角がゼロであることか�
 		\label{eqn:}
 		\end{equation}
 	\item
+		部材$i\,(=1,2)$の軸力と曲げモーメントを$\tilde N_i, \tilde M_i$と表す．
+		これらは，上の問題と同様，釣り合い条件式から
 		\begin{equation}
 		\tilde N_1=-1, \ \ \tilde M_1=-l
 		\label{eqn:}
@@ -430,7 +459,10 @@ $x_e=0$において変位ベクトルとたわみ角がゼロであることか�
 		\tilde N_2=0, \ \ \tilde M_2=-s_2
 		\label{eqn:}
 		\end{equation}
+		と求められる．	
 	\item
+		部材$i\, (=1,2)$の軸力と曲げモーメントを$\tilde {\tilde N}_i, \tilde{\tilde M}_i$
+		とすれば，これらは
 		\begin{equation}
 			\tilde{\tilde N}_1=0, \ \ \tilde{\tilde M}_1=-s_1
 		\label{eqn:}
@@ -439,8 +471,11 @@ $x_e=0$において変位ベクトルとたわみ角がゼロであることか�
 			\tilde{\tilde N}_2=1, \ \ \tilde{\tilde M}_2=0
 		\label{eqn:}
 		\end{equation}
+		となる．
 	\end{enumerate}
 \item
+	図\ref{fig:fig7}-(b)を補助系として単位荷重法(\ref{eqn:uload_frame2})
+	を適用すればよい．
 	\begin{equation}
 		\int_0^l N_1\tilde N_1ds_1=q_0l^2, \ \ 
 		\int_0^l N_2\tilde N_2ds_2=0
@@ -451,12 +486,16 @@ $x_e=0$において変位ベクトルとたわみ角がゼロであることか�
 		\int_0^l M_2\tilde M_2ds_2=\frac{1}{8}q_0l^4
 		\label{eqn:}
 	\end{equation}
+	だから，
 	\begin{equation}
 		v_C=
 		\frac{q_0l^2}{EA}+ \frac{5}{8}\frac{q_0l^4}{EI}
 		\label{eqn:}
 	\end{equation}
+	となる．
 \item
+	図\ref{fig:fig7}-(c)を補助系として単位荷重法(\ref{eqn:uload_frame2})
+	を適用すれば，
 	\begin{equation}
 		\int_0^l N_1\tilde{\tilde N}_1ds_1=0, \ \ 
 		\int_0^l N_2\tilde{\tilde N}_2ds_2=0
@@ -467,11 +506,13 @@ $x_e=0$において変位ベクトルとたわみ角がゼロであることか�
 		\int_0^l M_2\tilde{\tilde M}_2ds_2=0
 		\label{eqn:}
 	\end{equation}
+	より，
 	\begin{equation}
 		u_C=
 		\frac{1}{4}\frac{q_0l^4}{EI}
 		\label{eqn:}
 	\end{equation}
+	を得る．
 \end{enumerate}
 \begin{figure}[h]
 	\begin{center}
@@ -491,18 +532,29 @@ $x_e=0$において変位ベクトルとたわみ角がゼロであることか�
 	\label{fig:fig12}
 \end{figure}
 \paragraph{解答:}
+図\ref{fig:fig13}-(a)の自由物体図を参照して，構造全体の釣り合い条件を
+たてれば，支点反力が次のように求められる．
 \begin{equation}
 	R_A=-\frac{F}{2}, \ \ H_A=-F, \ \ R_C=\frac{F}{2}
 	\label{eqn:}
 \end{equation}
+ここで，図\ref{fig:fig13}-(a)の$a-a'$と$b-b'$における断面力の
+正方向を，図\ref{fig:fig13}-(b)と(c)のように定める．
+これらの自由物体図をもとに，軸方向の力と，切断面に関するモーメントの
+釣り合い条件を考えることで，以下のように断面力を決定することができる．
 \begin{equation}
 	N_1=\frac{3F}{2\sqrt{2}}, \ \ M_1=\frac{Fx_1}{2\sqrt{2}}
-	\label{eqn:}
+	\label{eqn:Nx_hat}
 \end{equation}
 \begin{equation}
-	N_2=-\frac{F}{2\sqrt{2}}, \ \ M_2=\frac{Fx_2}{2\sqrt{2}}
-	\label{eqn:}
+	N_2=-\frac{F}{2\sqrt{2}}, \ \ M_2=\frac{Fs_2}{2\sqrt{2}}
+	\label{eqn:Mx_hat}
 \end{equation}
+点Bの水平変位を単位荷重法で求める場合，図\ref{fig:fig12}の構造に:
+おいて$F=1$としたものをの補助系として用いればよい．その軸力
+$\tilde N_i$と曲げモーメント$\tilde M_i,\,(i=1,2)$は，
+式(\ref{eqn:Nx_hat})と式(\ref{eqn:Mx_hat})において$F=1$とすることで
+得られる．その結果
 \begin{equation}
 	\int_0^l N_1\tilde N_1dx_1=\frac{9}{8}Fl, \ \ 
 	\int_0^l N_2\tilde N_2ds_2=\frac{1}{8}Fl
@@ -513,31 +565,33 @@ $x_e=0$において変位ベクトルとたわみ角がゼロであることか�
 	\int_0^l M_2\tilde M_2ds_2=\frac{1}{24}Fl^3
 	\label{eqn:}
 \end{equation}
+となり，これらを式(\ref{eqn:uload_frame2})に代入して
 \begin{equation}
 	u_B=\frac{5}{4}\frac{Fl}{EA}
 	+
 	\frac{1}{12}\frac{Fl^3}{EA}
 	\label{eqn:}
 \end{equation}
+と，水平変位が求められる．
 \begin{figure}[h]
 	\begin{center}
-	\includegraphics[width=0.8\linewidth]{fig13.eps} 
+	\includegraphics[width=0.9\linewidth]{fig13.eps} 
 	\end{center}
-	\caption{(a)部材座標$s_1,s_2$と構造の切断位置.(b)部材1,(c)部材2の自由物体図(例題2).} 
+	\caption{(a)支点反力の正方向と部材の切断位置.(b)部材1,(c)部材2の自由物体図(例題2).} 
 	\label{fig:fig13}
 \end{figure}
 \subsubsection{例題3}
 \paragraph{問題:}
-図\ref{fig:fig8}に示す２つのトラス構造について次の問に答えよ．
+図\ref{fig:fig8}に示す２つのトラスについて次の問に答えよ．
 \begin{enumerate}
 \item
-	トラス構造(a)の各部材に作用する軸力を求めよ．
+	トラス(a)の各部材に作用する軸力を求めよ．
 \item
-	トラス構造(b)の各部材に作用する軸力を求めよ．
+	トラス(b)の各部材に作用する軸力を求めよ．
 \item
-	トラス構造(a)の点Cにおける水平変位$u_C$を求めよ．
+	トラス(a)の点Cにおける水平変位$u_C$を求めよ．
 \item
-	トラス構造(a)の点Cにおける鉛直変位$v_C$を求めよ．
+	トラス(a)の点Cにおける鉛直変位$v_C$を求めよ．
 \end{enumerate}
 \begin{figure}
 	\begin{center}
@@ -549,24 +603,39 @@ $x_e=0$において変位ベクトルとたわみ角がゼロであることか�
 \paragraph{解答:}
 \begin{enumerate}
 \item
-\begin{equation}
-	N_1=\frac{F}{2}, \ \ N_2=F, \ \ N_3=-F 
-	\label{eqn:}
-\end{equation}
+	$i$番目の部材の軸力を$N_i\,(i=1,2,3)$とする．
+	支点反力を求めた後，節点Aと節点Bにおける力の
+	釣り合いを考えれば，軸力が次のように求められる．
+	\begin{equation}
+		N_1=\frac{F}{2}, \ \ N_2=F, \ \ N_3=-F 
+		\label{eqn:}
+	\end{equation}
 \item
-\begin{equation}
+	$i$番目の部材の軸力を$N_i'\,(i=1,2,3)$とする．
+	支点反力を求めた後，節点Aと節点Bにおける力の
+	釣り合いを考えれば，軸力が次のように求められる．
+	\begin{equation}
 	N_1'=\frac{F}{2\sqrt{3}}, \ \ N_2'=-\frac{F}{\sqrt{3}}, \ \ N_3'=- \frac{F}{\sqrt{3}}
 	\label{eqn:}
-\end{equation}
+	\end{equation}
 \item
-\begin{equation}
-	u_C=\sum_{i=1}^3 \frac{N_i\tilde N_i}{EA}l=\frac{9}{4}\frac{Fl}{EA}
-\end{equation}
+	トラス(a)において$F=1$としたものを補助系として単位荷重法
+	を適用すればよい．すなわち，$\tilde N_i=\left. N_i\right|_{F=1}$として
+	式(\ref{eqn:uload_truss})に代入すれば，
+	\begin{equation}
+		u_C=\sum_{i=1}^3 \frac{N_i\tilde N_i}{EA}l=\frac{9}{4}\frac{Fl}{EA}
+	\end{equation}
+	となる．
 \item
-\begin{equation}
-	v_C=\sum_{i=1}^3 \frac{N_i\tilde N_i}{EA}l=\frac{1}{4\sqrt{3}}\frac{Fl}{EA}
-\end{equation}
+	トラス(b)において$F=1$としたものを補助系として単位荷重法
+	を適用すればよい．すなわち，$\tilde N_i'=\left. N_i\right|_{F=1}$として
+	式(\ref{eqn:uload_truss})に代入すれば，
+	\begin{equation}
+		v_C=\sum_{i=1}^3 \frac{N_i\tilde N_i}{EA}l=\frac{1}{4\sqrt{3}}\frac{Fl}{EA}
+	\end{equation}
+	となる．	
 \end{enumerate}
+\newpage
 \subsection{練習問題}
 以下の問題では，部材の断面$A$，ヤング率$E$，断面2次モーメント$I$は，全ての部材と断面で一定とする．
 \subsubsection{練習問題1}
@@ -577,7 +646,7 @@ $x_e=0$において変位ベクトルとたわみ角がゼロであることか�
 \item
 	点Cにおける水平変位$u_C$を求めよ．
 \end{enumerate}
-\begin{figure}
+\begin{figure}[h]
 	\begin{center}
 	\includegraphics[width=0.4\linewidth]{fig9.eps} 
 	\end{center}
@@ -592,7 +661,7 @@ $x_e=0$において変位ベクトルとたわみ角がゼロであることか�
 \item
 	点Eにおける水平変位$u_E$を求めよ．
 \end{enumerate}
-\begin{figure}
+\begin{figure}[h]
 	\begin{center}
 	\includegraphics[width=0.5\linewidth]{fig10.eps} 
 	\end{center}
