@@ -5,6 +5,11 @@ git add 2020/Lec*/*.txt
 git add 2020/Lec*/*.svgz
 git add 2020/Lec*/Figs
 git add 2020/Lec*/makefile
+
+git add 2020/Prb*/*.tex
+git add 2020/Prb*/*.txt
+git add 2020/Prb*/*.svgz
+git add 2020/Prb*/Figs
 git add ./*.docx
 
 git commit
