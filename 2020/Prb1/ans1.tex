@@ -1,0 +1,211 @@
+\documentclass[10pt,a4j]{jarticle}
+\usepackage{graphicx,wrapfig}
+%\usepackage{showkeys}
+\setlength{\topmargin}{-1.5cm}
+\setlength{\textwidth}{15.5cm}
+\setlength{\textheight}{25.2cm}
+\newlength{\minitwocolumn}
+\setlength{\minitwocolumn}{0.5\textwidth}
+\addtolength{\minitwocolumn}{-\columnsep}
+%\addtolength{\baselineskip}{-0.1\baselineskip}
+%
+\begin{document}
+\def\Mmaru#1{{\ooalign{\hfil#1\/\hfil\crcr
+\raise.167ex\hbox{\mathhexbox 20D}}}}
+
+
+\newcommand{\fat}[1]{\mbox{\boldmath $#1$}}
+\newcommand{\D}{\partial}
+
+\newcommand{\w}{\omega}
+\newcommand{\ga}{\alpha}
+\newcommand{\gb}{\beta}
+\newcommand{\gx}{\xi}
+\newcommand{\gz}{\zeta}
+\newcommand{\vhat}[1]{\hat{\fat{#1}}}
+\newcommand{\spc}{\vspace{0.7\baselineskip}}
+\newcommand{\halfspc}{\vspace{0.3\baselineskip}}
+\bibliographystyle{unsrt}
+%\pagestyle{empty}
+\newcommand{\twofig}[2]
+ {
+   \begin{figure}[h]
+     \begin{minipage}[t]{\minitwocolumn}
+         \begin{center}   #1
+         \end{center}
+     \end{minipage}
+         \hspace{\columnsep}
+     \begin{minipage}[t]{\minitwocolumn}
+         \begin{center} #2
+         \end{center}
+     \end{minipage}
+   \end{figure}
+ }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\vspace*{\baselineskip}
+\begin{center}
+{\Large \bf 2020年度 構造力学II レポート課題1解答} \\
+\end{center}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection*{問題1.}
+問題で与えられた梁を図\ref{fig:fig1}に示す２つの系の重ね合わせで表現する．
+このとき，２つの系の曲げモーメント$M_1$と$M_2$を，釣り合い条件から求めると，
+\begin{equation}
+	M_1=\left\{
+	\begin{array}{ll}
+		-Fx & (0< x < l/2) \\ 
+		-\frac{F}{2}s=-\frac{F}{2}(l-t)& (0< s < l)
+	\end{array}
+	\right.
+\end{equation}
+\begin{equation}
+	M_2=\left\{
+	\begin{array}{ll}
+		0 & (0< x < l/2) \\ 
+		\frac{F}{2}t & (0< t < l/2) \\ 
+		\frac{F}{2}s & (0< s < l/2) \\ 
+	\end{array}
+	\right.
+\end{equation}
+と表され, 問題で与えられた系の曲げモーメント$M$はこれらの和で与えられる．
+ただし，$x,s$および$t$は図\ref{fig:fig1}に示した座標を表す．
+これらの結果を曲げモーメント図として表すと，同図の下側に示したようになる．
+単位荷重法を用いて点Aのたわみを求めるには，図\ref{fig:fig1}-(a)において
+$F=\tilde F=1$としたものを補助系として用いればよい．このときの曲げモーメント
+を$\tilde M$とすれば，$i=1,2$に対して
+\begin{equation}
+	\int_A^D M_i\tilde M dx
+	=
+	\int_{x=0}^{l/2}M_i \tilde M dx
+	+
+	\int_{t=0}^{l/2}M_i \tilde M dt
+	+
+	\int_{s=0}^{l/2}M_i \tilde M ds, \ \ (i=1,2)
+\end{equation}
+であるから，右辺の積分を一つずつ計算すると，
+\begin{eqnarray}
+	\int_A^B M_1\tilde Mdx 
+	&=& 
+	\int_0^{l/2}M_1\tilde Mdx 
+	=
+	\int_0^l (-Fx)(-\tilde Fx)dx
+	=\frac{Fl^3}{24}\tilde F \\
+	\int_D^B M_1\tilde M ds 
+	&=& 
+	\int_0^{l}M_1\tilde Mds 
+	= 
+	\int_0^l 
+	\left(-\frac{Fs}{2} \right) \left(-\frac{\tilde Fs}{2} \right)ds
+	=
+	\frac{Fl^3}{12}\tilde F \\
+	\int_B^C M_2\tilde M dt 
+	&=& 
+	\int_0^{l/2}M_2\tilde Mdt 
+	= 
+	\int_0^{l/2}
+	\left(\frac{Ft}{2} \right) \left(-\frac{\tilde F}{2}(l-t) \right)dt
+	=-\frac{Fl^3}{48}\tilde F \\
+	\int_D^C M_2\tilde M ds
+	&=&
+	\int_0^{l/2}M_2\tilde Mds 
+	= 
+	\left(\frac{Fs}{2} \right) \left(-\frac{\tilde Fs}{2} \right) ds
+	=-\frac{Fl^3}{96}\tilde F 
+\end{eqnarray}
+となることが示される．
+以上に$\tilde F=1$を代入して用いれば，
+\begin{equation}
+	\int_A^D M\tilde M dx
+	=
+	\int_A^D (M_1+M_2) \tilde M dx
+	=
+	\frac{3}{32}Fl^3
+\end{equation}
+となることから，A点のたわみ$v_A$が
+\begin{equation}
+	v_A= \frac{3}{32}\frac{Fl^3}{EI}
+\end{equation}
+と求められる．
+%%%%%%%%%%%%%%%%%
+\begin{figure}
+	\begin{center}
+	\includegraphics[width=1.0\linewidth]{fig1ans.eps} 
+	\end{center}
+	\caption{問題1で与えられた系の２つの系1と2への分解と曲げモーメント図. } 
+	\label{fig:fig1}
+\end{figure}
+\subsubsection*{問題2.}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+問題で与えられた系を，図\ref{fig:fig2}に示す2つの系1と2に分解する．
+系1と系2の点Bにおけるたわみを, それぞれ$\delta_1$, $\delta_2$と表す.
+系1と2の曲げモーメント$M_1$と$M_2$を力の釣り合いから求めると, 
+$M_1,_M2$は
+\begin{equation}
+	M_1=\left\{
+	\begin{array}{ll}
+		-\frac{1}{2}q_0x^2 & (0< x < 2l/3) \\ 
+		-\frac{2}{3}q_0l^2 \left(\frac{s}{l}+\frac{1}{3}\right) & (0< s < l/3) 
+	\end{array}
+	\right.
+	\label{eqn:M1_2}
+\end{equation}
+\begin{equation}
+	M_2=\left\{
+	\begin{array}{ll}
+		0 & (0< x < 2l/3) \\ 
+		R_Bs & (0< s < l/3) 
+	\end{array}
+	\right.
+	\label{eqn:M2_2}
+\end{equation}
+となる．ただし，$x$と$s$は図\ref{fig:fig2}に示したような座標を表す．
+これらの結果を曲げモーメント図として示せば，図\ref{fig:fig2}の下側
+のようである．
+単位荷重法によって$\delta_1,\delta_2$を求めるための補助系は，
+系2において$R_B=-1$とおけばよい．その結果として得られる曲げモーメント分布を
+$\tilde M$と表せば，$\int_A^C M_1\tilde M dx,\,(i=1,2)$は，
+\begin{equation}
+	\int_A^CM_1\tilde Mdx=
+	\int_0^{l/3}M_1\tilde Mds=
+	\int_0^{l/3}
+	-\frac{2}{3}q_0l^2\left(\frac{s}{l}+\frac{1}{3}\right)\left(-s\right)ds
+	=\frac{5}{243}q_0l^4
+\end{equation}
+\begin{equation}
+	\int_A^CM_2\tilde Mdx=
+	\int_0^{l/3}M_2\tilde Mds=
+	\left(R_Bs \right)
+	\left(-s \right)
+	ds
+	=-\frac{R_Bl^3}{81}
+\end{equation}
+となるので，
+\begin{equation}
+	\delta_1=\frac{5}{243}\frac{q_0l^4}{EI}, \ \ 
+	\delta_2=-\frac{R_Bl^3}{81EI}
+\end{equation}
+が得られる．そこで，$\delta_1+\delta_2=0$とすることで，B点における反力$R_B$が
+\begin{equation}
+	R_B=\frac{5}{3}q_0l
+\end{equation}
+と決まる．これを式(\ref{eqn:M1_2})と式(\ref{eqn:M2_2})に代入して
+$M_1+M_2$を計算することで，問題で与えられた梁の曲げモーメント分布を得ることができる．
+その結果を曲げモーメント図として示せば，図\ref{fig:fig3}のようになる．
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}
+	\vspace{10mm}
+	\begin{center}
+	\includegraphics[width=0.6\linewidth]{fig2ans.eps} 
+	\end{center}
+	\caption{問題2で与えられた系の２つの系1と2への分解と曲げモーメント図. } 
+	\label{fig:fig2}
+\end{figure}
+\begin{figure}
+	\vspace{10mm}
+	\begin{center}
+	\includegraphics[width=0.5\linewidth]{fig3ans.eps} 
+	\end{center}
+	\caption{曲げモーメント図(問題2). } 
+	\label{fig:fig3}
+\end{figure}
+\end{document}

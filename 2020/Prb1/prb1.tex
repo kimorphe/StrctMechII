@@ -1,0 +1,69 @@
+\documentclass[10pt,a4j]{jarticle}
+\usepackage{graphicx,wrapfig}
+\setlength{\topmargin}{-1.5cm}
+%\setlength{\textwidth}{15.5cm}
+\setlength{\textheight}{25.2cm}
+\newlength{\minitwocolumn}
+\setlength{\minitwocolumn}{0.5\textwidth}
+\addtolength{\minitwocolumn}{-\columnsep}
+%\addtolength{\baselineskip}{-0.1\baselineskip}
+%
+\def\Mmaru#1{{\ooalign{\hfil#1\/\hfil\crcr
+\raise.167ex\hbox{\mathhexbox 20D}}}}
+%
+\begin{document}
+\newcommand{\fat}[1]{\mbox{\boldmath $#1$}}
+\newcommand{\D}{\partial}
+\newcommand{\w}{\omega}
+\newcommand{\ga}{\alpha}
+\newcommand{\gb}{\beta}
+\newcommand{\gx}{\xi}
+\newcommand{\gz}{\zeta}
+\newcommand{\vhat}[1]{\hat{\fat{#1}}}
+\newcommand{\spc}{\vspace{0.7\baselineskip}}
+\newcommand{\halfspc}{\vspace{0.3\baselineskip}}
+\bibliographystyle{unsrt}
+\pagestyle{empty}
+\newcommand{\twofig}[2]
+ {
+   \begin{figure}[here]
+     \begin{minipage}[t]{\minitwocolumn}
+         \begin{center}   #1
+         \end{center}
+     \end{minipage}
+         \hspace{\columnsep}
+     \begin{minipage}[t]{\minitwocolumn}
+         \begin{center} #2
+         \end{center}
+     \end{minipage}
+   \end{figure}
+ }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\vspace*{\baselineskip}
+\begin{center}
+{\Large \bf 2020年度 構造力学II レポート課題1} \\
+\end{center}
+\begin{flushright}
+	提出期限:2020年5月15日(金)18:00\\
+	提出先：環境理工学部棟3Fレポートボックス
+\end{flushright}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{15mm}
+図\ref{fig:fig1}に示す(a),(b)の梁について，以下の問題に答えよ．
+ただし，梁の曲げ剛性$EI$は全断面で一定とし，たわみは鉛直下向きを正とする．
+\subsubsection*{問題 1}
+梁(a)の点Dにおけるたわみ$v_D$を求めよ.
+\subsubsection*{問題 2}
+梁(b)の受ける支点反力を求め，曲げモーメント図を描け．
+%--------------------
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[width=0.55\linewidth]{fig1.eps} 
+	\end{center}
+	\caption{区間ABに等分布荷重を受ける梁.} 
+	\label{fig:fig1}
+\end{figure}
+%--------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+

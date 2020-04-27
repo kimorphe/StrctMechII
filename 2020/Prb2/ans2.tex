@@ -1,0 +1,235 @@
+\documentclass[10pt,a4j]{jarticle}
+\usepackage{graphicx,wrapfig}
+\setlength{\topmargin}{-1.5cm}
+\setlength{\textwidth}{15.5cm}
+\setlength{\textheight}{25.2cm}
+\newlength{\minitwocolumn}
+\setlength{\minitwocolumn}{0.5\textwidth}
+\addtolength{\minitwocolumn}{-\columnsep}
+%\addtolength{\baselineskip}{-0.1\baselineskip}
+%
+\def\Mmaru#1{{\ooalign{\hfil#1\/\hfil\crcr
+\raise.167ex\hbox{\mathhexbox 20D}}}}
+%
+\begin{document}
+\newcommand{\fat}[1]{\mbox{\boldmath $#1$}}
+\newcommand{\D}{\partial}
+\newcommand{\w}{\omega}
+\newcommand{\ga}{\alpha}
+\newcommand{\gb}{\beta}
+\newcommand{\gx}{\xi}
+\newcommand{\gz}{\zeta}
+\newcommand{\vhat}[1]{\hat{\fat{#1}}}
+\newcommand{\spc}{\vspace{0.7\baselineskip}}
+\newcommand{\halfspc}{\vspace{0.3\baselineskip}}
+\bibliographystyle{unsrt}
+\pagestyle{empty}
+\newcommand{\twofig}[2]
+ {
+   \begin{figure}[h]
+     \begin{minipage}[t]{\minitwocolumn}
+         \begin{center}   #1
+         \end{center}
+     \end{minipage}
+         \hspace{\columnsep}
+     \begin{minipage}[t]{\minitwocolumn}
+         \begin{center} #2
+         \end{center}
+     \end{minipage}
+   \end{figure}
+ }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\vspace*{\baselineskip}
+\begin{center}
+	{\Large \bf 2019年度 構造力学II 演習課題2 解答} \\
+\end{center}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection*{問題 1}
+	問題で与えられた骨組み構造に対し，
+	支点反力の正方向を, 図\ref{fig:fig1}-(a)に示したように定める．
+	これらの反力は，構造全体の力とモーメントのつり合い条件より
+	\[
+		R_A=R_D=\frac{q_0l}{2}, \ \ H_A=q_0l
+	\]
+	となる．部材$i, (i=1,2,3）$の軸力, 曲げモーメント, せん断力を
+	$N_i, M_i$および$Q_i$と表すとき, 部材１から３の断面力を求める
+	ための自由物体図は, 図\ref{fig:fig2}-(a)から(c)のようになる.
+	これらの図を参照して, 軸力とモーメントのつり合い式を立てれば，
+	\[
+		N_1=\frac{q_0l}{2\sqrt{2}}, \ \ 
+		M_1=-\frac{q_0l^2}{2}
+			\left\{\left(\frac{x_1}{l}\right)^2
+			-\frac{3}{\sqrt{2}}\left(\frac{x_1}{l}\right)\right\}
+	\]
+	\[
+		N_2=0, \ \ 
+		M_2=\frac{q_0l^2}{2}\frac{s_2}{l}	
+	\]
+	\[
+		N_3=-\frac{q_0l}{2}, \ \ 
+		M_3=0
+	\]
+	が得られる．この結果から軸力および曲げモーメント図を描くと, 図\ref{fig:fig4}-(a)と(b)のようになる.
+
+	単位荷重法における補助系図\ref{fig:fig1}-(b)のように設定し，
+	この構造の支点反力を求めれば，
+	\[
+		\tilde R_A= \tilde R_D= \frac{1}{2}, \ \ \tilde H_D=0
+	\]
+	である．また, 図\ref{fig:fig3}-(a)から(c)の自由物体図
+	を参照して断面力を計算すれば
+	\[
+		\tilde N_1=-\frac{1}{2\sqrt{2}}, \ \ \tilde M_1=\frac{x_1}{2\sqrt{2}}
+	\]
+	\[
+		\tilde N_2=0, \ \ \tilde M_2=\frac{s_2}{2}
+	\]
+	\[
+		\tilde N_3=-\frac{1}{2}, \ \ \tilde M_3=0
+	\]
+	となることから，補助系の曲げモーメント図は, 図\ref{fig:fig3}-(b)のようになる.
+	ここで, $N_i\tilde N_i$と$M_i\tilde M_i$の部材$i$に関する積分を
+	$i=1,2$と3に対して求めると，
+	\[
+		\int _0^{\sqrt{2}l} N_1 \tilde N_1dx_1=-\frac{\sqrt{2}}{8}q_0l^2
+		, \ \ 
+		\int _0^{\sqrt{2}l} M_1 \tilde M_1dx_1=\frac{q_0l^4}{4\sqrt{2}}
+	\]
+	\[
+		\int _0^l N_2 \tilde N_2ds_2=0, \ \ 
+		\int _0^l M_2 \tilde M_2ds_2=\frac{q_0l^4}{12}
+	\]
+	\[
+		\int _0^l N_3 \tilde N_3ds_3=\frac{q_0l^4}{4}, \ \ 
+		\int _0^l M_3 \tilde M_3ds_3=0
+	\]
+	の結果が得られる.
+	以上より，求めるべき鉛直変位$v_B$は
+	\[
+		v_B=
+		\sum_{i=1}^3
+		\int_0^{l_i} \left(
+			\frac{N_i\tilde N_i}{EA}
+			+
+			\frac{M_i\tilde M_i}{EI}
+		\right) dx_i
+		=
+		\frac{2-\sqrt{2}}{8}\frac{q_0l^2}{EA}
+		+
+		\frac{2+3\sqrt{2}}{24}
+		\frac{q_0l^4}{EI}
+	\]
+	である．ただし$l_i$と$x_i$は，それぞれ部材$i$の長さと
+	部材軸方向にとった座標を表す．
+%--------------------
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[width=1.0\linewidth]{fig1ans.eps} 
+	\end{center}
+	\caption{支点反力の正方向．(a)問題1で与えられた系，(b)単位荷重法の計算に用いる補助系．} 
+	\label{fig:fig1}
+\end{figure}
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[width=0.7\linewidth]{fig2ans.eps} 
+	\end{center}
+	\caption{部材1から3のそれぞれにおける断面力の正方向(問題1)．}
+	\label{fig:fig2}
+\end{figure}
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[width=0.7\linewidth]{fig3ans.eps} 
+	\end{center}
+	\caption{部材1から3のそれぞれにおける断面力の正方向(問題1の補助系)．}
+	\label{fig:fig3}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection*{問題 2}
+トラス構造の節点BとCにそれぞれ大きさ$F_1$および$F_2$の荷重が
+作用する場合の軸力を求める．
+その結果において$F_1=F_2=F$とすれば，問題で与えられたトラス構造の軸力が得られる．
+一方，$F_1=0,F_2=1$とすれば，問題で指定された鉛直変位$v_C$を, 
+単位荷重法によって求めるための補助系の軸力が得られる．\\
+
+図\ref{fig:fig5}-(a)のように支点反力の正方向を定めるとき, 
+これらの支点反力はトラス構造全体のつり合い条件より, 
+\[
+	H_A=-F_1-2F_2, \ \ V_A=F_1+F_2
+	\ \ H_B=F_1+2F_2
+\]
+となる．ここで，第$i$部材の軸力を$N_i$と表し，節点Cに
+関する力の釣り合を考えると, 図\ref{fig:fig5}-(b)より
+\[
+	N_2=F_2, \ \ N_6=-\sqrt{2}F_2
+\]
+となる．次に，図\ref{fig:fig5}-(c)のような部分構造について，
+点Bに関するモーメントの釣り合い条件を考えれば，
+\[
+	N_7=-F_2
+\]
+となることが分かる．さらに，この部分構造の水平方向と鉛直方向の
+力の釣り合いから
+\[
+	N_1=F_2+2F_2, \ \ N_4=-\sqrt{2}\left( F_1+2F_2 \right)
+\]
+が得られる．
+以上を踏まえ，節点Dと節点Eについて
+図\ref{fig:fig4}-(d)および(e)に従いつり合い式を
+立てれば，
+\[
+	N_5=F_2, \ \ N_3=F_1+F_2 
+\]
+が得られる．
+以上の結果から，問題で与えられたトラス構造の軸力が
+\[
+	N_1=3F, \ \ N_2=F, \ \ N_3=2F, \ \ N_4=-2\sqrt{2}F
+\]
+\[
+	N_5=F, \ \ N_6=-\sqrt{2}F, \ \ N_7=-F
+\]
+と，補助系の軸力$\tilde N_i (i=1\sim 7)$が
+\[
+	\tilde N_1=2, \ \ \tilde N_2=1, \ \ \tilde N_3=1, \ \ \tilde N_4=-\sqrt{2}
+\]
+\[
+	\tilde N_5=1, \ \ \tilde N_6=-\sqrt{2}, \ \ \tilde N_7=-1
+\]
+と求められる．これらを単位荷重法に用いることで，C点の鉛直変位$v_C$が
+\[
+	v_C=\sum_{i=1}^7 \frac{N_i \tilde N_i}{EA}l_i =
+	\left( 11+6\sqrt{2}\right)
+	\frac{Fl}{EA}.
+\]
+となることがわかる．
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[width=1.0\linewidth]{fig4ans.eps} 
+	\end{center}
+	\caption{軸力および曲げモーメント図(問題1).}
+	\label{fig:fig4}
+\end{figure}
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[width=0.8\linewidth]{fig5ans.eps} 
+	\end{center}
+	\caption{トラス構造の反力および軸力計算に用いた自由物体図(問題2).}
+	\label{fig:fig5}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+\twofig{
+	\includegraphics[width=0.9\linewidth]{tri_elem.eps} 
+	\caption{微小三角形領域ABCと, 各辺に作用する応力および表面力.} 
+	\label{fig:tri_elem}
+}
+{
+	\includegraphics[width=0.9\linewidth]{N_plane.eps} 
+	\caption{点$\fat{x}$を通り, $x$軸に対して$\theta$だけ傾いた面とその法線$\fat{N}(\theta)$および接線ベクトル$\fat{T}(\theta)$.} 
+	\label{fig:N_plane}
+}
+\begin{figure}[h]
+	\vspace{10mm}
+	\begin{center}
+	\includegraphics[width=0.7\linewidth]{fig1.eps} 
+	\end{center}
+	\caption{問題1で用いる座標系.(i)$xy$および$x'y'$座標系, (ii)$xy$座標系と$xy''$座標系. } 

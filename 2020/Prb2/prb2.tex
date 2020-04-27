@@ -1,0 +1,101 @@
+\documentclass[10pt,a4j]{jarticle}
+\usepackage{graphicx,wrapfig}
+\setlength{\topmargin}{-1.5cm}
+\setlength{\textwidth}{15.5cm}
+\setlength{\textheight}{25.2cm}
+\newlength{\minitwocolumn}
+\setlength{\minitwocolumn}{0.5\textwidth}
+\addtolength{\minitwocolumn}{-\columnsep}
+%\addtolength{\baselineskip}{-0.1\baselineskip}
+%
+\def\Mmaru#1{{\ooalign{\hfil#1\/\hfil\crcr
+\raise.167ex\hbox{\mathhexbox 20D}}}}
+%
+\begin{document}
+\newcommand{\fat}[1]{\mbox{\boldmath $#1$}}
+\newcommand{\D}{\partial}
+\newcommand{\w}{\omega}
+\newcommand{\ga}{\alpha}
+\newcommand{\gb}{\beta}
+\newcommand{\gx}{\xi}
+\newcommand{\gz}{\zeta}
+\newcommand{\vhat}[1]{\hat{\fat{#1}}}
+\newcommand{\spc}{\vspace{0.7\baselineskip}}
+\newcommand{\halfspc}{\vspace{0.3\baselineskip}}
+\bibliographystyle{unsrt}
+%\pagestyle{empty}
+\newcommand{\twofig}[2]
+ {
+   \begin{figure}[h]
+     \begin{minipage}[t]{\minitwocolumn}
+         \begin{center}   #1
+         \end{center}
+     \end{minipage}
+         \hspace{\columnsep}
+     \begin{minipage}[t]{\minitwocolumn}
+         \begin{center} #2
+         \end{center}
+     \end{minipage}
+   \end{figure}
+ }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\vspace*{\baselineskip}
+\begin{center}
+{\Large \bf 2020年度 構造力学II レポート課題2} \\
+\end{center}
+\begin{flushright}
+	提出期限:2020年5月29日(金)18:00\\
+	提出先：環境理工学部棟３Fレポートボックス
+\end{flushright}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{10mm}
+\subsubsection*{問題 1}
+図\ref{fig:fig1}のような骨組み構造ABCDが，鉛直部材CDにおいて
+水平方向の等分布荷重を受ける．等分布荷重の大きさは部材の単位長さあたり$q_0$であるとき，
+点Bに生じる鉛直変位$v_B$を求めよ．なお，部材のヤング率$E$, 断面2次モーメント$I$, 
+断面積$A$は全ての部材で同一かつ一定値とする．
+%--------------------
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[width=0.65\linewidth]{fig1.eps} 
+	\end{center}
+	\caption{問題1で考える骨組構造.} 
+	\label{fig:fig1}
+\end{figure}
+\newpage
+\subsubsection*{問題 2}
+図\ref{fig:fig2}のようなトラス構造の点Fに, 大きさ$P$の鉛直荷重が加えられている．
+このとき，点Fに生じる鉛直変位$v_F$を求めよ．
+なお，トラス部材のヤング率は$E$, 断面積は$A$とし，これらはすべての
+部材で同一かつ一定値とする．
+%--------------------
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[width=0.8\linewidth]{fig2.eps} 
+	\end{center}
+	\caption{問題2で考えるトラス構造.} 
+	\label{fig:fig2}
+\end{figure}
+%--------------------
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+\twofig{
+	\includegraphics[width=0.9\linewidth]{tri_elem.eps} 
+	\caption{微小三角形領域ABCと, 各辺に作用する応力および表面力.} 
+	\label{fig:tri_elem}
+}
+{
+	\includegraphics[width=0.9\linewidth]{N_plane.eps} 
+	\caption{点$\fat{x}$を通り, $x$軸に対して$\theta$だけ傾いた面とその法線$\fat{N}(\theta)$および接線ベクトル$\fat{T}(\theta)$.} 
+	\label{fig:N_plane}
+}
+\begin{figure}[h]
+	\vspace{10mm}
+	\begin{center}
+	\includegraphics[width=0.7\linewidth]{fig1.eps} 
+	\end{center}
+	\caption{問題1で用いる座標系.(i)$xy$および$x'y'$座標系, (ii)$xy$座標系と$xy''$座標系. } 
+	\label{fig:fig1}
+\end{figure}
