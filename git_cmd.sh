@@ -12,5 +12,7 @@ git add 2020/Prb*/*.svgz
 git add 2020/Prb*/Figs
 git add ./*.docx
 
+git add 2020/sol*.pdf
+
 git commit
 git push -u origin master

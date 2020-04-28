@@ -452,6 +452,7 @@ $x$軸方向を正として$f_1,f_2$と表す．
 	\caption{右半分の区間に大きさ$p_0$の等分布荷重を受ける片端が固定された軸力部材.} 
 	\label{fig:fig8}
 \end{figure}
+\paragraph{解答:}$u_1=0,u_2=\frac{3}{8}\frac{p_0l^2}{EA}, F_1=-\frac{1}{2}p_0l, F_2=0$
 \subsection{2要素近似}
 近似精度を改善するために，軸力部材を図\ref{fig:fig10}に示すような
 ２つの要素に分割し，2区間の折れ線で近似解$\tilde u(x)$を構成する．
@@ -518,7 +519,7 @@ $x$軸方向を正として$f_1,f_2$と表す．
 \begin{equation}
 	p^e_i:=\int_{x_e=0}^{l_e}p(x_e)\phi^e_i(x_e)dx_e, \ \ (i,e=1,2)
 \end{equation}
-式(\ref{eqn:phi_e_i})の内挿関数は，要素上で定義された図\ref{eqn:fig10}のような
+式(\ref{eqn:phi_e_i})の内挿関数は，要素上で定義された図\ref{fig:fig10}のような
 関数である．\\
 \begin{figure}[h]
 	\begin{center}
@@ -885,4 +886,6 @@ $x$軸方向を正として$f_1,f_2$と表す．
 	\caption{両端が固定された軸力部材.} 
 	\label{fig:fig7}
 \end{figure}
+\paragraph{解答:}
+$u_1=u_3=0,u_2=\frac{p_0l^2}{8EA}, F_1=F_3=-\frac{1}{2}p_0l, F_2=F$
 \end{document}
