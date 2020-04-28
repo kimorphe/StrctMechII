@@ -10,6 +10,7 @@ git add 2020/Prb*/*.tex
 git add 2020/Prb*/*.txt
 git add 2020/Prb*/*.svgz
 git add 2020/Prb*/Figs
+git add 2020/Prb*/makefile
 git add ./*.docx
 
 git add 2020/sol*.pdf

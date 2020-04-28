@@ -48,62 +48,71 @@
 \end{center}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection*{問題1.}
-問題で与えれた系と，単位荷重法における補助系を図\ref{fig:fig1}に示す．
-これらはいずれも静定構造のため，それぞれ，曲げモーメント分布を
-釣り合い条件から求めることができる．同図の下段は，その結果を
-曲げモーメント図として示したものである．
-この図にあるように，曲げモーメント$M$は区間ABで，$\tilde M$は区間CDで零である．
-従って，単位荷重法の計算で必要となるのは，区間BCにおける曲げモーメントで，
-それらは，次のように座標$s$を用いて表すことができる．
+図\ref{fig:fig1}に問題で与えられた系と単位荷重法における補助系を示す．
+いずれも静定構造であり，曲げモーメント分布は釣り合い条件から求めることが
+できる．同図の下段は釣り合い条件から求めた曲げモーメントを図示したもので，
+曲げモーメント$M$は区間CDで，$\tilde M$は区間ABで零である．
+従って，単位荷重法の計算で必要となるのは区間BCにおける曲げモーメントで，
+区間BCのおける$M$と$\tilde M$は，座標$s$を用いて次のように表すことができる．
 \begin{equation}
-	M(s)=-\frac{q_0l}{2}s, \ \ \tilde M(s)=-\tilde P s, \ \ (0<s<l)
+	M(s)=-\frac{q_0l}{2}(l-s), \ \ \tilde M(s)=-\tilde P s, \ \ (0<s<l)
 \end{equation}
-この結果より,
+これより,
 \begin{equation}
-	\int_A^D M\tilde Mds= \int_B^CM \tilde Mds=\frac{1}{12}q_0l^4
+	\int_A^D M\tilde Mds= \int_B^CM \tilde Mds=\frac{q_0l^4}{12}
 \end{equation}
-となることが分かる.よって,$v_D=\frac{1}{12}\frac{q_0l^4}{EI}$.
+となり，従って$v_D$が
+\begin{equation}
+	v_D=\frac{q_0l^4}{12}\frac{q_0l^4}{EI}
+\end{equation}
+と求められる．
 %%%%%%%%%%%%%%%%%
 \begin{figure}[h]
 	\begin{center}
 	\includegraphics[width=1.0\linewidth]{fig1ans.eps} 
 	\end{center}
-	\caption{問題1で与えられた系と単位荷重法のおける補助系の曲げモーメント図. } 
+	\caption{問題1で与えられた系と単位荷重法における補助系の曲げモーメント図. } 
 	\label{fig:fig1}
 \end{figure}
 \subsubsection*{問題2.}
-問題で与えられた梁を図\ref{fig:fig2}に示す２つの系(系1,系2)の重ね合わせで表現する．
-系1の点Dにおけるたわみを$v^{(1)}_D$，系2の点Dにおけるたわみを$v^{(2)}_D$とすれば，
+問題で与えられた梁を，図\ref{fig:fig2}に示す２つの静定系(系1,系2)の重ね合わせで表現する．
+ただし，この図の$R_B,R_C$および$R_D$は鉛直方向の支点反力を意味する．
+ここで，系1の点Dにおけるたわみを$v^{(1)}_D$，
+系2の点Dにおけるたわみを$v^{(2)}_D$とすれば，
 これらが満足すべき適合条件は
 \begin{equation}
 	v^{(1)}_D
 	+
 	v^{(2)}_D
 	=0
+	\label{eqn:vD_vanish}
 \end{equation}
-である．$v_D^{(1)}$は，問題1での計算の結果$\frac{1}{12}\frac{q_0l^4}{EI}$となる
-ことは既に分かっている.$v^{(2)}_D$の計算にはは，問題1と同じ補助系を用いることができる．
-また系2の曲げモーメントは，図\ref{fig:fig1}-(b)において$\tilde =-R_D$と置くことで得られる．
-以上を踏まえて曲げモーメントに関する積分$\int_A^DM\tilde M ds $を計算すると，
+である．$v_D^{(1)}$は問題1で$\frac{1}{12}\frac{q_0l^4}{EI}$となることが示されている．
+単位荷重法による$v^{(2)}_D$の計算には，問題1と同じ補助系(\ref{fig:fig1}-(b))を用いる
+ことができる．また系2の曲げモーメント$M$は，図\ref{fig:fig1}-(b)において
+$\tilde P=-R_D$と置くことで得られる．以上を踏まえて曲げモーメントに関する積分
+$\int_A^DM\tilde M ds $を計算すると，
 \begin{equation}
-	\int_A^D M\tilde Mds= 2\int_B^CM \tilde Mds=\frac{1}{12}q_0l^4=-\frac{2}{3}q_0l^4
+	\int_A^D M\tilde Mds= 2\int_B^CM \tilde Mds=-\frac{2}{3}R_D^3
 \end{equation}
-となる．よって,$v_D^{(2)}=\frac{2}{3}\frac{q_0l^4}{EI}$で，これを式(\ref{eqn:vD_vanish})
-に代入すれば，
+より，
+\begin{equation}
+	v_D^{(2)}=\frac{2}{3}\frac{q_0l^4}{EI}
+\end{equation}
+となる．これを式(\ref{eqn:vD_vanish})に代入すれば，
 \begin{equation}
 	\frac{1}{12}\frac{q_0l^4}{EI}
 	+
-	D^{(2)}=\frac{2}{3}\frac{q_0l^4}{EI}
+	=-\frac{2}{3}\frac{R_Dl^3}{EI}
 	=0 \ \ \Rightarrow \ \ 
 	R_D=\frac{q_0l}{8}
 \end{equation}
-となることが分かる．
-$R_D$が既知となったため，梁全体の釣り合い条件を使えば残りの支点反力が求められ，
-その結果は次のようになる．
+となることが分かる．$R_D$が既知であれば，梁全体の釣り合い条件から残りの支点反力
+が求められ，その結果は次のようになる．
 \begin{equation}
 	R_B=\frac{13}{8}q_0l, \ \ R_C=-\frac{3}{4}q_0l
 \end{equation}
-最後に，釣り合い条件から曲げモーメントを求め，曲げモーメント図として表せば，最終的に
+最後に，釣り合い条件から曲げモーメントを求めると，
 図\ref{fig:fig3}のようになることが示される.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}
@@ -111,7 +120,7 @@ $R_D$が既知となったため，梁全体の釣り合い条件を使えば残
 	\begin{center}
 	\includegraphics[width=0.6\linewidth]{fig2ans.eps} 
 	\end{center}
-	\caption{問題2で与えられた系の２つの系1と2への分解. } 
+	\caption{問題2で与えられた系の２つの静定系1と2への分解. } 
 	\label{fig:fig2}
 \end{figure}
 \begin{figure}
