@@ -1,0 +1,140 @@
+\documentclass[10pt,a4j]{jarticle}
+\usepackage{graphicx,wrapfig}
+\setlength{\topmargin}{-1.5cm}
+%\setlength{\textwidth}{15.5cm}
+\setlength{\textheight}{25.2cm}
+\newlength{\minitwocolumn}
+\setlength{\minitwocolumn}{0.5\textwidth}
+\addtolength{\minitwocolumn}{-\columnsep}
+%\addtolength{\baselineskip}{-0.1\baselineskip}
+%
+\def\Mmaru#1{{\ooalign{\hfil#1\/\hfil\crcr
+\raise.167ex\hbox{\mathhexbox 20D}}}}
+%
+\begin{document}
+\newcommand{\fat}[1]{\mbox{\boldmath $#1$}}
+\newcommand{\D}{\partial}
+\newcommand{\w}{\omega}
+\newcommand{\ga}{\alpha}
+\newcommand{\gb}{\beta}
+\newcommand{\gx}{\xi}
+\newcommand{\gz}{\zeta}
+\newcommand{\vhat}[1]{\hat{\fat{#1}}}
+\newcommand{\spc}{\vspace{0.7\baselineskip}}
+\newcommand{\halfspc}{\vspace{0.3\baselineskip}}
+\bibliographystyle{unsrt}
+%\pagestyle{empty}
+\newcommand{\twofig}[2]
+ {
+   \begin{figure}[h]
+     \begin{minipage}[t]{\minitwocolumn}
+         \begin{center}   #1
+         \end{center}
+     \end{minipage}
+         \hspace{\columnsep}
+     \begin{minipage}[t]{\minitwocolumn}
+         \begin{center} #2
+         \end{center}
+     \end{minipage}
+   \end{figure}
+ }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\vspace*{\baselineskip}
+\begin{center}
+{\Large \bf 2020年度 構造力学II 期末試験} \\
+\end{center}
+\begin{flushright}
+	2020年6月8日(月)
+\end{flushright}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{itemize}
+\item
+	氏名，学生番号を全ての解答用紙に記入すること．
+\item
+	解答の過程を適宜記すこと．
+\item
+	最終的な解答は下線を入れる等して分かり易く示すこと．
+\end{itemize}
+\subsubsection*{問題 1}
+図\ref{fig:fig1}$\sim$\ref{fig:fig3}に示す梁について以下の問に答えよ．なお，梁部材の
+ヤング率$E$と断面2次モーメント$I$は全ての断面で一定とする．
+\begin{enumerate}
+\item
+	図\ref{fig:fig1}に示す梁の区間ACにおける曲げモーメント分布を，
+	図中に示した座標$s$を用いて表わせ．
+\item
+	図\ref{fig:fig2}の(a)と(b)のような梁に発生する曲げモーメントを
+	それぞれ$M_1$と$M_2$とするとき,
+	\begin{equation}
+		J(a_1,F_1;a_2,F_2)=\int_{x=0}^{l}M_1M_2 dx
+	\end{equation}
+	を求めよ.ただし，$a_2\geq a_1$とする．
+\item
+	図\ref{fig:fig2}-(a)の梁における，点1のたわみ$v_{11}$と，点2のたわみを$v_{12}$をそれぞれ求めよ．
+\item
+	図\ref{fig:fig2}-(b)の梁における，点1のたわみ$v_{21}$と，点2のたわみを$v_{22}$をそれぞれ求めよ．
+\item
+	図\ref{fig:fig3}-(a)の支点反力を求めよ．
+\item
+	図\ref{fig:fig3}-(a)の構造に対する曲げモーメント図を描け．
+\item
+	図\ref{fig:fig3}-(b)の支点反力を求めよ．
+\item
+	図\ref{fig:fig3}-(b)の構造に対する曲げモーメント図を描け．
+\end{enumerate}
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[width=0.4\linewidth]{fig1.eps} 
+	\end{center}
+	\caption{鉛直方向の集中荷重を受ける片持梁．} 
+	\label{fig:fig1}
+\end{figure}
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[width=0.8\linewidth]{fig2.eps} 
+	\end{center}
+	\caption{鉛直方向の集中荷重を受ける2つの片持梁$(a_2\geq a_2)$．} 
+	\label{fig:fig2}
+\end{figure}
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[width=0.80\linewidth]{fig3.eps} 
+	\end{center}
+	\caption{鉛直方向の集中荷重を受ける2つ不静定構造．} 
+	\label{fig:fig3}
+\end{figure}
+図\ref{fig:fig2}に示す梁について次の問に答えよ．
+%\setcounter{enumi}{4}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection*{問題 2}
+図\ref{fig:fig4}に示す骨組み構造について以下の問に答えよ． 
+なお，部材のヤング率$E$、断面2次モーメント$I$, 断面積$A$は全ての部材で共通かつ一定とする．
+解答では，断面力の正方向や計算用いた座標系を明記すること．
+\begin{enumerate}
+\item
+	構造(a)の軸力図を描け．
+\item
+	構造(a)の曲げモーメント図を描け．
+\item
+	構造(b)の軸力図を描け．
+\item
+	構造(b)の曲げモーメント図を描け．
+\item
+	構造(a)の点Aにおける鉛直変位$v_a$を求めよ．
+\item
+	構造(b)の点Aにおける鉛直変位$v_b$を求めよ．
+\item
+	構造(c)に作用する全ての支点反力を求めよ．
+\item
+	構造(c)の曲げモーメント図を描け．
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[width=0.80\linewidth]{fig4.eps} 
+	\end{center}
+	\caption{鉛直荷重を受ける3つの骨組み構造．} 
+	\label{fig:fig4}
+\end{figure}
+\end{document}
+
