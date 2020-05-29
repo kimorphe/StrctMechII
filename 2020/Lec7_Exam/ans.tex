@@ -41,243 +41,253 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\vspace*{\baselineskip}
 \begin{center}
-{\Large \bf 2019年度 構造力学II 期末試験(解答)} \\
+{\Large \bf 2020年度 構造力学II 期末試験(解答)} \\
 \end{center}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection*{問題1.}
 \begin{enumerate}
 \item
-	支点反力の正方向を\ref{fig:fig1}-(a)のようにとる．これらは
-	力とモーメントの釣り合い条件から．
-	\[
-		R_B=\left(1+\frac{a}{l}\right)F, \ \ R_C=-\frac{a}{l}F, \ \ H_B=0
-	\]
-	となる．
+	\begin{equation}
+	M(s)=-FsH(s)\left\{
+		\begin{array}{cc}
+			-Fs & (s\leq 0) \\
+			0 & (s<0)
+		\end{array}
+	\right.
+	\label{eqn:}
+	\end{equation}
 \item
-	区間AB, BCおよびCDにおける曲げモーメントを, 順に$M_1,M_2,M_3$とすれば，
-	これらは
-	\[
-		M_1(x)=-F x, \ \ M_2(s)=-Fa \frac{s}{l}, \ \ M_3=0
-	\]
-	となり,曲げモーメント図は図\ref{fig:fig1}-(b)のようになる．
+	\begin{equation}
+		M_1(s_1)= -F_1s_1H(s_1)
+	\end{equation}
+	\begin{equation}
+		M_2(s_2)= -F_2s_2H(s_2)
+	\end{equation}
+	$s_1=s_2-(a_2-a_1)$より、
+	\begin{equation}
+		J=\int_{s_1=0}^{a_1} M_1(s_1)M_2(s_1)ds_1=\frac{F_1F_2}{6}a_1^2(3a_2-a_1)
+		\label{eqn:}
+	\end{equation}
 \item
-	図\ref{fig:fig1}-(a)において$F=1$としたものを補助系として単位荷重法を用いればよい.
-	補助系の曲げモーメントを$\tilde M_i, (i=1,2,3)$とすれば, 
-	\begin{eqnarray*}
-	&& \int_A^B M_1\tilde M_1 dx=\frac{Fa^3}{3} \\  
-		&& \int_C^B M_2 \tilde M_2 ds = \frac{F}{3}a^2l \\
-	&& \int_D^C M_3 \tilde M_3 ds =0
-	\end{eqnarray*}
-	となるので，点Aのたわみ$v_A$は
-	\[
-		v_A= \frac{F}{3EI}a^2(a+l)
-	\]
-	と求まる．
+	\begin{eqnarray}
+		v_{11}&=& \frac{J(a_1,F_1;a_2,1)}{EI}=\frac{1}{6}\frac{F_1a_1^2}{EI}(3a_2-a_1) \\
+		v_{12}&=& \frac{J(a_1,F_1;a_1,1)}{EI}=\frac{F_1a_1^3}{3} 
+	\end{eqnarray}
 \item
-	図\ref{fig:fig2}を補助系として単位荷重法を適用すればよい．
-	補助系の曲げモーメントを区間AB，BC，CDの順に$\tilde M_1, \tilde M_2, \tilde M_3$
-	とすれば，
-	\[
-		\tilde M_1=0, \ \ 
-		\tilde M_2(s)=-\tilde Fb \left(1-\frac{s}{l}\right), \ \ 
-		\tilde M_3(x)=-\tilde{F} t
-	\]
-	となることから，
-	\begin{eqnarray*}
-		&& \int_C^B M_2\tilde M_2 ds=\frac{F}{6}abl\\  
-	&& \int_A^BM_1 \tilde M_1dx=\int_D^C M_3 \tilde M_3 ds =0
-	\end{eqnarray*}
-	より，点Dのたわみ$v_D$は
-	\[
-		v_D=\frac{Fabl}{6EI}
-	\]
-	となる．
+	\begin{eqnarray}
+		v_{21}&=& \frac{J(a_1,1;a_2,F_2)}{EI}=\frac{1}{6}\frac{F_2a_1^2}{EI}(3a_2-a_1) \\
+		v_{22}&=& \frac{J(a_2,1;a_2,F_2)}{EI}=\frac{F_2a_2^3}{3} 
+	\end{eqnarray}
 \item
-	点Dで伝達される鉛直力を$R_D$とし，問題で与えられた系の区間ADとDGに関する
-	自由物体図を描くと，図\ref{fig:fig3}のようになる．
-	点Dに生じる鉛直変位を$v_D$とする．$v_D$は，区間ADの側からみれば，点Aに作用する
-		荷重$F$に起因する成分$v_D^F$と, $R_D$に起因する成分$v_D^{R+}$の和として
-	\[
-		v_D=v_D^F+v_D^{R+}
-	\]
-	と表される．一方，区間DGの側からみれば，$v_D$はD点で伝達される鉛直力$R_D$のみによって
-	生じると言え，この視点を明確にするために，
-	\[
-		v_D=v_D^{R-}
-	\]
-	と書くことにする．
-	$v_D^{R-}$は，問3の結果において$a=b=\frac{l}{2}, F=R_D$とすることで，
-	\[
-		v_D^F=\frac{R_Dl^3}{8EI}
-	\]
-	と得られ, $v_D^{R+}$との関係は
-	\[
-		v_D^{R+}=-v_D^{R-}
-	\]
-	である．一方，$v_D^F$は，問4の結果において$a=b=\frac{l}{2}$とすることで
-	\[
-		v_D^F=\frac{Fl^3}{24EI}
-		\]
-	と得られる．
-	\[
-		v_D= v_D^F+v_D^{R+}=v_D^{R}
-	\]
-	だから，
-	\[
-		R_D=\frac{F}{6}
-	\]
-	と$R_D$が決定できる．
+	\begin{equation}
+		v_B^{(1)}=\left. v_{11}\right|_{a_1=a, F_1=-R_B}= -\frac{R_Ba^3}{3EI}, \ \ 
+		v_B^{(2)}=\left. v_{21}\right|_{a_2=l, F_2=F}= \frac{1}{6}\frac{Fa^2}{EI}(3l-a)
+		\label{eqn:}
+	\end{equation}
+	\begin{equation}
+		v_B^{(1)}+v_B^{(2)}=0 \ \ \Rightarrow \ \ 
+		R_B=\frac{F}{2}\left(\frac{3l}{a}-1\right)
+		\label{eqn:}
+	\end{equation}
+\item
+	\begin{equation}
+		v_B^{(0)}=\left. v_{21}\right|_{a_1=l, F_2=F,a_2=3l}= \frac{4}{3}\frac{Fl^3}{EI}, \ \ 
+		v_C^{(0)}=\left. v_{21}\right|_{a_1=2l, F_2=F, a_2=3l}= \frac{14}{4}\frac{Fl^3}{EI}
+		\label{eqn:}
+	\end{equation}
+	\begin{equation}
+		v_B^{(1)}=\left. v_{11}\right|_{a_1=l, F_1=-R_B}= -\frac{1}{3}\frac{R_Bl^3}{EI}, \ \ 
+		v_C^{(1)}=\left. v_{12}\right|_{a_1=l, F_1=-R_B, a_2=2l}= \frac{5}{6}\frac{R_Bl^3}{EI}
+		\label{eqn:}
+	\end{equation}
+	\begin{equation}
+		v_B^{(2)}=\left. v_{21}\right|_{a_1=l, a_2=2l, F_2=-R_C}= -\frac{5}{6}\frac{R_Cl^3}{EI}, \ \ 
+		v_C^{(2)}=\left. v_{22}\right|_{a_2=2l, F_2=-R_C}= -\frac{8}{3}\frac{R_Cl^3}{EI}
+		\label{eqn:}
+	\end{equation}
+	\begin{equation}
+		v_B^{(0)}+v_B^{(1)}+v_B^{(2)}=0 \ \ \Rightarrow \ \ 2R_B+5R_C=8F
+		\label{eqn:}
+	\end{equation}
+	\begin{equation}
+		v_C^{(0)}+v_C^{(1)}+v_C^{(2)}=0 \ \ \Rightarrow \ \ 5R_B+16R_C=28F
+		\label{eqn:}
+	\end{equation}
+	\begin{equation}
+		R_B=-\frac{12}{7}F, \ \ R_C=\frac{16}{7}F
+		\label{eqn:}
+	\end{equation}
 \end{enumerate}
 %--------------------
 \begin{figure}[h]
 	\begin{center}
-	\includegraphics[width=0.45\linewidth]{fig1ans.eps} 
+	\includegraphics[width=0.4\linewidth]{fig1ans.eps} 
 	\end{center}
-	\caption{支点反力の正方向と,曲げモーメント図(問題1).}
+	\caption{集中荷重を受ける片持梁の曲げモーメント図).}
 	\label{fig:fig1}
 \end{figure}
 %--------------------
 %--------------------
 \begin{figure}[h]
 	\begin{center}
-	\includegraphics[width=0.45\linewidth]{fig2ans.eps} 
+	\includegraphics[width=0.80\linewidth]{fig2ans2.eps} 
 	\end{center}
-	\caption{単位荷重法における補助系とその曲げモーメント図(問題1).}
+	\caption{曲げモーメント$M_1$と$M_2$を表すための座標$s_1$と$s_2$.}
 	\label{fig:fig2}
 \end{figure}
 %--------------------
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[width=1.0\linewidth]{fig2ans3.eps} 
+	\end{center}
+	\caption{不静定梁の2つの静定系への分割.}
+	\label{fig:fig2_2}
+\end{figure}
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[width=1.0\linewidth]{fig2ans4.eps} 
+	\end{center}
+	\caption{不静定梁の3つの静定系への分割.}
+	\label{fig:fig2_3}
+\end{figure}
 \begin{figure}
 	\begin{center}
-	\includegraphics[width=0.9\linewidth]{fig3ans.eps} 
+	\includegraphics[width=0.9\linewidth]{fig2ans.eps} 
 	\end{center}
-	\caption{ヒンジ部で伝達される鉛直力$R_D$と，2つの部分構造への分割(問題1).}
+	\caption{支点反力の正方向と不静定梁の曲げモーメント図.}
 	\label{fig:fig3}
 \end{figure}
-%--------------------
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection*{問題2.}
 部材1から3における断面力の正方向を図\ref{fig:fig4}のように取る．
 \begin{enumerate}
 \item
-	支点反力の正方向を図\ref{fig:fig5}-(a)のようにとれば，
-	\[
-		R_A=\frac{q_0l}{4}, \ \ R_D=-\frac{q_0l}{4}, \ \ H_A=0
-	\]
-	となる．
-\item
-	部材ABの軸力と曲げモーメントを$N_1,M_1$とする．これらは，図\ref{fig:fig5}-(a)
-	のような座標$x_1$を用いれば，
-	\[
-		N_1=-\frac{q_0l}{4}, \ \ M_1=-\frac{q_0x_1^2}{2}
-	\]
-	となり，断面力図は同図(b)と(c)のようになる．
-\item
-	部材BCの軸力と曲げモーメントを$N_2,M_2$とする．
-	これらは，図\ref{fig:fig5}-(a)のような座標$s_2$を用いれば，
-	\[ 
-		N_2=-q_0l, \ \ M_2=-\frac{q_0l}{4}(l+s_2)
-	\]
-	となり，断面力図は同図(b)と(c)のようになる．
-\item
-	部材CDの軸力と曲げモーメントを$N_3,M_3$とする．
-	これらは，図\ref{fig:fig5}-(a)のような座標$s_3$を用いれば，
-	\[ 
-		N_3=\frac{q_0l}{4}, \ \ M_3=-q_0s_3^2
-	\]
-	となり，断面力図は同図(b)と(c)のようになる．
-\item
-	単位荷重法により水平変位$u_C$を求めるための補助系を，
-	図\ref{fig:fig6}-(a)に示す．
-	支点反力の正方向をこの図にあるように定めるとき，その大きさは
-	\[
-		\tilde H_A=-1, \ \ \tilde R_A=-1, \ \  \tilde R_D=1
-	\]
-	となる．また，軸力と曲げモーメントを, 部材AB,BC,CDの順に
-	$\tilde N_i, \tilde M_i,(i=1,2,3)$と表すことにすれば，
-	図\ref{fig:fig6}-(a)に示した座標$x_1,s_2,s_3$用いて
-	断面力分布を以下のように表すことができる．
-	\[
-		\tilde N_1=1, \ \ \tilde M_1=x_1
-	\]
-	\[
-		\tilde N_2=1, \ \ \tilde M_2=s_2
-	\]
-	\[
-		\tilde N_3=-1, \ \ \tilde M_3=0
-	\]
-	これを断面力図として示せば，\ref{fig:fig6}-(b)と(c)のようになる．
-	次に，単位荷重法の適用において必要とされる積分を行うと，
-	\[
-		\int _0^l N_1\tilde N_1dx_1=-\frac{q_0l^2}{4}, \ \ 
-		\int _0^l N_2\tilde N_2ds_2=-q_0l^2, \ \ 
-		\int _0^{l/2} N_3\tilde N_3ds_3=-\frac{q_0l^2}{8} 
-	\]
-	\[
-		\int_0^l M_1\tilde M_1dx_1=-\frac{q_0l^4}{8}, \ \ 
-		\int_0^l M_2\tilde M_2ds_2=-\frac{5q_0l^4}{24},\ \ 
-		\int_0^l M_3\tilde M_3ds_3=0
-	\]
-	となることから，
-	求めるべき水平変位$u_C$が
-	\[
-		u_C=
-		\sum_{i=1}^3 \int_0^{l_i}
-		\left(
-		\frac{N_i\tilde N_i}{EA}+\frac{M_i\tilde M_i}{EI}
-		\right)dx_i
+	\begin{equation}
+		N_1=N_3=0, \ \ N_2=N_4=-F
+	\end{equation}
+	\begin{equation}
+		M_1=-Fx_1, \ \ M_2=-Fl, \ \ M_3=-F(l-x_3), \ \ M_4=0
+	\end{equation}
+	\begin{equation}
+		\int_0^l 
+			N_i \tilde{N}_i dx_i = 
+		\left\{
+		\begin{array}{cc}
+			0 & (i=1) \\
+			Fl& (i=2) \\
+			0 & (i=3) \\
+			Fl & (i=4)
+		\end{array}
+		\right.
+		, \ \
+		\int_0^l 
+			M_i \tilde{M}_i dx_i = 
+		\left\{
+		\begin{array}{cc}
+			\frac{Fl^3}{3} & (i=1) \\
+			Fl^3 & (i=2) \\
+			\frac{Fl^3}{3} & (i=3) \\
+			0 & (i=4)
+		\end{array}
+		\right.
+	\end{equation}
+	\begin{equation}
+		v_a=
+		\sum_{i=1}^4
+		\int_0^l \left( \frac{N_i\tilde{N}_i}{EA} + \frac{M_i\tilde{M}_i}{EI} \right) dx_i
 		=
-		-\frac{11}{8}
-		\frac{q_0l^2}{EA}
-		-
-		\frac{q_0l^4}{3EI}
-	\]
-	と得られる．ただし，$l_1=l_2=l, l_3=l/2, dx_i=-ds_i,(i=1,2,3) $とした．
+		\frac{2Fl}{EA} + \frac{5}{3}\frac{Fl^3}{EI}
+		\label{eqn:}
+	\end{equation}
+\item
+	\begin{equation}
+		N_1=N_3=0, \ \ N_2=N_4=-q_0l
+	\end{equation}
+	\begin{equation}
+		M_1=-\frac{q_0x_1^2}{2}, \ \ M_2=-\frac{q_0l^2}{2}, \ \ M_3=-q_0l^2\left(\frac{1}{2}l-x_3\right), \ \ M_4=\frac{q_0l^2}{2}
+	\end{equation}
+	\begin{equation}
+		\int_0^l 
+			N_i \tilde{N}_i dx_i = 
+		\left\{
+		\begin{array}{cc}
+			0 & (i=1) \\
+			q_0l^2& (i=2) \\
+			0 & (i=3) \\
+			q_0l^2 & (i=4)
+		\end{array}
+		\right.
+		, \ \
+		\int_0^l 
+			M_i \tilde{M}_i dx_i = 
+		\left\{
+		\begin{array}{cc}
+			\frac{1}{8}q_0l^4 & (i=1) \\
+			\frac{1}{2}q_0l^4 & (i=2) \\
+			\frac{1}{12}q_0l^4 & (i=3) \\
+			0 & (i=4)
+		\end{array}
+		\right.
+	\end{equation}
+	\begin{equation}
+		v_b=
+		\sum_{i=1}^4
+		\int_0^l \left( \frac{N_i\tilde{N}_i}{EA} + \frac{M_i\tilde{M}_i}{EI} \right) dx_i
+		=
+		\frac{2q_0l^2}{EA} + \frac{17}{24}\frac{q_0l^4}{EI}
+		\label{eqn:}
+	\end{equation}
+\item
+	\begin{equation}
+		\left. v_a\right|_{F=-R_A}= -\frac{2R_Al}{EA} - \frac{5}{3}\frac{R_Bl^3}{EI}, \ \ 
+		v_b= \frac{2q_0l^2}{EA} + \frac{17}{24}\frac{q_0l^4}{EI}
+		\label{eqn:}
+	\end{equation}
+	\begin{equation}
+		\left. v_a\right|_{F=-R_A}+ v_b
+		\ \ \Rightarrow \ \ 
+		R_A=\frac
+		{\frac{17}{40}+\frac{6}{5}\frac{I}{Al^2}}
+		{1+\frac{6}{5}\frac{I}{Al^2}}q_0l
+		\label{eqn:}
+	\end{equation}
+\item
+	$I=\frac{a^4}{12},A=a^2$
+	\begin{equation}
+		R_A=\frac{\frac{17}{40}+\varepsilon}{1+\varepsilon}q_0l, \ \ 
+		R_A'=\frac{17}{40}q_0l, \ \ \left(\varepsilon=\frac{1}{10}\frac{a^2}{l^2}=10^{-3}\right)
+		\label{eqn:}
+	\end{equation}
+	\begin{equation}
+		\eta=\frac{\left| R_A-R_A'\right|}{q_0l}=\frac{\frac{17}{40}+\varepsilon}{1+\varepsilon}-\frac{17}{40}
+		\simeq 
+		\left(\frac{17}{40}+\varepsilon \right) (1-\varepsilon) -\frac{17}{40}
+		=\frac{23}{40}\varepsilon -\varepsilon^2
+		\label{eqn:}
+	\end{equation}
+	$\eta=0.575$\%
 \end{enumerate}
 %--------------------
-%--------------------
-\begin{figure}[h]
+\begin{figure}
 	\begin{center}
-	\includegraphics[width=0.7\linewidth]{fig4ans.eps} 
+	\includegraphics[width=0.6\linewidth]{fig3ans.eps} 
 	\end{center}
-	\caption{骨組み構造ABCDの部材1から3における断面力の正方向.}
+	\caption{支点反力の正方向と不静定梁の曲げモーメント図.}
 	\label{fig:fig4}
 \end{figure}
-\begin{figure}[h]
+\begin{figure}
 	\begin{center}
-	\includegraphics[width=1.0\linewidth]{fig5ans.eps} 
+	\includegraphics[width=0.6\linewidth]{fig4ans.eps} 
 	\end{center}
-	\caption{骨組み構造ABCDに働く支点反力と軸力および曲げモーメント図.}
+	\caption{支点反力の正方向と不静定梁の曲げモーメント図.}
 	\label{fig:fig5}
 \end{figure}
-\begin{figure}[h]
+\begin{figure}
 	\begin{center}
-	\includegraphics[width=1.0\linewidth]{fig6ans.eps} 
+	\includegraphics[width=0.6\linewidth]{fig5ans.eps} 
 	\end{center}
-	\caption{
-	単位荷重法における補助系とその軸力および断面力図.
-	断面力の正方向は図\ref{fig:fig4}に同じ．}
+	\caption{支点反力の正方向と不静定梁の曲げモーメント図.}
 	\label{fig:fig6}
 \end{figure}
-%--------------------
 \end{document}
 %--------------------
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\end{document}
-\twofig{
-	\includegraphics[width=0.9\linewidth]{tri_elem.eps} 
-	\caption{微小三角形領域ABCと, 各辺に作用する応力および表面力.} 
-	\label{fig:tri_elem}
-}
-{
-	\includegraphics[width=0.9\linewidth]{N_plane.eps} 
-	\caption{点$\fat{x}$を通り, $x$軸に対して$\theta$だけ傾いた面とその法線$\fat{N}(\theta)$および接線ベクトル$\fat{T}(\theta)$.} 
-	\label{fig:N_plane}
-}
-\begin{figure}[h]
-	\vspace{10mm}
-	\begin{center}
-	\includegraphics[width=0.7\linewidth]{fig1.eps} 
-	\end{center}
-	\caption{問題1で用いる座標系.(i)$xy$および$x'y'$座標系, (ii)$xy$座標系と$xy''$座標系. } 
-	\label{fig:fig1}
-\end{figure}
