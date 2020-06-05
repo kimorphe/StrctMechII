@@ -62,16 +62,16 @@
 \item
 	図\ref{fig:fig1}に示す梁の，区間ACにおける曲げモーメント分布を求めよ．
 \item
-	図\ref{fig:fig2}に示す2つの系(系1,系2)に発生する曲げモーメントを
-	それぞれ$M_1$と$M_2$とするとき,
+	図\ref{fig:fig2}に示す2つの系(系1と系2)に発生する曲げモーメントを
+	それぞれ$M_1$と$M_2$とする．このとき,
 	\begin{equation}
-		J(a_1,F_1;a_2,F_2)=\int_{x=0}^{l}M_1M_2 dx
+		J(a_1,F_1,a_2,F_2)=\int_{x=0}^{l}M_1M_2 dx
 	\end{equation}
 	の積分を求めよ.ただし，$a_2\geq a_1$とする．
 \item
-	図\ref{fig:fig2}の系1における点1のたわみ$v_{11}$と，点2のたわみを$v_{12}$をそれぞれ求めよ．
+	図\ref{fig:fig2}-(a)系1の点1におけるたわみ$v_{11}$と，点2のたわみを$v_{12}$をそれぞれ求めよ．
 \item
-	図\ref{fig:fig2}の系2における点1のたわみ$v_{21}$と，点2のたわみを$v_{22}$をそれぞれ求めよ．
+	図\ref{fig:fig2}-(b)系2の点1におけるたわみ$v_{21}$と，点2のたわみを$v_{22}$をそれぞれ求めよ．
 \item
 	図\ref{fig:fig3}-(a)の系に作用する支点反力を求めよ．
 \item
@@ -83,7 +83,6 @@
 %\item
 %	図\ref{fig:fig3}-(b)の構造に対する曲げモーメント図を描け．
 \end{enumerate}
-\newpage
 \begin{figure}[h]
 	\begin{center}
 	\includegraphics[width=0.4\linewidth]{fig1.eps} 
@@ -126,16 +125,16 @@
 \item
 	構造(b)の点Aにおける鉛直変位$v_b$を求めよ．
 \item
-	構造(c)の点Aに作用する鉛直方向の反力$R_A$を求めよ．
+	構造(c)の点Aに作用する鉛直反力$R_A$を求めよ．
 \item
-	軸力による変形が無視できるとするときの，構造(c)の点Aにおける鉛直反力$R_A'$を求めよ．
+	軸力による変形が小さく無視できると仮定する．このとき，構造(c)の点Aに作用する鉛直反力$R_A'$を求めよ．
 \item
 	$R_A$と$R_A'$の差を
 	\begin{equation}
 		\eta =\frac{|R_A-R_A'|}{q_0l}
 		\label{eqn:}
 	\end{equation}
-	で評価する．全ての部材断面は一辺の長さが$a$の正方形で，$l/a=10$のとき$\eta$は何パーセントとなるか，
+	で評価する．全ての部材断面は一辺の長さが$a$の正方形で，$l/a=10$とするとき$\eta$は何パーセントとなるか，
 	有効数字3桁で答えよ．なお，必要に応じて$|x|\ll 1$でよい近似となる次の関係を用いてよい．
 	\begin{equation}
 		\frac{1}{1+x}\simeq 1-x
@@ -145,7 +144,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[h]
 	\begin{center}
-	\includegraphics[width=0.80\linewidth]{fig4.eps} 
+	\includegraphics[width=0.90\linewidth]{fig4.eps} 
 	\end{center}
 	\caption{鉛直荷重を受ける3種類の骨組み構造．} 
 	\label{fig:fig4}
